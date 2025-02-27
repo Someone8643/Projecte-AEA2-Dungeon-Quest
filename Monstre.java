@@ -1,5 +1,5 @@
 public class Monstre {
-    //propiedades
+    // propiedades
     private String nom;
     private double vida;
     private int penalitazcio;
