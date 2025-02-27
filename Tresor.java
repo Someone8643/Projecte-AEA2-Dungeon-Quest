@@ -1,4 +1,4 @@
-public class Tesor {
+public class Tresor {
 
     //propiedades
     private String nom;
@@ -7,7 +7,7 @@ public class Tesor {
 
     // Constructores
 
-    public Tesor(String nom, double valor, double pes) {
+    public Tresor(String nom, double valor, double pes) {
         this.nom = nom;
         this.valor = valor;
         this.pes = pes;
