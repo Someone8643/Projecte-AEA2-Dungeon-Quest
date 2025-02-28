@@ -2,15 +2,21 @@ import java.util.Random;
 
 public class Aleatori {
 
-    //// Propietats
-    private static Random generadorAleatori = new Random();
+    // // Propietats
+    private static final Random generadorAleatori = new Random();
 
-    //// Constructors
+
+    // // Constructors
     public Aleatori() {
         // default
     }
 
-    //// Mètodes
+
+    // // Mètodes
+    //
+
+
+    // // Mètodes Estàtics
     /**
      * Mètode per generar un enter dintre d'un rang.
      * @param valorMinim El mínim valor que es pot generar.
@@ -58,6 +64,7 @@ public class Aleatori {
         }
     }
 
+
     /**
      * Mètode per obtenir cert o fals segons una probabilitat en percentatge. Un percentatge alt retornarà cert més vegades mentre que un de més baix menys vegades.
      * @param percentatge Un enter que representa el percentatge de vegades que es retornaria cert.
@@ -74,5 +81,4 @@ public class Aleatori {
 
         return false;
     }
-
 }
