@@ -1,12 +1,12 @@
 import java.util.Random;
 
-public class NumeroAleatori {
+public class Aleatori {
 
     //// Propietats
-    private static Random aleatori = new Random();
+    private static Random generadorAleatori = new Random();
 
     //// Constructors
-    public NumeroAleatori() {
+    public Aleatori() {
         // default
     }
 
@@ -22,7 +22,7 @@ public class NumeroAleatori {
         // Utilitzem la classe random (mirar la seva documentació)
         // Hem d'utilitzar un dels seus mètodes per obtenir un int aleatori del 1 al màxim (mínim 1 per la suma i el màxim perquè aquest mètode agafa el màxim de forma no inclosa).
 
-        return aleatori.nextInt(valorMaxim - valorMinim + 1) + valorMinim;
+        return generadorAleatori.nextInt(valorMaxim - valorMinim + 1) + valorMinim;
     }
 
 
@@ -37,7 +37,7 @@ public class NumeroAleatori {
         // Utilitzem la classe random (mirar la seva documentació)
         // Hem d'utilitzar un dels seus mètodes per obtenir un double aleatori del 0,1 al màxim (mínim 0,1 per la suma i el màxim perquè aquest mètode agafa el màxim de forma no inclosa).
 
-        return aleatori.nextDouble(valorMaxim - valorMinim + 0.1) + valorMinim;
+        return generadorAleatori.nextDouble(valorMaxim - valorMinim + 0.1) + valorMinim;
     }
 
 
@@ -49,7 +49,7 @@ public class NumeroAleatori {
 
         // Cridem a generar int amb mínim 0 i màxim 1, si és 0, false, si és 1, true.
 
-        if (NumeroAleatori.generarIntAleatoriRang(0, 1) == 0) {
+        if (Aleatori.generarIntAleatoriRang(0, 1) == 0) {
 
             return false;
         } else {
@@ -67,7 +67,7 @@ public class NumeroAleatori {
 
         // Utilitzem el random int per fer una probabilitat de retornar cert segons el percentatge (enter) que ens passen.
 
-        if (NumeroAleatori.generarIntAleatoriRang(0, 100) <= percentatge) {
+        if (Aleatori.generarIntAleatoriRang(0, 100) <= percentatge) {
 
             return true;
         }
