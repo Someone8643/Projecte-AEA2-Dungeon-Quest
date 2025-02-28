@@ -55,13 +55,7 @@ public class Aleatori {
 
         // Cridem a generar int amb mínim 0 i màxim 1, si és 0, false, si és 1, true.
 
-        if (Aleatori.generarIntAleatoriRang(0, 1) == 0) {
-
-            return false;
-        } else {
-
-            return true;
-        }
+        return Aleatori.generarIntAleatoriRang(0, 1) == 1;
     }
 
 
@@ -73,12 +67,8 @@ public class Aleatori {
     public static boolean percentatgeProbabilitat(int percentatge) {
 
         // Utilitzem el random int per fer una probabilitat de retornar cert segons el percentatge (enter) que ens passen.
+        // El número aleatori pot anar de 0 fins 100, si ha sortit 50 i el nostre percentatge era 25, retorna cert.
 
-        if (Aleatori.generarIntAleatoriRang(0, 100) <= percentatge) {
-
-            return true;
-        }
-
-        return false;
+        return Aleatori.generarIntAleatoriRang(0, 100) <= percentatge;
     }
 }
