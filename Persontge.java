@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Persontge {
-    //propiedades
+    // Propiedades
     private String nom;
     private int vida;
     private int atac;
