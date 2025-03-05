@@ -11,16 +11,46 @@ public class Masmorra {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Bienvengut joc DungeonQuest");
-        System.out.println("estas prepart per jugar (si o no)");
-        String name = sc.nextLine();
-        if (name.equalsIgnoreCase("si")) {
-            System.out.println("-------------------");
-            System.out.println("----DungeonQuest---");
-            System.out.println("-------------------");
-        }else {
-            System.out.println("Quan estiguis preparat, entra a jugar!");
+
+        System.out.println("Benvingut a DungeonQuest!");
+        System.out.println("Estàs preparat per jugar? (s/n):");
+        String respostaJugar = scanner.nextLine();
+
+        while (!respostaJugar.equalsIgnoreCase("s")) {
+
+
+            System.out.println("Quan estiguis preparat, introdueix s.");
+            respostaJugar = scanner.nextLine();
+
         }
+
+        System.out.println();
+        System.out.println("-------------------");
+        System.out.println("----DungeonQuest---");
+        System.out.println("-------------------");
+        System.out.println();
+
+        // Seleccionar una dificultat
+
+        System.out.println("Selecciona una dificultat:");
+        System.out.println("D = Difícil");
+        System.out.println("N = Normal");
+        System.out.println("F = Fàcil");
+
+        System.out.print("La teva elecció: ");
+        char dificultat = scanner.nextLine().charAt(0);
+
+        // Mentres no sigui correcta la resposta, seguir preguntant
+        while (dificultat != 'D' && dificultat != 'N' && dificultat != 'F') {
+
+            System.out.print("Resposta incorrecta! (introdueix D, N o F): ");
+            dificultat = scanner.nextLine().charAt(0);
+        }
+
+        Dificultat.setNivellDeDificultat(dificultat);
+
+
+        // Crear masmorra, amb totes les dades aleatories segons els constructors de cada cosa
 
 
 

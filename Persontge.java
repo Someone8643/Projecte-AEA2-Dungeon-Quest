@@ -1,7 +1,9 @@
 import java.util.Arrays;
 
 public class Persontge {
+
     // Propiedades
+
     private String nom;
     private int vida;
     private int atac;
@@ -30,17 +32,16 @@ public class Persontge {
         return null;
     }
 
-
     @Override
     public String toString() {
-        return "Persontge" +
-                "Nom" + nom + "\n" +
-                "Vida" + vida +"\n"+
-                "Atac" + atac +"\n"+
-                "Experiencia" + experiencia +"\n"+
-                "Agilitat" + agilitat +"\n"+
-                "Forsa" + forsa +"\n"+
-                "Posicio" + Arrays.toString(posicio) +"\n"+
-                "Equipament" + Arrays.toString(equipament);
+        return "Personatge: \n" +
+                "\tNom: " + nom + "\n" +
+                "\tVida: " + vida +"\n"+
+                "\tAtac: " + atac +"\n"+
+                "\tExperiència: " + experiencia +"\n"+
+                "\tAgilitat: " + agilitat +"\n"+
+                "\tForça: " + forsa +"\n"+
+                "\tPosició: " + Arrays.toString(posicio) +"\n"+
+                "\tEquipament: " + Arrays.toString(equipament) +"\n";
     }
 }

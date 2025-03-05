@@ -1,6 +1,7 @@
 public class Tresor {
 
-    //propiedades
+    // Propiedades
+
     private String nom;
     private double valor;
     private double pes;
@@ -15,13 +16,12 @@ public class Tresor {
 
     // Métodos
 
-
-
     @Override
     public String toString() {
         return
-                "Nom " + nom + "\n"+
-                "Valor " + valor +"\n"+
-                "Pes " + pes;
+                "Tresor: \n" +
+                "\tNom " + nom + "\n"+
+                "\tValor " + valor +"\n"+
+                "\tPes " + pes +"\n";
     }
 }

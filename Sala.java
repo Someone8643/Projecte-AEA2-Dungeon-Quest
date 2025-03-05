@@ -1,16 +1,17 @@
 public class Sala {
-    //propiedades
+    // Propiedades
+
     private String tipus;
-    private boolean tesoro;
+    private boolean tresor;
     private boolean monstre;
     private String portes;
     private boolean explorada;
 
     // Constructores
 
-    public Sala(String tipus, boolean tesoro, boolean monstre, String portes, boolean explorada) {
+    public Sala(String tipus, boolean tresor, boolean monstre, String portes, boolean explorada) {
         this.tipus = tipus;
-        this.tesoro = tesoro;
+        this.tresor = tresor;
         this.monstre = monstre;
         this.portes = portes;
         this.explorada = explorada;
@@ -19,13 +20,13 @@ public class Sala {
 
     // Métodos
 
-
     @Override
     public String toString() {
-        return "Tipus" + tipus + "\n"+
-                "Tesoro" + tesoro +"\n"+
-                "Monstre" + monstre +"\n"+
-                "Portes='" + portes + "\n"+
-                "Explorada" + explorada;
+        return  "Sala: \n" +
+                "\tTipus: " + tipus + "\n"+
+                "\tTresor: " + tresor + "\n"+
+                "\tMonstre: " + monstre + "\n"+
+                "\tPortes: " + portes + "\n"+
+                "\tExplorada: " + explorada + "\n";
     }
 }

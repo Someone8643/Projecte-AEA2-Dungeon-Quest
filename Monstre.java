@@ -1,5 +1,6 @@
 public class Monstre {
-    // propiedades
+    // Propiedades
+
     private String nom;
     private double vida;
     private int penalitazcio;
@@ -14,12 +15,11 @@ public class Monstre {
 
     // Métodos
 
-
     @Override
     public String toString() {
-        return "Monstre" +
-                "Nom " + nom + "\n" +
-                "Vida " + vida +"\n"+
-                "Penalitazcio " + penalitazcio;
+        return "Monstre: \n" +
+                "\tNom: " + nom + "\n" +
+                "\tVida: " + vida +"\n"+
+                "\tPenalització: " + penalitazcio + "\n";
     }
 }
