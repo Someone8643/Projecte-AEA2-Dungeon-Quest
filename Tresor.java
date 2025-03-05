@@ -7,7 +7,7 @@ public class Tresor {
     // Propiedades
 
     private String nom;
-    private double valor;
+    private int valor;
     private double pes;
 
     // Llista de noms que tenim
@@ -15,7 +15,7 @@ public class Tresor {
 
     // Constructores
 
-    public Tresor(String nom, double valor, double pes) {
+    public Tresor(String nom, int valor, double pes) {
         this.nom = nom;
         this.valor = valor;
         this.pes = pes;
@@ -24,11 +24,14 @@ public class Tresor {
     // Constructor aleatori
     public Tresor() {
 
-
         // Assignem un nom aleatori de la llista que tenim
         this.nom = arrayNomsDeTresors[Aleatori.generarIntAleatoriRang(0, (arrayNomsDeTresors.length - 1))];
 
+        // Es genera un valor de forma aleatòria. Min 100, max 3000
+        this.valor = Aleatori.generarIntAleatoriRang(100, 3000);
 
+        // Es genera un pes aleatori. Min 1, max 100
+        this.pes = Aleatori.generarDoubleAleatoriRang(1, 100);
     }
 
 
@@ -38,8 +41,8 @@ public class Tresor {
     public String toString() {
         return
                 "Tresor: \n" +
-                "\tNom " + nom + "\n"+
-                "\tValor " + valor +"\n"+
-                "\tPes " + pes +"\n";
+                "\tNom: " + nom + "\n"+
+                "\tValor: " + valor +"\n"+
+                "\tPes: " + pes +"\n";
     }
 }

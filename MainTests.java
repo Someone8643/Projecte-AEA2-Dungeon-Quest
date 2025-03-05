@@ -24,7 +24,13 @@ public class MainTests {
 
 
 
-        Aleatori.generarIntAleatoriRang(1,5);
+
+
+        Tresor tresor = new Tresor();
+
+        System.out.println(tresor);
+
+
 
 
     }

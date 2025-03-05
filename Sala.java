@@ -20,10 +20,29 @@ public class Sala {
 
     // Constructor de sala que ho genera de forma aleatòria
     public Sala() {
+        int resultatAleatori = Aleatori.generarIntAleatoriRang(0, 100);
 
+        if (resultatAleatori <= 70) {
 
+            this.tipus = "Normal";
 
+        } else if (resultatAleatori > 70 && resultatAleatori <= 85) {
+
+            this.tipus = "Pont";
+
+        } else {
+
+            this.tipus = "Teranyina";
+        }
+
+        // Probabilitat del 50% en normal de tenir tresor
         this.tresor = Aleatori.percentatgeProbabilitat(Dificultat.percentatgeFinalObjecteBo(50));
+
+        // TODO Probabilitat del 50% en normal de tenir monstre
+
+        // TODO Assignar portes que té, fer servir tirar moneda per decidir cada direcció
+
+        // No fa falta dir que explorada és fals
     }
 
     // Métodos
