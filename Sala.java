@@ -1,3 +1,4 @@
+
 public class Sala {
     // Propiedades
 
@@ -16,10 +17,6 @@ public class Sala {
         this.portes = portes;
         this.explorada = explorada;
     }
-
-
-    TestAleatori aleatori2 = new TestAleatori();
-    aleatori2.generarIntAleatoriRang();
 
 
     // Métodos
