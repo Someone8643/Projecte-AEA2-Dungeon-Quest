@@ -53,10 +53,12 @@ public class Masmorra {
         // Crear masmorra, amb totes les dades aleatories segons els constructors de cada cosa
 
 
+        /*
+        Aleatori.generarIntAleatoriRang();
 
-
-
-
+        Dificultat.getNivellDeDificultat()
+        */
+        
 
 
 

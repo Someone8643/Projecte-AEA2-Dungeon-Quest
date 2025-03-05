@@ -18,6 +18,10 @@ public class Sala {
     }
 
 
+    TestAleatori aleatori2 = new TestAleatori();
+    aleatori2.generarIntAleatoriRang();
+
+
     // Métodos
 
     @Override
@@ -30,3 +34,4 @@ public class Sala {
                 "\tExplorada: " + explorada + "\n";
     }
 }
+
