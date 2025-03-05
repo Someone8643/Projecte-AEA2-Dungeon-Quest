@@ -43,7 +43,7 @@ public class Masmorra {
         // Mentres no sigui correcta la resposta, seguir preguntant
         while (dificultat != 'D' && dificultat != 'N' && dificultat != 'F') {
 
-            System.out.print("Resposta incorrecta! (introdueix D, N o F): ");
+            System.out.print("Resposta incorrecta! (introdueix D, N o F en majúscules): ");
             dificultat = scanner.nextLine().charAt(0);
         }
 
@@ -58,7 +58,7 @@ public class Masmorra {
 
         Dificultat.getNivellDeDificultat()
         */
-        
+
 
 
 

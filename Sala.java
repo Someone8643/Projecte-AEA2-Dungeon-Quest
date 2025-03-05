@@ -2,7 +2,7 @@
 public class Sala {
     // Propiedades
 
-    private String tipus;
+    private String tipus; // Tipus: "Normal", "Pont", "Teranyina"
     private boolean tresor;
     private boolean monstre;
     private String portes;
@@ -18,6 +18,13 @@ public class Sala {
         this.explorada = explorada;
     }
 
+    // Constructor de sala que ho genera de forma aleatòria
+    public Sala() {
+
+
+
+        this.tresor = Aleatori.percentatgeProbabilitat(Dificultat.percentatgeFinalObjecteBo(50));
+    }
 
     // Métodos
 
