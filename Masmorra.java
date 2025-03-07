@@ -52,6 +52,30 @@ public class Masmorra {
 
         // Crear masmorra, amb totes les dades aleatories segons els constructors de cada cosa
 
+        // Crear la matriu de masmorra de mida aleatòria (min 5 x 5)
+        Sala[][] matriuMasmorra = new Sala[Aleatori.generarIntAleatoriRang(5, 10)][Aleatori.generarIntAleatoriRang(5, 10)];
+
+        // Omplir la matriu amb sales (for de matriu i crear sala per cada pos)
+        for (int fil = 0; fil < matriuMasmorra.length; fil++) {
+            for (int col = 0; col < matriuMasmorra.length; col++) {
+
+                // Crear una sala per aquesta pos
+                // Crearem un tresor i un monstre per la sala sol si ha sortit per probabilitat
+
+                Sala salaNova = new Sala();
+
+                // Crear tresor per la sala si en té
+
+
+
+
+
+                matriuMasmorra[fil][col] =
+
+
+
+            }
+        }
 
         /*
         Aleatori.generarIntAleatoriRang();
@@ -60,7 +84,7 @@ public class Masmorra {
         */
 
 
-
+        // Posicionar el personatge a la sala superior esquerra de la masmorra
 
 
 

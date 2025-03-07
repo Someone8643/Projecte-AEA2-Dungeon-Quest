@@ -32,6 +32,13 @@ public class Persontge {
         return null;
     }
 
+    // Explorar, passar la sala
+
+
+    // Moure, passar la matriu per comprovacions
+
+
+
     @Override
     public String toString() {
         return "Personatge: \n" +

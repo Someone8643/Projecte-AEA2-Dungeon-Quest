@@ -1,11 +1,11 @@
 public class Monstre {
-    // Propiedades
+    // // Propietats
 
     private String nom;
     private double vida;
     private int penalitazcio;
 
-    // Constructores
+    // // Constructors
 
     public Monstre(String nom, double vida, int penalitazcio) {
         this.nom = nom;
@@ -13,7 +13,15 @@ public class Monstre {
         this.penalitazcio = penalitazcio;
     }
 
-    // Métodos
+    // Constructor aleatòri
+    public Monstre() {
+
+
+
+
+    }
+
+    // // Mètodes
 
     @Override
     public String toString() {
@@ -22,4 +30,12 @@ public class Monstre {
                 "\tVida: " + vida +"\n"+
                 "\tPenalització: " + penalitazcio + "\n";
     }
+
+    // // Getters i Setters
+    // TODO
+
+
+
 }
+
+

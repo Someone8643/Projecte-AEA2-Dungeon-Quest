@@ -4,16 +4,16 @@ public class Tresor {
     // Existeixen noms per a tresors i s'assignen de forma aleatòria amb repetició.
     // Els altres atributs es generen aleatòriament amb mínims i màxims.
 
-    // Propiedades
+    // // Propietats
 
     private String nom;
     private int valor;
     private double pes;
 
-    // Llista de noms que tenim
+    // // Llista de noms que tenim
     private String[] arrayNomsDeTresors = {"nom1", "nom2", "nom3", "nom4"};
 
-    // Constructores
+    // // Constructors
 
     public Tresor(String nom, int valor, double pes) {
         this.nom = nom;
@@ -35,14 +35,48 @@ public class Tresor {
     }
 
 
-    // Métodos
+    // // Mètodes
 
     @Override
     public String toString() {
         return
                 "Tresor: \n" +
-                "\tNom: " + nom + "\n"+
-                "\tValor: " + valor +"\n"+
-                "\tPes: " + pes +"\n";
+                "\tNom: " + nom + ".\n"+
+                "\tValor: " + valor +" monedes.\n"+
+                "\tPes: " + pes +".\n";
+    }
+
+
+    // // Getters i Setters
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public double getPes() {
+        return pes;
+    }
+
+    public void setPes(double pes) {
+        this.pes = pes;
+    }
+
+    public String[] getArrayNomsDeTresors() {
+        return arrayNomsDeTresors;
+    }
+
+    public void setArrayNomsDeTresors(String[] arrayNomsDeTresors) {
+        this.arrayNomsDeTresors = arrayNomsDeTresors;
     }
 }
