@@ -13,15 +13,13 @@ public class Masmorra {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Benvingut a DungeonQuest!");
-        System.out.println("Estàs preparat per jugar? (s/n):");
+        System.out.print("Estàs preparat per jugar? (s/n): ");
         String respostaJugar = scanner.nextLine();
 
         while (!respostaJugar.equalsIgnoreCase("s")) {
 
-
             System.out.println("Quan estiguis preparat, introdueix s.");
             respostaJugar = scanner.nextLine();
-
         }
 
         System.out.println();
@@ -55,33 +53,37 @@ public class Masmorra {
         // Crear la matriu de masmorra de mida aleatòria (min 5 x 5)
         Sala[][] matriuMasmorra = new Sala[Aleatori.generarIntAleatoriRang(5, 10)][Aleatori.generarIntAleatoriRang(5, 10)];
 
+        // test
+        // System.out.println(matriuMasmorra.length + " " + matriuMasmorra[0].length);
+
         // Omplir la matriu amb sales (for de matriu i crear sala per cada pos)
         for (int fil = 0; fil < matriuMasmorra.length; fil++) {
-            for (int col = 0; col < matriuMasmorra.length; col++) {
+            for (int col = 0; col < matriuMasmorra[fil].length; col++) {
 
-                // Crear una sala per aquesta pos
-                // Crearem un tresor i un monstre per la sala sol si ha sortit per probabilitat
-
+                // Crear una sala per aquesta posició.
+                // Recordar que dintre de la sala ja es crea un tresor i monstre aleatòri.
                 Sala salaNova = new Sala();
 
-                // Crear tresor per la sala si en té
+                // test
+                // System.out.println("a" + fil + col);
 
-
-
-
-
-                matriuMasmorra[fil][col] =
-
-
-
+                // Guardar a la masmorra
+                matriuMasmorra[fil][col] = salaNova;
             }
         }
 
         /*
+        testos, ignorar
         Aleatori.generarIntAleatoriRang();
 
         Dificultat.getNivellDeDificultat()
         */
+
+        for (int fil = 0; fil < matriuMasmorra.length; fil++) {
+            for (int col = 0; col < matriuMasmorra[fil].length; col++) {
+                System.out.println(matriuMasmorra[fil][col]);
+            }
+        }
 
 
         // Posicionar el personatge a la sala superior esquerra de la masmorra
@@ -96,4 +98,16 @@ public class Masmorra {
 
     }
 
+    /**
+     * Funció que comprova si una posició està dintre d'una matriu. POTSER NO VA AQUÍ PERÒ ÉS ÚTIL.
+     * @param matriu Matriu a comprovar.
+     * @param fil Filera.
+     * @param col Columna.
+     * @return Cert o fals segons si està dintre o no.
+     */
+    public static boolean dintreMatriu(Sala[][] matriu, int fil, int col) {
+
+        return  (fil >= 0 && col >= 0) &&
+                (fil < matriu.length && col < matriu.length);
+    }
 }

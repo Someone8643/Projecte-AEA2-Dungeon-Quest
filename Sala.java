@@ -35,12 +35,12 @@ public class Sala {
             this.tipus = "Teranyina";
         }
 
-        // Probabilitat del 50% en normal de tenir tresor (s'ha de generar un objecte tresor amb 50% de fer-se)
+        // Probabilitat del 50% en normal de tenir tresor (s'ha de generar un objecte tresor amb 50% de fer-se).
         if (Aleatori.percentatgeProbabilitat(Dificultat.percentatgeFinalObjecteBo(50))) {
             this.tresor = new Tresor();
         }
 
-        // Probabilitat del 50% en normal de tenir monstre (s'ha de generar un objecte monstre amb 50% de fer-se)
+        // Probabilitat del 50% en normal de tenir monstre (s'ha de generar un objecte monstre amb 50% de fer-se).
 
         if (Aleatori.percentatgeProbabilitat(Dificultat.percentatgeFinalObjecteDolent(50))) {
             this.monstre = new Monstre();

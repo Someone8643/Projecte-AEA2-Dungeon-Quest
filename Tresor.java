@@ -10,8 +10,8 @@ public class Tresor {
     private int valor;
     private double pes;
 
-    // // Llista de noms que tenim
-    private String[] arrayNomsDeTresors = {"nom1", "nom2", "nom3", "nom4"};
+    // Llista de noms que tenim
+    private String[] arrayNomsDeTresors = {"TEMPTRESOR1", "TEMPTRESOR2", "TEMPTRESOR3", "TEMPTRESOR4"};
 
     // // Constructors
 

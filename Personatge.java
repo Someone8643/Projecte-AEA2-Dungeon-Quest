@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Persontge {
+public class Personatge {
 
     // Propiedades
 
@@ -15,7 +15,7 @@ public class Persontge {
 
     // Constructores
 
-    public Persontge(String nom, int vida, int atac, int experiencia, int agilitat, int forsa, int[][] posicio, int[] equipament) {
+    public Personatge(String nom, int vida, int atac, int experiencia, int agilitat, int forsa, int[][] posicio, int[] equipament) {
         this.nom = nom;
         this.vida = vida;
         this.atac = atac;
