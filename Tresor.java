@@ -15,6 +15,7 @@ public class Tresor {
 
     // // Constructors
 
+    // Constructor amb assignació
     public Tresor(String nom, int valor, double pes) {
         this.nom = nom;
         this.valor = valor;
@@ -41,9 +42,9 @@ public class Tresor {
     public String toString() {
         return
                 "Tresor: \n" +
-                "\tNom: " + nom + ".\n"+
-                "\tValor: " + valor +" monedes.\n"+
-                "\tPes: " + pes +".\n";
+                "\t\tNom: " + nom + ".\n"+
+                "\t\tValor: " + valor +" monedes.\n"+
+                "\t\tPes: " + pes +".\n";
     }
 
 

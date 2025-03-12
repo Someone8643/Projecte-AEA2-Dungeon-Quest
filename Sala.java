@@ -46,7 +46,8 @@ public class Sala {
             this.monstre = new Monstre();
         }
 
-        // TODO Assignar portes que té, fer servir tirar moneda per decidir cada direcció
+        // TODO Assignar portes que té (fer servir tirar moneda per decidir cada direcció?)
+
 
         // No fa falta dir que explorada és fals
     }
@@ -55,12 +56,50 @@ public class Sala {
 
     @Override
     public String toString() {
-        return  "Sala: \n" +
-                "\tTipus: " + tipus + "\n"+
-                "\tTresor: " + tresor + "\n"+
-                "\tMonstre: " + monstre + "\n"+
-                "\tPortes: " + portes + "\n"+
-                "\tExplorada: " + explorada + "\n";
+
+        String stringFinal;
+
+        if (this.tresor != null) {
+
+            if (this.monstre != null) { // La sala té tot
+
+                stringFinal =   "Sala: \n" +
+                                "\tTipus: " + tipus + "\n"+
+                                "\t" + tresor +
+                                "\t" + monstre +
+                                "\tPortes: " + portes + "\n"+
+                                "\tExplorada: " + explorada + ".\n";
+
+            } else { // Té tresor però no monstre
+
+                stringFinal =   "Sala: \n" +
+                                "\tTipus: " + tipus + "\n"+
+                                "\t" + tresor +
+                                "\tMonstre: No hi ha monstre\n" +
+                                "\tPortes: " + portes + "\n"+
+                                "\tExplorada: " + explorada + ".\n";
+            }
+
+        } else if (this.monstre != null) { // No té tresor però sí monstre
+
+            stringFinal =   "Sala: \n" +
+                            "\tTipus: " + tipus + "\n"+
+                            "\tTresor: No hi ha tresor\n" +
+                            "\t" + monstre +
+                            "\tPortes: " + portes + "\n"+
+                            "\tExplorada: " + explorada + ".\n";
+
+        } else { // No té ni tresor ni monstre
+
+            stringFinal =   "Sala: \n" +
+                            "\tTipus: " + tipus + "\n"+
+                            "\tTresor: No hi ha tresor\n" +
+                            "\tMonstre: No hi ha monstre\n" +
+                            "\tPortes: " + portes + "\n"+
+                            "\tExplorada: " + explorada + ".\n";
+        }
+
+        return stringFinal;
     }
 
     // // Getters i Setters

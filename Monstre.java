@@ -1,4 +1,9 @@
 public class Monstre {
+
+    // ** Com està implementat **
+    // Existeixen noms per als monstres i s'assignen de forma aleatòria amb repetició.
+    // Els altres atributs es generen aleatòriament amb mínims i màxims.
+
     // // Propietats
 
     private String nom;
@@ -10,6 +15,7 @@ public class Monstre {
 
     // // Constructors
 
+    // Constructor amb assignació
     public Monstre(String nom, int vida, int penalitazcio) {
         this.nom = nom;
         this.vida = vida;
@@ -34,16 +40,44 @@ public class Monstre {
     @Override
     public String toString() {
         return "Monstre: \n" +
-                "\tNom: " + nom + "\n" +
-                "\tVida: " + vida +"\n"+
-                "\tPenalització: " + penalitazcio + "\n";
+                "\t\tNom: " + nom + "\n" +
+                "\t\tVida: " + vida +"\n"+
+                "\t\tPenalització: " + penalitazcio + ".\n";
     }
 
     // // Getters i Setters
-    // TODO
 
+    public String getNom() {
+        return nom;
+    }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getPenalitazcio() {
+        return penalitazcio;
+    }
+
+    public void setPenalitazcio(int penalitazcio) {
+        this.penalitazcio = penalitazcio;
+    }
+
+    public String[] getArrayNomsDeMonstres() {
+        return arrayNomsDeMonstres;
+    }
+
+    public void setArrayNomsDeMonstres(String[] arrayNomsDeMonstres) {
+        this.arrayNomsDeMonstres = arrayNomsDeMonstres;
+    }
 }
 
 

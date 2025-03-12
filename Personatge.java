@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Personatge {
 
-    // Propiedades
+    // // Propietats
 
     private String nom;
     private int vida;
@@ -13,8 +13,9 @@ public class Personatge {
     private int[][]posicio;
     private int[] equipament;
 
-    // Constructores
+    // // Constructors
 
+    // Constructor amb assignació
     public Personatge(String nom, int vida, int atac, int experiencia, int agilitat, int forsa, int[][] posicio, int[] equipament) {
         this.nom = nom;
         this.vida = vida;
@@ -26,10 +27,16 @@ public class Personatge {
         this.equipament = equipament;
     }
 
-    // Métodos
-    public String atacar(int atac) {
+    // // Mètodes
 
-        return null;
+    /**
+     * Mètode perquè aquest Personatge ataqui a un Monstre.
+     * @param atac TODO
+     * @return
+     */
+    public int atacar(int atac) {
+
+        return 999;
     }
 
     // Explorar, passar la sala
@@ -51,4 +58,12 @@ public class Personatge {
                 "\tPosició: " + Arrays.toString(posicio) +"\n"+
                 "\tEquipament: " + Arrays.toString(equipament) +"\n";
     }
+
+    // TODO Getters i Setters
+
+
+
+
+
+
 }

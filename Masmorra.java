@@ -86,12 +86,12 @@ public class Masmorra {
         }
 
 
-        // Posicionar el personatge a la sala superior esquerra de la masmorra
+        // Crear el personatge, posició serà 0 0. Altres dades posicionar a 0 o demanar a l'usuari.
 
 
 
-
-
+        // Entrar en en bucle principal del programa
+        // Sol sortirem si hi ha gameOver
 
 
 
