@@ -90,16 +90,20 @@ public class Masmorra {
 
 
 
-        // Entrar en en bucle principal del programa
+        // Entrar en el bucle principal del programa
         // Sol sortirem si hi ha gameOver
+        boolean gameOver = false;
+
+        while (!gameOver) {
 
 
 
+        }
 
     }
 
     /**
-     * Funció que comprova si una posició està dintre d'una matriu. POTSER NO VA AQUÍ PERÒ ÉS ÚTIL.
+     * Funció que comprova si una posició està dintre d'una matriu. TODO POTSER NO VA AQUÍ PERÒ ÉS ÚTIL.
      * @param matriu Matriu a comprovar.
      * @param fil Filera.
      * @param col Columna.

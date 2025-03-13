@@ -5,12 +5,17 @@ public class Sala {
     private String tipus; // Tipus: "Normal", "Pont", "Teranyina"
     private Tresor tresor;
     private Monstre monstre;
-    private String portes; // TODO mirar una millor forma de representar
+    private boolean[] portes = new boolean[4]; // TODO revisar si així està bé
+                            // 0 = Nord
+                            // 1 = Est
+                            // 2 = Sud
+                            // 3 = Oest
+                            // (es comença del Nord i es va en sentit de les agulles del rellotge)
     private boolean explorada;
 
     // // Constructors
 
-    public Sala(String tipus, Tresor tresor, Monstre monstre, String portes, boolean explorada) {
+    public Sala(String tipus, Tresor tresor, Monstre monstre, boolean[] portes, boolean explorada) {
         this.tipus = tipus;
         this.tresor = tresor;
         this.monstre = monstre;
@@ -46,14 +51,19 @@ public class Sala {
             this.monstre = new Monstre();
         }
 
-        // TODO Assignar portes que té (fer servir tirar moneda per decidir cada direcció?)
+        // Assignar portes que té (50 50 per cada)
+        // TODO mirar si ha sortit una sala sense portes i afegir mínim una porta?
+        for (int i = 0; i < portes.length; i++) {
 
+            portes[i] = Aleatori.tirarMoneda();
+        }
 
-        // No fa falta dir que explorada és fals
+        // No fa falta dir que explorada és fals? TODO revisar
     }
 
     // // Mètodes
 
+    // To string una mica complicat (realment no faria falta complicar-se tant)
     @Override
     public String toString() {
 
@@ -129,11 +139,11 @@ public class Sala {
         this.monstre = monstre;
     }
 
-    public String getPortes() {
+    public boolean[] getPortes() {
         return portes;
     }
 
-    public void setPortes(String portes) {
+    public void setPortes(boolean[] portes) {
         this.portes = portes;
     }
 
