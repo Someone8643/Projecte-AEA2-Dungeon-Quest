@@ -56,7 +56,39 @@ public class Personatge {
 
         // RECORDAR QUE NO CAL INICIAR INTS
     }
+    // Mètode per atacar un monstre
+    public int atacar(Monstre monstre) {
+        // Calcular el dany causat per l'atac
+        int dany = this.atac;  // El dany base és igual a l'atac del personatge
+        monstre.reduirVida(dany);  // Reduïm la vida del monstre amb el dany causat
 
+        return dany;  // Retornem el dany causat
+    }
+
+    // Mètode per explorar la sala
+    public String explorar(Sala sala) {
+        if (sala.conteTresor()) {
+            // Si la sala conté un tresor, afegir-lo a l'inventari
+            Tresor tresor = sala.obtenirTresor();
+            if (equipament.length < forsa) {
+                for (int i = 0; i < equipament.length; i++) {
+                    if (equipament[i] == null) {
+                        equipament[i] = tresor;
+                        return "Has trobat un tresor i l'has afegit al teu equipament!";
+                    }
+                }
+            } else {
+                return "El teu inventari està ple!";
+            }
+        }
+        return "La sala està buida, no has trobat res.";
+    }
+
+    // Mètode per moure el personatge a una nova posició
+    public void moure(int x, int y) {
+        this.posicio[0] = x;
+        this.posicio[1] = y;
+    }
 
 
     // // Mètodes

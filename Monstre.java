@@ -36,6 +36,9 @@ public class Monstre {
     }
 
     // // Mètodes
+    public int reduirVida(int penalitazcio){
+        return Aleatori.generarIntAleatoriRang(0, this.vida);
+    }
 
     @Override
     public String toString() {
