@@ -27,7 +27,7 @@ public class Personatge {
         this.equipament = equipament;
     }
 
-    // Constructor aleatòri, per donar l'opció a l'usuari TODO
+    // Constructor aleatòri, per donar l'opció a l'usuari TODOHPPP
     public Personatge() {
         this.nom = nom;
         this.vida = vida;
