@@ -67,9 +67,9 @@ public class Personatge {
 
     // Mètode per explorar la sala
     public String explorar(Sala sala) {
-        if (sala()) {
+        if (sala.getTresor()!=null) {
             // Si la sala conté un tresor, afegir-lo a l'inventari
-            Tresor tresor = sala.obtenirTresor();
+            Tresor tresor = sala.getTresor();
             if (equipament.length < forsa) {
                 for (int i = 0; i < equipament.length; i++) {
                     if (equipament[i] == null) {
