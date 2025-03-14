@@ -53,9 +53,6 @@ public class Masmorra {
         // Crear la matriu de masmorra de mida aleatòria (min 5 x 5)
         Sala[][] matriuMasmorra = new Sala[Aleatori.generarIntAleatoriRang(5, 10)][Aleatori.generarIntAleatoriRang(5, 10)];
 
-        // test
-        // System.out.println(matriuMasmorra.length + " " + matriuMasmorra[0].length);
-
         // Omplir la matriu amb sales (for de matriu i crear sala per cada pos)
         for (int fil = 0; fil < matriuMasmorra.length; fil++) {
             for (int col = 0; col < matriuMasmorra[fil].length; col++) {
@@ -63,9 +60,6 @@ public class Masmorra {
                 // Crear una sala per aquesta posició.
                 // Recordar que dintre de la sala ja es crea un tresor i monstre aleatòri.
                 Sala salaNova = new Sala();
-
-                // test
-                // System.out.println("a" + fil + col);
 
                 // Guardar a la masmorra
                 matriuMasmorra[fil][col] = salaNova;
@@ -114,6 +108,7 @@ public class Masmorra {
         // Decidir quants punts té l'usuari segons la dificultat:
         int puntPersonatge = Dificultat.valorFinalObjecteBo(4);
 
+        
 
         System.out.println("Tens ");
 
@@ -122,6 +117,10 @@ public class Masmorra {
         boolean gameOver = false;
 
         while (!gameOver) {
+
+
+
+
 
 
 

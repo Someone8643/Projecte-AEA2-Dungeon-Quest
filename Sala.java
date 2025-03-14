@@ -40,13 +40,13 @@ public class Sala {
         }
 
         // Probabilitat del 50% en normal de tenir tresor (s'ha de generar un objecte tresor amb 50% de fer-se).
-        if (Aleatori.percentatgeProbabilitat(Dificultat.percentatgeFinalObjecteBo(50))) {
+        if (Aleatori.percentatgeProbabilitat(Dificultat.valorFinalObjecteBo(50))) {
             this.tresor = new Tresor();
         }
 
         // Probabilitat del 50% en normal de tenir monstre (s'ha de generar un objecte monstre amb 50% de fer-se).
 
-        if (Aleatori.percentatgeProbabilitat(Dificultat.percentatgeFinalObjecteDolent(50))) {
+        if (Aleatori.percentatgeProbabilitat(Dificultat.valorFinalObjecteDolent(50))) {
             this.monstre = new Monstre();
         }
         // Assignar portes que té (50 50 per cada)

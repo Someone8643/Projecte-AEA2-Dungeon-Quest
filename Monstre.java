@@ -29,10 +29,10 @@ public class Monstre {
         this.nom = arrayNomsDeMonstres[Aleatori.generarIntAleatoriRang(0, (arrayNomsDeMonstres.length - 1))];
 
         // Es genera un nivell de vida de forma aleatòria. Min 10, max 100
-        this.vida = Aleatori.generarIntAleatoriRang(10, 100);
+        this.vida = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteDolent(10), Dificultat.valorFinalObjecteDolent(100));
 
-        // Es genera una penalització per fugir de forma aleatòria. Min 10, max 20
-        this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 30);
+        // Es genera una penalització per fugir de forma aleatòria. Min 1, max 3
+        this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 3);
     }
 
     // // Mètodes

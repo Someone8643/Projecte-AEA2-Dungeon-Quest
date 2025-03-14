@@ -22,53 +22,6 @@ public class Dificultat {
     // // Mètodes Estàtics
 
     /**
-     * Mètode per calcular el percentatge final per a una cosa bona segons la dificultat (+ o - 20%)
-     * @param percentatgeEnNormal El percentatge que hi ha en dificultat normal.
-     * @return El percentatge introduït més o menys 20% d'aquest segons la dificultat
-     */
-    public static int percentatgeFinalObjecteBo(int percentatgeEnNormal) {
-        int percentatgeFinal;
-
-        if (Dificultat.nivellDeDificultat == 'D') {
-
-            return percentatgeFinal = percentatgeEnNormal - (int)(percentatgeEnNormal * 0.2);
-
-        } else if (Dificultat.nivellDeDificultat == 'F') {
-
-            return percentatgeFinal = percentatgeEnNormal + (int)(percentatgeEnNormal * 0.2);
-
-        } else {
-
-            return percentatgeEnNormal;
-        }
-    }
-
-
-    /**
-     * Mètode per calcular el percentatge final per a una cosa dolenta segons la dificultat (+ o - 20%)
-     * @param percentatgeEnNormal El percentatge que hi ha en dificultat normal.
-     * @return El percentatge introduït més o menys 20% d'aquest segons la dificultat
-     */
-    public static int percentatgeFinalObjecteDolent(int percentatgeEnNormal) {
-        int percentatgeFinal;
-
-        if (Dificultat.nivellDeDificultat == 'D') {
-
-            return percentatgeFinal = percentatgeEnNormal + (int)(percentatgeEnNormal * 0.2);
-
-        } else if (Dificultat.nivellDeDificultat == 'F') {
-
-            return percentatgeFinal = percentatgeEnNormal - (int)(percentatgeEnNormal * 0.2);
-
-        }  else {
-
-            return percentatgeEnNormal;
-        }
-    }
-
-    // Per valors generals
-
-    /**
      * Mètode per calcular el valor final per a una cosa bona segons la dificultat (+ o - 20%)
      * @param valorEnNormal El valor que hi ha en dificultat normal.
      * @return El valor introduït més o menys 20% d'aquest segons la dificultat
