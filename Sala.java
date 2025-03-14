@@ -24,7 +24,7 @@ public class Sala {
     public boolean conteMonstre(){
         return true;
     }
-    public Tresor obtenirTresor(){
+    public Boolean obtenirTresor(){
         return true;
     }
 
