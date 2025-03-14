@@ -48,7 +48,7 @@ public class Masmorra {
         Dificultat.setNivellDeDificultat(dificultat);
 
 
-        // Crear masmorra, amb totes les dades aleatories segons els constructors de cada cosa
+        // Crear masmorra, amb totes les dades aleatories segons els constructors de cada classe
 
         // Crear la matriu de masmorra de mida aleatòria (min 5 x 5)
         Sala[][] matriuMasmorra = new Sala[Aleatori.generarIntAleatoriRang(5, 10)][Aleatori.generarIntAleatoriRang(5, 10)];
@@ -78,17 +78,44 @@ public class Masmorra {
 
         Dificultat.getNivellDeDificultat()
         */
+/*
 
         for (int fil = 0; fil < matriuMasmorra.length; fil++) {
             for (int col = 0; col < matriuMasmorra[fil].length; col++) {
                 System.out.println(matriuMasmorra[fil][col]);
             }
         }
+*/
 
 
         // Crear el personatge, posició serà 0 0. Altres dades posicionar a 0 o demanar a l'usuari.
+        System.out.println();
+        System.out.println("----Creació de personatge----");
+        System.out.println();
+
+        System.out.print("Vols crear el teu personatge de forma aleatòria? (s/n): ");
+
+        if (scanner.nextLine().equalsIgnoreCase("s")) {
+
+            System.out.println("Creant personatge aleatòri...");
+        }
+
+        System.out.println();
+        System.out.println("--Defineix el teu personatge--");
+        System.out.println();
+
+        System.out.print("Escriu un nom per al teu personatge: ");
+        String respostaNom = scanner.nextLine();
+
+        System.out.println();
+        System.out.println("--Elegir quines habilitats millorar--");
+        System.out.println();
+
+        // Decidir quants punts té l'usuari segons la dificultat:
+        int puntPersonatge = Dificultat.valorFinalObjecteBo(4);
 
 
+        System.out.println("Tens ");
 
         // Entrar en el bucle principal del programa
         // Sol sortirem si hi ha gameOver
@@ -99,6 +126,11 @@ public class Masmorra {
 
 
         }
+
+        // El joc ha acabat
+        System.out.println("----GAME OVER----");
+
+        // TODO Estadístiques
 
     }
 

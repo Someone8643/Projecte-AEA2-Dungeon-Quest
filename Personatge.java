@@ -46,7 +46,7 @@ public class Personatge {
         // L'usuari pot establir
         this.nom = nom;
 
-        // L'usuari no controla completament? (que fer? utilitzar random?) TODO
+        // L'usuari no controla completament? (que fer? utilitzar random?) TODO Aplicar sistema de punts
         this.vida = 100;
         this.atac = atac;
         this.agilitat = agilitat;

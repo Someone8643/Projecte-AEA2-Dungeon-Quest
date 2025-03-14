@@ -66,6 +66,52 @@ public class Dificultat {
         }
     }
 
+    // Per valors generals
+
+    /**
+     * Mètode per calcular el valor final per a una cosa bona segons la dificultat (+ o - 20%)
+     * @param valorEnNormal El valor que hi ha en dificultat normal.
+     * @return El valor introduït més o menys 20% d'aquest segons la dificultat
+     */
+    public static int valorFinalObjecteBo(int valorEnNormal) {
+        int valorFinal;
+
+        if (Dificultat.nivellDeDificultat == 'D') {
+
+            return valorFinal = valorEnNormal - (int)(valorEnNormal * 0.2);
+
+        } else if (Dificultat.nivellDeDificultat == 'F') {
+
+            return valorFinal = valorEnNormal + (int)(valorEnNormal * 0.2);
+
+        } else {
+
+            return valorEnNormal;
+        }
+    }
+
+    /**
+     * Mètode per calcular el valor final per a una cosa dolenta segons la dificultat (+ o - 20%)
+     * @param valorEnNormal El valor que hi ha en dificultat normal.
+     * @return El valor introduït més o menys 20% d'aquest segons la dificultat
+     */
+    public static int valorFinalObjecteDolent(int valorEnNormal) {
+        int valorFinal;
+
+        if (Dificultat.nivellDeDificultat == 'D') {
+
+            return valorFinal = valorEnNormal + (int)(valorEnNormal * 0.2);
+
+        } else if (Dificultat.nivellDeDificultat == 'F') {
+
+            return valorFinal = valorEnNormal - (int)(valorEnNormal * 0.2);
+
+        }  else {
+
+            return valorEnNormal;
+        }
+    }
+
 
     // // Getters i Setters
     public static char getNivellDeDificultat() {
