@@ -5,7 +5,7 @@ public class Sala {
     private String tipus; // Tipus: "Normal", "Pont", "Teranyina"
     private Tresor tresor;
     private Monstre monstre;
-    private boolean[] portes = new boolean[4]; // TODO revisar si així està bé
+    private boolean[] portes = new boolean[4];
     // 0 = Nord
     // 1 = Est
     // 2 = Sud
@@ -49,24 +49,31 @@ public class Sala {
         if (Aleatori.percentatgeProbabilitat(Dificultat.valorFinalObjecteDolent(50))) {
             this.monstre = new Monstre();
         }
-        // Assignar portes que té (50 50 per cada)
-        // TODO mirar si ha sortit una sala sense portes i afegir mínim una porta?
+
+
+        // Assignem les portes:
+        // Primer, assegurem que mínim hi ha una porta (en qualsevol de les direccions)
+        portes[Aleatori.generarIntAleatoriRang(0,3)] = true;
+
+        // Ara, passem pel array i amb probabilitat del 50% (tirar moneda) posarem una altra porta.
         for (int i = 0; i < portes.length; i++) {
 
-            portes[i] = Aleatori.tirarMoneda();
+            // Si no hi ha porta, probabilitat de 50% de posar porta
+            if (!portes[i]) {
+                portes[i] = Aleatori.tirarMoneda();
+            }
         }
+
     }
 
     // // Mètodes
 
-    public boolean conteTresor(){
-        return true;
-    }
-    public boolean conteMonstre(){
-        return true;
-    }
-    public Boolean obtenirTresor(){
-        return true;
+    /**
+     * Funció que assigna a una de les direccions si hi ha porta o no.
+     */
+    public void setPortaDireccio(int direccio, boolean hiHaPorta) {
+
+        this.portes[direccio] = hiHaPorta;
     }
 
 
@@ -162,41 +169,3 @@ public class Sala {
         this.explorada = explorada;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
