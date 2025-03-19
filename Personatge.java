@@ -56,7 +56,12 @@ public class Personatge {
 
         // RECORDAR QUE NO CAL INICIAR INTS
     }
-    // Mètode per atacar un monstre
+
+    /**
+     * Mètode perquè aquest Personatge ataqui a un Monstre.
+     * @param monstre TODO
+     * @return
+     */
     public int atacar(Monstre monstre) {
         // Calcular el dany causat per l'atac
         int dany = this.atac;  // El dany base és igual a l'atac del personatge
@@ -91,22 +96,6 @@ public class Personatge {
     }
 
 
-    // // Mètodes
-
-    /**
-     * Mètode perquè aquest Personatge ataqui a un Monstre.
-     * @param atac TODO
-     * @return
-     */
-    public int atacar(int atac) {
-
-        return 999;
-    }
-
-    // Explorar, passar la sala
-
-
-    // Moure, passar la matriu per comprovacions
 
 
 
