@@ -5,7 +5,7 @@ public class Dificultat {
     // El percentatge normal és l'extern, de la classe a qui volem modificar segons la dificultat.
 
     // // Propietats
-    private static char nivellDeDificultat;
+    private static char nivellDeDificultat; // Serà D, N o F.
 
 
     // // Constructors

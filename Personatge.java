@@ -59,18 +59,35 @@ public class Personatge {
 
     /**
      * Mètode perquè aquest Personatge ataqui a un Monstre.
-     * @param monstre TODO
-     * @return
+     * @param monstre El Monstre a atacar.
+     * @return El dany que s'ha fet al monstre per mostrar per pantalla.
      */
-    public int atacar(Monstre monstre) {
-        // Calcular el dany causat per l'atac
-        int dany = this.atac;  // El dany base és igual a l'atac del personatge
-        monstre.reduirVida(dany);  // Reduïm la vida del monstre amb el dany causat
+    public int atacarMonstre(Monstre monstre) {
 
-        return dany;  // Retornem el dany causat
+        // El dany base és igual a l'atac del personatge
+        int dany = this.atac;
+
+        // NO POSAR? MASSA ALEATORI?
+        // // Es modifica el dany que farà segons la dificultat (més dificultat, menys dany)
+        // dany = Dificultat.valorFinalObjecteBo(dany);
+
+        // Reduïm la vida del monstre de forma aleatòria
+        // El màxim de dany serà el calculat i el mínim és zero menys si la dificultat és fàcil on sempre es farà un mínim del 20% del dany.
+        if (Dificultat.getNivellDeDificultat() == 'F') {
+
+            dany = Aleatori.generarIntAleatoriRang((int)(dany * 0.2), dany);
+            monstre.setVida(monstre.getVida() - dany);
+
+        } else {
+
+            dany = Aleatori.generarIntAleatoriRang(0, dany);
+            monstre.setVida(monstre.getVida() - dany);
+        }
+
+        return dany;  // Retornem el dany causat per mostrar per pantalla
     }
 
-    // Mètode per explorar la sala
+    // Mètode per explorar la sala // TODO revisar
     public String explorar(Sala sala) {
         if (sala.getTresor()!=null) {
             // Si la sala conté un tresor, afegir-lo a l'inventari
@@ -95,10 +112,6 @@ public class Personatge {
         this.posicio[1] = y;
     }
 
-
-
-
-
     @Override
     public String toString() {
         return "Personatge: \n" +
@@ -112,11 +125,71 @@ public class Personatge {
                 "\tEquipament: " + Arrays.toString(equipament) +"\n";
     }
 
-    // TODO Getters i Setters
 
+    // TODO Revisar getters i setters
+    // // Getters i Setters
 
+    public String getNom() {
+        return nom;
+    }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
+    public int getVida() {
+        return vida;
+    }
 
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
 
+    public int getAtac() {
+        return atac;
+    }
+
+    public void setAtac(int atac) {
+        this.atac = atac;
+    }
+
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    public int getAgilitat() {
+        return agilitat;
+    }
+
+    public void setAgilitat(int agilitat) {
+        this.agilitat = agilitat;
+    }
+
+    public int getForsa() {
+        return forsa;
+    }
+
+    public void setForsa(int forsa) {
+        this.forsa = forsa;
+    }
+
+    public int[] getPosicio() {
+        return posicio;
+    }
+
+    public void setPosicio(int[] posicio) {
+        this.posicio = posicio;
+    }
+
+    public Tresor[] getEquipament() {
+        return equipament;
+    }
+
+    public void setEquipament(Tresor[] equipament) {
+        this.equipament = equipament;
+    }
 }

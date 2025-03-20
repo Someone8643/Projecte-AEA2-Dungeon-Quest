@@ -35,10 +35,22 @@ public class Monstre {
         this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 3);
     }
 
+
     // // Mètodes
-    public int reduirVida(int penalitazcio){
-        return Aleatori.generarIntAleatoriRang(0, this.vida);
+
+    /**
+     * Mètode per penalitzar (fer dany) a un personatge que ha escapat d'una sala.
+     * @param personatgeAPenalitzar L'objecte Personatge a penalitzar.
+     * @return Es retorna la penalització que s'ha aplicat per mostrar per pantalla.
+     */
+    public int reduirVida(Personatge personatgeAPenalitzar){
+
+        personatgeAPenalitzar.setVida(personatgeAPenalitzar.getVida() - this.penalitazcio);
+
+        return this.penalitazcio;
     }
+
+    // TODO fer un mètode per atacar com amb el Personatge
 
     @Override
     public String toString() {

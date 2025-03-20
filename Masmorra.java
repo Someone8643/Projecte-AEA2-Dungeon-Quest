@@ -36,16 +36,16 @@ public class Masmorra {
         System.out.println("F = Fàcil");
 
         System.out.print("La teva elecció: ");
-        char dificultat = scanner.nextLine().charAt(0);
+        char respostaDificultat = scanner.nextLine().charAt(0);
 
         // Mentres no sigui correcta la resposta, seguir preguntant
-        while (dificultat != 'D' && dificultat != 'N' && dificultat != 'F') {
+        while (respostaDificultat != 'D' && respostaDificultat != 'N' && respostaDificultat != 'F') {
 
             System.out.print("Resposta incorrecta! (introdueix D, N o F en majúscules): ");
-            dificultat = scanner.nextLine().charAt(0);
+            respostaDificultat = scanner.nextLine().charAt(0);
         }
 
-        Dificultat.setNivellDeDificultat(dificultat);
+        Dificultat.setNivellDeDificultat(respostaDificultat);
 
 
         // Crear masmorra, amb totes les dades aleatories segons els constructors de cada classe
@@ -57,12 +57,9 @@ public class Masmorra {
         for (int fil = 0; fil < matriuMasmorra.length; fil++) {
             for (int col = 0; col < matriuMasmorra[fil].length; col++) {
 
-                // Crear una sala per aquesta posició.
-                // Recordar que dintre de la sala ja es crea un tresor i monstre aleatòri.
-                Sala salaNova = new Sala();
-
-                // Guardar a la masmorra
-                matriuMasmorra[fil][col] = salaNova;
+                // Crear una sala per aquesta posició i posar dintre de la matriu.
+                // Recorda que dintre de la sala ja es crea un tresor i monstre aleatòri.
+                matriuMasmorra[fil][col] = new Sala();
             }
         }
 
@@ -81,6 +78,7 @@ public class Masmorra {
         }
 */
 
+        // // // Creació del personatge
 
         // Crear el personatge, posició serà 0 0. Altres dades posicionar a 0 o demanar a l'usuari.
         System.out.println();
@@ -91,26 +89,49 @@ public class Masmorra {
 
         if (scanner.nextLine().equalsIgnoreCase("s")) {
 
-            System.out.println("Creant personatge aleatòri...");
+            System.out.println("Creant personatge aleatori...");
+            // Crear a un personatge aleatori
+
+        } else {
+
+            // VIGILAR AMB ELS NEXTLINE
+
+            System.out.println();
+            System.out.println("--Defineix el teu personatge--");
+            System.out.println();
+
+            // Preguntar el nom i guardar per a quan es crea l'objecte
+            System.out.print("Escriu un nom per al teu personatge: ");
+            String respostaNom = scanner.nextLine();
+
+            System.out.println();
+            System.out.println("--Elegir quines habilitats millorar--");
+            System.out.println();
+
+            // Decidir quants punts té l'usuari segons la dificultat:
+            int puntsPersonatge = Dificultat.valorFinalObjecteBo(4);
+
+            // Mentres no tingui 0 punts, seguirem preguntant a quina estadística hi vol dedicar punts
+            while (puntsPersonatge != 0) {
+                System.out.println("Tens " + puntsPersonatge + " punts per destinar-los a una estadística del teu personatge:");
+
+                // Segons l'opció, es dedica punts a una estadística o una altra
+                //switch () // TODO acabar
+
+            }
         }
 
-        System.out.println();
-        System.out.println("--Defineix el teu personatge--");
-        System.out.println();
 
-        System.out.print("Escriu un nom per al teu personatge: ");
-        String respostaNom = scanner.nextLine();
 
-        System.out.println();
-        System.out.println("--Elegir quines habilitats millorar--");
-        System.out.println();
 
-        // Decidir quants punts té l'usuari segons la dificultat:
-        int puntPersonatge = Dificultat.valorFinalObjecteBo(4);
 
-        
 
-        System.out.println("Tens ");
+
+
+
+
+
+
 
         // Entrar en el bucle principal del programa
         // Sol sortirem si hi ha gameOver
