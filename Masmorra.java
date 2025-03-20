@@ -104,6 +104,9 @@ public class Masmorra {
             System.out.print("Escriu un nom per al teu personatge: ");
             String respostaNom = scanner.nextLine();
 
+            // Crear el personatge, certes estadístiques són aleatòries
+            Personatge jugador = new Personatge(respostaNom);
+
             System.out.println();
             System.out.println("--Elegir quines habilitats millorar--");
             System.out.println();
@@ -115,8 +118,46 @@ public class Masmorra {
             while (puntsPersonatge != 0) {
                 System.out.println("Tens " + puntsPersonatge + " punts per destinar-los a una estadística del teu personatge:");
 
+                // Mostrar menú.
+                System.out.println("Decideix a què dedicar-ho (cada millora sol costa un punt):");
+                System.out.println("1 - Millorar vida en 5 punts.");
+                System.out.println("2 - Millorar atac en 5 punts.");
+                System.out.println("3 - Millorar agilitat en 2 punts.");
+                System.out.println("4 - Millorar força en 1 punt.");
+
+                System.out.println("Introdueix la teva elecció (introdueix el número): ");
+                int respostaPunts = scanner.nextInt();
+
                 // Segons l'opció, es dedica punts a una estadística o una altra
-                //switch () // TODO acabar
+                // Utilitzar getters i setters
+                switch(respostaPunts) {
+                    case 1:
+
+
+
+                        puntsPersonatge--;
+                        break;
+                    case 2:
+
+
+
+                        puntsPersonatge--;
+                        break;
+                    case 3:
+
+
+
+                        puntsPersonatge--;
+                        break;
+                    case 4:
+
+
+
+                        puntsPersonatge--;
+                        break;
+                    default:
+                        System.out.println("Aquesta opció no existeix!");
+                }
 
             }
         }
@@ -140,8 +181,8 @@ public class Masmorra {
         while (!gameOver) {
 
 
-
-
+            System.out.println("TEST");
+            gameOver = true;
 
 
 
