@@ -170,14 +170,16 @@ public class Masmorra {
                         System.out.println("Aquesta opció no existeix!");
                 }
 
-                // Per el nextLine
+                // Pel nextLine
                 scanner.nextLine();
             }
+
+            // Ara que la força ja té el valor final, ja es pot crear el array de Tresors
+            jugador.setEquipament(new Tresor[jugador.getForsa()]);
         }
 
 
-
-
+        System.out.println(jugador);
 
 
 

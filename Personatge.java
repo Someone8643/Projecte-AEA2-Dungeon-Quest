@@ -13,6 +13,9 @@ public class Personatge {
     private int[] posicio = new int[2]; // Recordar que es x (fil) i y (col)
     private Tresor[] equipament;
 
+    // Llista de noms per agafar de forma aleatòria
+    private String[] arrayNomsDePersonatges = {"Steve", "Alex"};
+
     // // Constructors
 
     // Constructor amb assignació
@@ -29,13 +32,15 @@ public class Personatge {
 
     // Constructor aleatòri, per donar l'opció a l'usuari TODO
     public Personatge() {
-        this.nom = nom;
-        this.vida = vida;
-        this.atac = atac;
-        this.experiencia = experiencia;
-        this.agilitat = agilitat;
-        this.forsa = forsa;
-        this.posicio = posicio;
+
+        // Similar a altres constructors aleatòris
+        this.nom = arrayNomsDePersonatges[Aleatori.generarIntAleatoriRang(0, (arrayNomsDePersonatges.length - 1))];
+        this.vida = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(110));
+        this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(110));
+
+        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(70));
+        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(1), Dificultat.valorFinalObjecteBo(8));
+
         this.equipament = new Tresor[forsa];
 
 
@@ -46,11 +51,13 @@ public class Personatge {
         // L'usuari pot establir
         this.nom = nom;
 
-        // L'usuari no controla completament? (que fer? utilitzar random?) TODO Aplicar sistema de punts
+        // L'usuari no ho controla completament (certes variables són aleatòries dintre d'un rang segons la dificultat)
+        // Després es modifica amb el sistema de creació de personatge.
+        // Diversos valors tenen un rang aleatori establer de forma concreta.
         this.vida = 100;
-        this.atac = atac;
-        this.agilitat = agilitat;
-        this.forsa = forsa;
+        this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(40), Dificultat.valorFinalObjecteBo(70));
+        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(40), Dificultat.valorFinalObjecteBo(60));
+        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(4), Dificultat.valorFinalObjecteBo(6));
 
         this.equipament = new Tresor[forsa];
 
@@ -67,7 +74,7 @@ public class Personatge {
         // El dany base és igual a l'atac del personatge
         int dany = this.atac;
 
-        // NO POSAR? MASSA ALEATORI?
+        // NO POSAR? MASSA ALEATORI? TODO revisar
         // // Es modifica el dany que farà segons la dificultat (més dificultat, menys dany)
         // dany = Dificultat.valorFinalObjecteBo(dany);
 
