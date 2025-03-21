@@ -1,3 +1,5 @@
+
+
 public class Dificultat {
 
     // Una classe per poder posar una dificultat i modificar els percentatges segons aquesta
@@ -31,11 +33,11 @@ public class Dificultat {
 
         if (Dificultat.nivellDeDificultat == 'D') {
 
-            return valorFinal = valorEnNormal - (int)(valorEnNormal * 0.2);
+            return valorFinal = valorEnNormal - (int)(Math.ceil(valorEnNormal * 0.2));
 
         } else if (Dificultat.nivellDeDificultat == 'F') {
 
-            return valorFinal = valorEnNormal + (int)(valorEnNormal * 0.2);
+            return valorFinal = valorEnNormal + (int)(Math.ceil(valorEnNormal * 0.2));
 
         } else {
 
@@ -53,11 +55,11 @@ public class Dificultat {
 
         if (Dificultat.nivellDeDificultat == 'D') {
 
-            return valorFinal = valorEnNormal + (int)(valorEnNormal * 0.2);
+            return valorFinal = valorEnNormal + (int)(Math.ceil(valorEnNormal * 0.2));
 
         } else if (Dificultat.nivellDeDificultat == 'F') {
 
-            return valorFinal = valorEnNormal - (int)(valorEnNormal * 0.2);
+            return valorFinal = valorEnNormal - (int)(Math.ceil(valorEnNormal * 0.2));
 
         }  else {
 

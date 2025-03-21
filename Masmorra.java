@@ -85,12 +85,15 @@ public class Masmorra {
         System.out.println("----Creació de personatge----");
         System.out.println();
 
+        Personatge jugador;
+
         System.out.print("Vols crear el teu personatge de forma aleatòria? (s/n): ");
 
         if (scanner.nextLine().equalsIgnoreCase("s")) {
 
             System.out.println("Creant personatge aleatori...");
             // Crear a un personatge aleatori
+            jugador = new Personatge();
 
         } else {
 
@@ -105,18 +108,20 @@ public class Masmorra {
             String respostaNom = scanner.nextLine();
 
             // Crear el personatge, certes estadístiques són aleatòries
-            Personatge jugador = new Personatge(respostaNom);
+            jugador = new Personatge(respostaNom);
 
             System.out.println();
             System.out.println("--Elegir quines habilitats millorar--");
             System.out.println();
 
             // Decidir quants punts té l'usuari segons la dificultat:
+            // En normal serà 4
             int puntsPersonatge = Dificultat.valorFinalObjecteBo(4);
 
             // Mentres no tingui 0 punts, seguirem preguntant a quina estadística hi vol dedicar punts
             while (puntsPersonatge != 0) {
                 System.out.println("Tens " + puntsPersonatge + " punts per destinar-los a una estadística del teu personatge:");
+                System.out.println();
 
                 // Mostrar menú.
                 System.out.println("Decideix a què dedicar-ho (cada millora sol costa un punt):");
@@ -124,6 +129,12 @@ public class Masmorra {
                 System.out.println("2 - Millorar atac en 5 punts.");
                 System.out.println("3 - Millorar agilitat en 2 punts.");
                 System.out.println("4 - Millorar força en 1 punt.");
+                System.out.println();
+                System.out.println("Actualment tens:");
+                System.out.println("Vida: " + jugador.getVida());
+                System.out.println("Atac: " + jugador.getAtac());
+                System.out.println("Agilitat: " + jugador.getAgilitat());
+                System.out.println("Força: " + jugador.getForsa());
 
                 System.out.println("Introdueix la teva elecció (introdueix el número): ");
                 int respostaPunts = scanner.nextInt();
@@ -133,25 +144,25 @@ public class Masmorra {
                 switch(respostaPunts) {
                     case 1:
 
-
+                        jugador.setVida(jugador.getVida() + 5);
 
                         puntsPersonatge--;
                         break;
                     case 2:
 
-
+                        jugador.setAtac(jugador.getAtac() + 5);
 
                         puntsPersonatge--;
                         break;
                     case 3:
 
-
+                        jugador.setAgilitat(jugador.getAgilitat() + 2);
 
                         puntsPersonatge--;
                         break;
                     case 4:
 
-
+                        jugador.setForsa(jugador.getForsa() + 1);
 
                         puntsPersonatge--;
                         break;
@@ -159,6 +170,8 @@ public class Masmorra {
                         System.out.println("Aquesta opció no existeix!");
                 }
 
+                // Per el nextLine
+                scanner.nextLine();
             }
         }
 
@@ -181,10 +194,21 @@ public class Masmorra {
         while (!gameOver) {
 
 
-            System.out.println("TEST");
-            gameOver = true;
+            //System.out.println("TEST");
+            //gameOver = true;
 
 
+            // MOVIMENT
+            // Preguntar a quina direcció vol moure
+            System.out.println("Direcció (N, E, S, O):");
+            jugador.moureDireccio(scanner.nextLine().charAt(0));
+            int pos[] = jugador.getPosicio();
+            System.out.println(pos[0]);
+            System.out.println(pos[1]);
+
+            // Revisar moviment (si hi ha porta i si es fora matriu, gameOver)
+
+            // Passar direcció al metode de moure
 
         }
 

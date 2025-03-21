@@ -106,10 +106,35 @@ public class Personatge {
         return "La sala està buida, no has trobat res.";
     }
 
-    // Mètode per moure el personatge a una nova posició
+    // Mètode per moure el personatge a una nova posició absoluta
     public void moure(int x, int y) {
         this.posicio[0] = x;
         this.posicio[1] = y;
+    }
+
+    // Mètode per moure el personatge cap a una direcció
+    public void moureDireccio(char direccio) {
+
+        switch(direccio) {
+            case 'N', 'n':
+
+                this.posicio[1] ++;
+                break;
+            case 'E', 'e':
+
+                this.posicio[0] ++;
+                break;
+            case 'S', 's':
+
+                this.posicio[1] --;
+                break;
+            case 'O', 'o':
+
+                this.posicio[0] --;
+                break;
+            default:
+
+        }
     }
 
     @Override
