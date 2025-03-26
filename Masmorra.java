@@ -63,20 +63,6 @@ public class Masmorra {
             }
         }
 
-        /*
-        testos, ignorar
-        Aleatori.generarIntAleatoriRang();
-
-        Dificultat.getNivellDeDificultat()
-        */
-/*
-
-        for (int fil = 0; fil < matriuMasmorra.length; fil++) {
-            for (int col = 0; col < matriuMasmorra[fil].length; col++) {
-                System.out.println(matriuMasmorra[fil][col]);
-            }
-        }
-*/
 
         // // // Creació del personatge
 
@@ -200,6 +186,7 @@ public class Masmorra {
         String causaMort = "causa desconeguda";
 
         // Donar la benvinguda a la masmorra
+        System.out.println("Benvingut a la masmorra!");
 
         while (!gameOver) {
 
@@ -217,7 +204,7 @@ public class Masmorra {
             System.out.println("1. Explorar la sala actual (si no l'has explorada).");
             System.out.println("2. Moure cap a una altra sala.");
             System.out.println("3. Entrar en combat amb un monstre de la sala (si n'hi ha).");
-            System.out.println("4. Mostrar inventari.");
+            System.out.println("4. Mostrar estadístiques.");
             System.out.println();
 
             System.out.print("Introdueix una opció: ");
@@ -301,7 +288,13 @@ public class Masmorra {
                 case 4:
 
                     // OP 4
-                    // MOSTRAR INVENTARI
+                    // MOSTRAR VIDA, SALUT, INVENTARI...
+
+                    System.out.println("Les teves estadístiques:");
+                    System.out.println();
+
+                    System.out.println(jugador);
+                    System.out.println();
 
                     break;
                 default:

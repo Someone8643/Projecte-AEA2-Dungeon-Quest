@@ -149,6 +149,16 @@ public class Personatge {
 
     @Override
     public String toString() {
+
+        String stringMostrarEquipament = "Equipament:";
+        for (Tresor tresor : equipament) {
+            if (tresor != null) {
+                stringMostrarEquipament += "\n\t\t" + tresor;
+            } else {
+                stringMostrarEquipament += "\n\t\t" + "Espai buit per a un tresor.";
+            }
+        }
+
         return "Personatge: \n" +
                 "\tNom: " + nom + "\n" +
                 "\tVida: " + vida +"\n"+
@@ -156,8 +166,9 @@ public class Personatge {
                 "\tExperiència: " + experiencia +"\n"+
                 "\tAgilitat: " + agilitat +"\n"+
                 "\tForça: " + forsa +"\n"+
-                "\tPosició: " + Arrays.toString(posicio) +"\n"+
-                "\tEquipament: " + Arrays.toString(equipament) +"\n";
+                "\tPosició: sala " + (posicio[1] + 1) + " del nivell " + (posicio[1] + 1) + "\n"+
+                "\t" + stringMostrarEquipament;
+
     }
 
 
