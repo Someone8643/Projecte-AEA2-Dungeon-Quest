@@ -240,6 +240,11 @@ public class Masmorra {
                     // OP 1
                     // EXPLORAR
                     // Cridar mètode d'explorar de Personatge. No mostrar l'opció si la sala ja està explorada.
+                    if (jugador.explorar(matriuMasmora)){
+                        System.out.println("explorando sala");
+                    }else {
+                        System.out.println("sala ja esta explorad");
+                    }
 
                     break;
                 case 2:
