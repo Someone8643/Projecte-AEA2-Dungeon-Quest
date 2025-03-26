@@ -255,6 +255,7 @@ public class Masmorra {
                         // Combat acabat, hem de fer gameOver si jugador mort i si monstre mort, treure de la sala
                         if (jugador.getVida() <= 0) {
                             gameOver = true;
+                            causaMort = "matat per monstre";
                         }
 
                         if (matriuMasmorra[pos[0]][pos[1]].getMonstre().getVida() <= 0) {
@@ -295,6 +296,13 @@ public class Masmorra {
         System.out.println("----GAME OVER----");
 
         // TODO Estadístiques
+        // Si ha mort, dir la causa
+        if (jugador.getVida() <= 0) {
+            System.out.println("Has " + causaMort + ".");
+        } else {
+
+            System.out.println("Has sobreviscut la masmorra!");
+        }
     }
 
 
@@ -323,14 +331,13 @@ public class Masmorra {
             System.out.println("El personatge " + personatge.getNom() + " ataca a " + monstre.getNom() + " amb una ferida de " + personatge.atacarMonstre(monstre) + " punts de vida!");
             System.out.println();
 
-            // Sol continuar si segueix viu (vida > 0)
-
-            continuar = personatge.getVida() > 0;
+            // Sol continuar si segueix viu el monstre (vida > 0)
+            continuar = monstre.getVida() > 0;
 
             if (!continuar) {
 
-                // Ha perdut el personatge
-                System.out.println("El personatge " + personatge.getNom() + " ha perdut!");
+                // Ha perdut el monstre
+                System.out.println("El monstre " + monstre.getNom() + " ha perdut!");
                 System.out.println();
 
             } else {
@@ -344,18 +351,20 @@ public class Masmorra {
                 scanner.nextLine();
                 System.out.println();
 
-                continuar = monstre.getVida() > 0;
+                continuar = personatge.getVida() > 0;
 
                 if (!continuar) {
 
-                    // Ha perdut el monstre
-                    System.out.println("El monstre " + monstre.getNom() + " ha perdut!");
+                    // Ha perdut el personatge
+                    System.out.println("El personatge " + personatge.getNom() + " ha perdut!");
 
 
                 } else { // Es continua si el monstre o el personatge no ha perdut
 
                     // Donar informació de la vida actual dels dos
-
+                    System.out.println("Punts restants de vida del combatents:");
+                    System.out.println("El personatge " + personatge.getNom() + " té: " + personatge.getVida());
+                    System.out.println("El monstre " + monstre.getNom() + " té: " + monstre.getVida());
 
                     // Preguntar si vol continuar el combat (l'altra opció és fugir)
                     System.out.println("Vols continuar el combat? (introdueix s/n on n és fugir)");
@@ -380,7 +389,7 @@ public class Masmorra {
                             System.out.println("El personatge " + personatge.getNom() + " ha perdut en intentar fugir!");
                         }
 
-                        // S'acaba el combat
+                        // S'acaba el combat perquè el personatge ha fugit
                         continuar = false;
                     }
                 }
