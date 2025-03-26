@@ -99,9 +99,14 @@ public class Personatge {
     }
 
     // Mètode per explorar la sala // TODO revisar
-    public String explorar(Sala[][] sala) {
-        if (sala[][].getTresor()!=null) {
-            // Si la sala conté un tresor, afegir-lo a l'inventari
+    public String explorar(Sala sala) {
+        if (sala.isExplorada()) {
+            return "Ja havies explorat aquesta sala abans.";
+        }
+
+        sala.setExplorada(true); // Marquem la sala com explorada
+
+        if (sala.getTresor() != null) {
             Tresor tresor = sala.getTresor();
             if (equipament.length < forsa) {
                 for (int i = 0; i < equipament.length; i++) {
@@ -116,6 +121,7 @@ public class Personatge {
         }
         return "La sala està buida, no has trobat res.";
     }
+
 
     // Mètode per moure el personatge a una nova posició absoluta
     public void moure(int x, int y) {
