@@ -8,6 +8,7 @@ public class Monstre {
 
     private String nom;
     private int vida;
+    private int atac;
     private int penalitazcio;
 
     // // Llista de noms que tenim
@@ -16,9 +17,10 @@ public class Monstre {
     // // Constructors
 
     // Constructor amb assignació
-    public Monstre(String nom, int vida, int penalitazcio) {
+    public Monstre(String nom, int vida, int atac, int penalitazcio) {
         this.nom = nom;
         this.vida = vida;
+        this.atac = atac;
         this.penalitazcio = penalitazcio;
     }
 
@@ -31,6 +33,9 @@ public class Monstre {
         // Es genera un nivell de vida de forma aleatòria. Min 10, max 100
         this.vida = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteDolent(10), Dificultat.valorFinalObjecteDolent(100));
 
+        // Es genera un nivell d'atac. Min 5, max 70
+        this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteDolent(5), Dificultat.valorFinalObjecteDolent(70));
+
         // Es genera una penalització per fugir de forma aleatòria. Min 1, max 3
         this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 3);
     }
@@ -39,18 +44,44 @@ public class Monstre {
     // // Mètodes
 
     /**
-     * Mètode per penalitzar (fer dany) a un personatge que ha escapat d'una sala.
+     * Mètode per penalitzar (fer mal) a un personatge que ha escapat d'una sala o s'ha retirat d'un combat.
      * @param personatgeAPenalitzar L'objecte Personatge a penalitzar.
      * @return Es retorna la penalització que s'ha aplicat per mostrar per pantalla.
      */
-    public int reduirVida(Personatge personatgeAPenalitzar){
+    public int penalitzarPersonatge(Personatge personatgeAPenalitzar){
 
         personatgeAPenalitzar.setVida(personatgeAPenalitzar.getVida() - this.penalitazcio);
 
         return this.penalitazcio;
     }
 
-    // TODO fer un mètode per atacar com amb el Personatge
+    // TODO revisar
+    /**
+     * Mètode perquè aquest Monstre ataqui a un Personatge.
+     * @param personatge El Personatge a atacar.
+     * @return El dany que s'ha fet al Personatge per mostrar per pantalla.
+     */
+    public int atacarPersonatge(Personatge personatge) {
+
+        // El dany base és igual a l'atac del monstre
+        int dany = atac;
+
+        // Reduïm la vida del personatge de forma aleatòria
+        // El màxim de dany serà el calculat i el mínim és zero menys si la dificultat és difícil on sempre es farà un mínim del 20% del dany.
+        if (Dificultat.getNivellDeDificultat() == 'D') {
+
+            dany = Aleatori.generarIntAleatoriRang((int)(dany * 0.2), dany);
+            personatge.setVida(personatge.getVida() - dany);
+
+        } else {
+
+            dany = Aleatori.generarIntAleatoriRang(0, dany);
+            personatge.setVida(personatge.getVida() - dany);
+        }
+
+        return dany;  // Retornem el dany causat per mostrar per pantalla
+    }
+
 
     @Override
     public String toString() {
@@ -59,6 +90,7 @@ public class Monstre {
                 "\t\tVida: " + vida +"\n"+
                 "\t\tPenalització: " + penalitazcio + ".\n";
     }
+
 
     // // Getters i Setters
 

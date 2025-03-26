@@ -170,7 +170,7 @@ public class Masmorra {
                         System.out.println("Aquesta opció no existeix!");
                 }
 
-                // Pel nextLine
+                // Pel nextInt
                 scanner.nextLine();
             }
 
@@ -181,7 +181,7 @@ public class Masmorra {
 
         System.out.println(jugador);
 
-
+        // tenim al jugador i a la masmorra amb sales, tresors i monstres.
 
 
 
@@ -193,33 +193,221 @@ public class Masmorra {
         // Sol sortirem si hi ha gameOver
         boolean gameOver = false;
 
+        // Variable per mostrar al final la causa de mort.
+        String causaMort = "causa desconeguda";
+
+        // Donar la benvinguda a la masmorra
+
         while (!gameOver) {
+
+            // Dir la sala en que es troba (inclòs si és l'inici)
+
+
+
+            // TODO
+            // Mostrar menú d'opcions (moure, explorar...). Mirar abans si hi ha gameOver.
+            // Dintre de cada opció, començar una cosa i acabar-la.
+
+            System.out.println("aaa tests digues 1, 2, 3, 4");
+
+            // Fer una opció o altra segons la resposta
+            int respostaMenu = scanner.nextInt();
+            scanner.nextLine();
+
+            switch(respostaMenu) {
+                case 1:
+
+                    // OP 1
+                    // EXPLORAR
+                    // Cridar mètode d'explorar de Personatge. No mostrar l'opció si la sala ja està explorada.
+
+                    break;
+                case 2:
+
+                    // OP 2
+                    // MOVIMENT
+                    // Preguntar a quina direcció vol moure i utilitzar mètode de Personatge
+                    System.out.println("Direcció (N, E, S, O):");
+                    jugador.moureDireccio(scanner.nextLine().charAt(0));
+
+                    // testos
+                    //int pos[] = jugador.getPosicio();
+                    //System.out.println(pos[0]);
+                    //System.out.println(pos[1]);
+
+                    // Revisar moviment (si hi ha porta i si es fora matriu, gameOver)
+
+                    // Passar direcció al metode de moure
+
+                    break;
+                case 3:
+
+                    // OP 3
+                    // COMBAT
+
+                    // Entrar en combat amb un monstre si a la sala n'hi ha
+                    int pos[] = jugador.getPosicio();
+
+                    if (matriuMasmorra[pos[0]][pos[1]].getMonstre() != null) {
+
+                        combatPersonatgeMonstre(jugador, matriuMasmorra[pos[0]][pos[1]].getMonstre());
+
+                        // Combat acabat, hem de fer gameOver si jugador mort i si monstre mort, treure de la sala
+                        if (jugador.getVida() <= 0) {
+                            gameOver = true;
+                        }
+
+                        if (matriuMasmorra[pos[0]][pos[1]].getMonstre().getVida() <= 0) {
+
+                            matriuMasmorra[pos[0]][pos[1]].setMonstre(null);
+                        }
+                    }
+
+                    break;
+                case 4:
+
+                    // OP 4
+                    // MOSTRAR INVENTARI
+
+                    break;
+                default:
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             //System.out.println("TEST");
             //gameOver = true;
-
-
-            // MOVIMENT
-            // Preguntar a quina direcció vol moure
-            System.out.println("Direcció (N, E, S, O):");
-            jugador.moureDireccio(scanner.nextLine().charAt(0));
-            int pos[] = jugador.getPosicio();
-            System.out.println(pos[0]);
-            System.out.println(pos[1]);
-
-            // Revisar moviment (si hi ha porta i si es fora matriu, gameOver)
-
-            // Passar direcció al metode de moure
-
         }
 
         // El joc ha acabat
         System.out.println("----GAME OVER----");
 
         // TODO Estadístiques
-
     }
+
+
+    // // Funcions
+
+    /**
+     * Funció per fer un combat entre un Personatge i un Monstre, es mostrarà per pantalla missatges i s'acabarà quan un dels dos perdi o el personatge fugi.
+     * @param personatge El Personatge que ataca.
+     * @param monstre El Monstre que és atacat.
+     */
+    public static void combatPersonatgeMonstre(Personatge personatge, Monstre monstre) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        boolean continuar = true;
+
+        while (continuar) {
+
+            // Donar informació (del monstre i personatge) (sol dir vida i atac de cadascú)
+            // TODO
+            System.out.println("aaa dir vida");
+            System.out.println();
+
+            // Començar un atac
+            // Atacarà primer sempre el Personatge
+            System.out.println("El personatge " + personatge.getNom() + " ataca a " + monstre.getNom() + " amb una ferida de " + personatge.atacarMonstre(monstre) + " punts de vida!");
+            System.out.println();
+
+            // Sol continuar si segueix viu (vida > 0)
+
+            continuar = personatge.getVida() > 0;
+
+            if (!continuar) {
+
+                // Ha perdut el personatge
+                System.out.println("El personatge " + personatge.getNom() + " ha perdut!");
+                System.out.println();
+
+            } else {
+
+                // Torn del monstre
+                System.out.println("El monstre " + monstre.getNom() + " ataca a " + personatge.getNom() + " amb una ferida de " + monstre.atacarPersonatge(personatge) + " punts de vida!");
+                System.out.println();
+
+                // Esperar a que usuari vulgui continuar
+                System.out.println("Introdueix Enter per continuar...");
+                scanner.nextLine();
+                System.out.println();
+
+                continuar = monstre.getVida() > 0;
+
+                if (!continuar) {
+
+                    // Ha perdut el monstre
+                    System.out.println("El monstre " + monstre.getNom() + " ha perdut!");
+
+
+                } else { // Es continua si el monstre o el personatge no ha perdut
+
+                    // Donar informació de la vida actual dels dos
+
+
+                    // Preguntar si vol continuar el combat (l'altra opció és fugir)
+                    System.out.println("Vols continuar el combat? (introdueix s/n on n és fugir)");
+                    char respostaContinuar = scanner.nextLine().charAt(0);
+
+                    // Mentres no sigui correcta la resposta, seguir preguntant
+                    while (respostaContinuar != 'S' && respostaContinuar != 's' && respostaContinuar != 'N' && respostaContinuar != 'n') {
+
+                        System.out.print("Resposta incorrecta! (introdueix s o n): ");
+                        respostaContinuar = scanner.nextLine().charAt(0);
+                    }
+
+                    // Si és que no, s'aplica la penalització i s'acaba el combat.
+                    if (respostaContinuar == 'N' || respostaContinuar == 'n') {
+
+                        // Fer que el Personatge rebi penalització
+                        monstre.penalitzarPersonatge(personatge);
+
+                        // si just ha mort, dir-ho
+                        if (personatge.getVida() <= 0) {
+
+                            System.out.println("El personatge " + personatge.getNom() + " ha perdut en intentar fugir!");
+                        }
+
+                        // S'acaba el combat
+                        continuar = false;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    // Funció per...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Funció que comprova si una posició està dintre d'una matriu. TODO POTSER NO VA AQUÍ PERÒ ÉS ÚTIL.

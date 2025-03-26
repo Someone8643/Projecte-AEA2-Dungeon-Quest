@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class Personatge {
 
+
     // // Propietats
 
     private String nom;
@@ -15,6 +16,7 @@ public class Personatge {
 
     // Llista de noms per agafar de forma aleatòria
     private String[] arrayNomsDePersonatges = {"Steve", "Alex"};
+
 
     // // Constructors
 
@@ -42,12 +44,11 @@ public class Personatge {
         this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(1), Dificultat.valorFinalObjecteBo(8));
 
         this.equipament = new Tresor[forsa];
-
-
     }
 
     // Constructor per fer servir amb dades de l'usuari i certes variables amb números concrets TODO
     public Personatge(String nom) {
+
         // L'usuari pot establir
         this.nom = nom;
 
@@ -63,6 +64,9 @@ public class Personatge {
 
         // RECORDAR QUE NO CAL INICIAR INTS
     }
+
+
+    // // Mètodes
 
     /**
      * Mètode perquè aquest Personatge ataqui a un Monstre.
@@ -140,7 +144,6 @@ public class Personatge {
                 this.posicio[0] --;
                 break;
             default:
-
         }
     }
 
