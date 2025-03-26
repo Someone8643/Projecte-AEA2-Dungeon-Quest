@@ -125,26 +125,29 @@ public class Masmorra {
 
                 // Mostrar menú.
                 System.out.println("Decideix a què dedicar-ho (cada millora sol costa un punt):");
-                System.out.println("1 - Millorar vida en 5 punts.");
+                System.out.println("1 - Millorar vida en 10 punts.");
                 System.out.println("2 - Millorar atac en 5 punts.");
                 System.out.println("3 - Millorar agilitat en 2 punts.");
                 System.out.println("4 - Millorar força en 1 punt.");
                 System.out.println();
+
                 System.out.println("Actualment tens:");
                 System.out.println("Vida: " + jugador.getVida());
                 System.out.println("Atac: " + jugador.getAtac());
                 System.out.println("Agilitat: " + jugador.getAgilitat());
                 System.out.println("Força: " + jugador.getForsa());
+                System.out.println();
 
-                System.out.println("Introdueix la teva elecció (introdueix el número): ");
+                System.out.print("Introdueix la teva elecció (introdueix el número): ");
                 int respostaPunts = scanner.nextInt();
+                System.out.println();
 
                 // Segons l'opció, es dedica punts a una estadística o una altra
                 // Utilitzar getters i setters
                 switch(respostaPunts) {
                     case 1:
 
-                        jugador.setVida(jugador.getVida() + 5);
+                        jugador.setVida(jugador.getVida() + 10);
 
                         puntsPersonatge--;
                         break;
@@ -200,19 +203,36 @@ public class Masmorra {
 
         while (!gameOver) {
 
-            // Dir la sala en que es troba (inclòs si és l'inici)
-
-
+            // Dir la sala en que es troba (inclòs si és l'inici)ç
+            int pos[] = jugador.getPosicio();
+            System.out.println("Et trobes a la sala " + (pos[1] + 1) + " del nivell " + (pos[0] + 1) + ".");
+            System.out.println("Aqui es diria la sala amb les portes que té (intentar fer-ho de forma més gràfica)"); // TODO
+            System.out.println();
 
             // TODO
             // Mostrar menú d'opcions (moure, explorar...). Mirar abans si hi ha gameOver.
             // Dintre de cada opció, començar una cosa i acabar-la.
 
-            System.out.println("aaa tests digues 1, 2, 3, 4");
+            System.out.println("Opcions:");
+            System.out.println("1. Explorar la sala actual (si no l'has explorada).");
+            System.out.println("2. Moure cap a una altra sala.");
+            System.out.println("3. Entrar en combat amb un monstre de la sala (si n'hi ha).");
+            System.out.println("4. Mostrar inventari.");
+            System.out.println();
 
-            // Fer una opció o altra segons la resposta
+            System.out.print("Introdueix una opció: ");
             int respostaMenu = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Pel nextInt
+            System.out.println();
+
+            // Mentres incorrecte, preguntar
+            while (respostaMenu < 1 || respostaMenu > 4) {
+
+                System.out.print("Opció incorrecta, introdueix 1, 2, 3 o 4: ");
+                System.out.println("Introdueix una opció: ");
+                respostaMenu = scanner.nextInt();
+                scanner.nextLine(); // Pel nextInt
+            }
 
             switch(respostaMenu) {
                 case 1:
@@ -228,6 +248,8 @@ public class Masmorra {
                     // MOVIMENT
                     // Preguntar a quina direcció vol moure i utilitzar mètode de Personatge
                     System.out.println("Direcció (N, E, S, O):");
+
+
                     jugador.moureDireccio(scanner.nextLine().charAt(0));
 
                     // testos
@@ -246,7 +268,7 @@ public class Masmorra {
                     // COMBAT
 
                     // Entrar en combat amb un monstre si a la sala n'hi ha
-                    int pos[] = jugador.getPosicio();
+                    pos = jugador.getPosicio();
 
                     if (matriuMasmorra[pos[0]][pos[1]].getMonstre() != null) {
 
@@ -262,6 +284,12 @@ public class Masmorra {
 
                             matriuMasmorra[pos[0]][pos[1]].setMonstre(null);
                         }
+
+                    } else {
+
+                        // Dir que no hi ha monstre
+                        System.out.println("No hi ha monstre en aquesta sala...");
+                        System.out.println();
                     }
 
                     break;
@@ -319,12 +347,19 @@ public class Masmorra {
 
         boolean continuar = true;
 
-        while (continuar) {
+        // Donar informació (del monstre i personatge) (sol dir vida i atac de cadascú)
+        System.out.println("Has entrat en combat!");
+        System.out.println("Et trobes amb el monstre " + monstre.getNom() + " amb " + monstre.getVida() + " punts de vida i " + monstre.getAtac() + " punts d'atac.");
+        System.out.println("Recorda que tu tens " + personatge.getVida() + " punts de vida i " + personatge.getAtac() + " punts d'atac.");
+        System.out.println("Sort!");
+        System.out.println();
 
-            // Donar informació (del monstre i personatge) (sol dir vida i atac de cadascú)
-            // TODO
-            System.out.println("aaa dir vida");
-            System.out.println();
+        // Esperar a que usuari vulgui continuar
+        System.out.print("Introdueix Enter per continuar...");
+        scanner.nextLine();
+        System.out.println();
+
+        while (continuar) {
 
             // Començar un atac
             // Atacarà primer sempre el Personatge
@@ -340,6 +375,11 @@ public class Masmorra {
                 System.out.println("El monstre " + monstre.getNom() + " ha perdut!");
                 System.out.println();
 
+                // Esperar a que usuari vulgui continuar
+                System.out.print("Introdueix Enter per continuar...");
+                scanner.nextLine();
+                System.out.println();
+
             } else {
 
                 // Torn del monstre
@@ -347,7 +387,7 @@ public class Masmorra {
                 System.out.println();
 
                 // Esperar a que usuari vulgui continuar
-                System.out.println("Introdueix Enter per continuar...");
+                System.out.print("Introdueix Enter per continuar...");
                 scanner.nextLine();
                 System.out.println();
 
@@ -358,30 +398,39 @@ public class Masmorra {
                     // Ha perdut el personatge
                     System.out.println("El personatge " + personatge.getNom() + " ha perdut!");
 
+                    // Esperar a que usuari vulgui continuar
+                    System.out.print("Introdueix Enter per continuar...");
+                    scanner.nextLine();
+                    System.out.println();
 
                 } else { // Es continua si el monstre o el personatge no ha perdut
 
                     // Donar informació de la vida actual dels dos
-                    System.out.println("Punts restants de vida del combatents:");
+                    System.out.println("Punts restants de vida dels combatents:");
                     System.out.println("El personatge " + personatge.getNom() + " té: " + personatge.getVida());
                     System.out.println("El monstre " + monstre.getNom() + " té: " + monstre.getVida());
+                    System.out.println();
 
                     // Preguntar si vol continuar el combat (l'altra opció és fugir)
-                    System.out.println("Vols continuar el combat? (introdueix s/n on n és fugir)");
+                    System.out.print("Vols continuar el combat? (introdueix s/n on n és fugir): ");
                     char respostaContinuar = scanner.nextLine().charAt(0);
+                    System.out.println();
 
                     // Mentres no sigui correcta la resposta, seguir preguntant
                     while (respostaContinuar != 'S' && respostaContinuar != 's' && respostaContinuar != 'N' && respostaContinuar != 'n') {
 
                         System.out.print("Resposta incorrecta! (introdueix s o n): ");
                         respostaContinuar = scanner.nextLine().charAt(0);
+                        System.out.println();
                     }
 
                     // Si és que no, s'aplica la penalització i s'acaba el combat.
                     if (respostaContinuar == 'N' || respostaContinuar == 'n') {
 
                         // Fer que el Personatge rebi penalització
-                        monstre.penalitzarPersonatge(personatge);
+
+                        System.out.println("El monstre " + monstre.getNom() + " ataca al personatge " + personatge.getNom() + " amb " + monstre.penalitzarPersonatge(personatge) + " punts mentres aquest s'escapa!");
+                        System.out.println();
 
                         // si just ha mort, dir-ho
                         if (personatge.getVida() <= 0) {

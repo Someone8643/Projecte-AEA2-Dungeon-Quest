@@ -129,19 +129,19 @@ public class Personatge {
         switch(direccio) {
             case 'N', 'n':
 
-                this.posicio[1] ++;
+                this.posicio[0] ++;
                 break;
             case 'E', 'e':
 
-                this.posicio[0] ++;
+                this.posicio[1] ++;
                 break;
             case 'S', 's':
 
-                this.posicio[1] --;
+                this.posicio[0] --;
                 break;
             case 'O', 'o':
 
-                this.posicio[0] --;
+                this.posicio[1] --;
                 break;
             default:
         }

@@ -88,6 +88,7 @@ public class Monstre {
         return "Monstre: \n" +
                 "\t\tNom: " + nom + "\n" +
                 "\t\tVida: " + vida +"\n"+
+                "\t\tAtac: " + atac +"\n"+
                 "\t\tPenalització: " + penalitazcio + ".\n";
     }
 
@@ -124,6 +125,14 @@ public class Monstre {
 
     public void setArrayNomsDeMonstres(String[] arrayNomsDeMonstres) {
         this.arrayNomsDeMonstres = arrayNomsDeMonstres;
+    }
+
+    public int getAtac() {
+        return atac;
+    }
+
+    public void setAtac(int atac) {
+        this.atac = atac;
     }
 }
 
