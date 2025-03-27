@@ -24,6 +24,7 @@ public class Sala {
 
     // Constructor de sala que ho genera de forma aleatòria
     public Sala() {
+
         int resultatAleatori = Aleatori.generarIntAleatoriRang(0, 100);
 
         if (resultatAleatori <= 70) {

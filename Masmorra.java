@@ -192,8 +192,17 @@ public class Masmorra {
 
             // Dir la sala en que es troba (inclòs si és l'inici)ç
             int pos[] = jugador.getPosicio();
+            Sala salaActual = matriuMasmorra[pos[0]][pos[1]];
             System.out.println("Et trobes a la sala " + (pos[1] + 1) + " del nivell " + (pos[0] + 1) + ".");
             System.out.println("Aqui es diria la sala amb les portes que té (intentar fer-ho de forma més gràfica)"); // TODO
+            // Mostrar direccions de la sala
+            //Las portas (↑, →, ↓, ←) se motran quant están obertas (true en el array salaActual.getPortes()).
+            System.out.println(" ┌───────────┐ ");
+            System.out.println(" │    " + (salaActual.getPortes()[0] ? "↑" : " ") + "    │ "); // Norte
+            System.out.println(" │ " + (salaActual.getPortes()[3] ? "←" : " ") + "  &  " + (salaActual.getPortes()[1] ? "→" : " ") + " │ "); // Oeste & Este
+            System.out.println(" │    " + (salaActual.getPortes()[2] ? "↓" : " ") + "    │ "); // Sur
+            System.out.println(" └───────────┘ ");
+
             System.out.println();
 
             // TODO
