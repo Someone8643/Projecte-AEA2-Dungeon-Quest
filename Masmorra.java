@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Masmorra {
 
+    // TODO eliminar enunciat en acabar i posar breu descripció del joc en general
     // Finalment, hi haurà una classe masmorra (estàtica) per controlar el joc:
     // Contenir els arrays de tots els tresors i monstres que hi haurà al joc.
     // Crear la masmorra (MxN) i omplir-la de sales aleatòriament.
@@ -74,12 +75,19 @@ public class Masmorra {
         Personatge jugador;
 
         System.out.print("Vols crear el teu personatge de forma aleatòria? (s/n): ");
+        System.out.println();
 
         if (scanner.nextLine().equalsIgnoreCase("s")) {
 
             System.out.println("Creant personatge aleatori...");
+            System.out.println();
             // Crear a un personatge aleatori
             jugador = new Personatge();
+
+            // Mostrar
+            System.out.println("El teu personatge és:");
+            System.out.println(jugador);
+            System.out.println();
 
         } else {
 
@@ -168,13 +176,10 @@ public class Masmorra {
         }
 
 
-        System.out.println(jugador);
+
 
         // tenim al jugador i a la masmorra amb sales, tresors i monstres.
-
-
-
-
+        // TODO revisar generació de sales
 
 
 
@@ -183,26 +188,26 @@ public class Masmorra {
         boolean gameOver = false;
 
         // Variable per mostrar al final la causa de mort.
-        String causaMort = "causa desconeguda";
+        String causaMort = "una causa desconeguda";
 
         // Donar la benvinguda a la masmorra
         System.out.println("Benvingut a la masmorra!");
 
         while (!gameOver) {
 
-            // Dir la sala en que es troba (inclòs si és l'inici)ç
-            int pos[] = jugador.getPosicio();
-            Sala salaActual = matriuMasmorra[pos[0]][pos[1]];
-            System.out.println("Et trobes a la sala " + (pos[1] + 1) + " del nivell " + (pos[0] + 1) + ".");
-            System.out.println("Aqui es diria la sala amb les portes que té (intentar fer-ho de forma més gràfica)"); // TODO
-            // Mostrar direccions de la sala
-            //Las portas (↑, →, ↓, ←) se motran quant están obertas (true en el array salaActual.getPortes()).
-            System.out.println(" ┌───────────┐ ");
-            System.out.println(" │    " + (salaActual.getPortes()[0] ? "↑" : " ") + "    │ "); // Norte
-            System.out.println(" │ " + (salaActual.getPortes()[3] ? "←" : " ") + "  &  " + (salaActual.getPortes()[1] ? "→" : " ") + " │ "); // Oeste & Este
-            System.out.println(" │    " + (salaActual.getPortes()[2] ? "↓" : " ") + "    │ "); // Sur
-            System.out.println(" └───────────┘ ");
+            // Obtenim la sala actual per a futurs usos
+            Sala salaActual = matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()];
 
+
+            int pos[] = jugador.getPosicio(); // TODO arreglar referències a aquesta variable (utilitzar getPosicio de X i Y)
+
+
+            // Dir la sala en que es troba (inclòs si és l'inici)
+            System.out.println("Et trobes a la sala " + (jugador.getPosicioX() + 1) + " del nivell " + (jugador.getPosicioY() + 1) + ".");
+
+
+
+            mostrarSalaGraficament(salaActual);
             System.out.println();
 
             // TODO
@@ -316,16 +321,6 @@ public class Masmorra {
 
 
 
-
-
-
-
-
-
-
-
-
-
             //System.out.println("TEST");
             //gameOver = true;
         }
@@ -336,7 +331,9 @@ public class Masmorra {
         // TODO Estadístiques
         // Si ha mort, dir la causa
         if (jugador.getVida() <= 0) {
-            System.out.println("Has " + causaMort + ".");
+
+            System.out.println("Has mort per culpa de: " + causaMort + ".");
+
         } else {
 
             System.out.println("Has sobreviscut la masmorra!");
@@ -457,24 +454,20 @@ public class Masmorra {
     }
 
 
+    /**
+     * Funció que mostra gràficament una sala.
+     * @param salaAMostrar La sala a mostrar.
+     */
+    public static void mostrarSalaGraficament(Sala salaAMostrar) {
 
-    // Funció per...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Mostrar direccions de la sala
+        // Les portes (↑, →, ↓, ←) se mostren quan existeixen (true en el array de portes de Sala).
+        System.out.println(" ┌───────────┐ ");
+        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(0) ? "↑" : " ") + "    │ "); // Norte
+        System.out.println(" │ " + (salaAMostrar.isPortaDireccio(3) ? "←" : " ") + "  &  " + (salaAMostrar.isPortaDireccio(1) ? "→" : " ") + " │ "); // Oeste & Este
+        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(2) ? "↓" : " ") + "    │ "); // Sur
+        System.out.println(" └───────────┘ ");
+    }
 
 
     /**

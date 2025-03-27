@@ -70,6 +70,16 @@ public class Sala {
     // // Mètodes
 
     /**
+     * Funció que retorna cert o fals segons si en una direcció hi ha porta o no.
+     * @return Cert o fals segons si hi ha porta.
+     */
+    public boolean isPortaDireccio(int direccio) {
+
+        return this.portes[direccio];
+    }
+
+
+    /**
      * Funció que assigna a una de les direccions si hi ha porta o no.
      */
     public void setPortaDireccio(int direccio, boolean hiHaPorta) {

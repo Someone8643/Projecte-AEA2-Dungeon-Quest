@@ -32,16 +32,16 @@ public class Personatge {
         this.equipament = equipament;
     }
 
-    // Constructor aleatòri, per donar l'opció a l'usuari TODO
+    // Constructor aleatòri, per donar l'opció a l'usuari
     public Personatge() {
 
         // Similar a altres constructors aleatòris
         this.nom = arrayNomsDePersonatges[Aleatori.generarIntAleatoriRang(0, (arrayNomsDePersonatges.length - 1))];
-        this.vida = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(110));
-        this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(110));
+        this.vida = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(120));
+        this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(20), Dificultat.valorFinalObjecteBo(120));
 
-        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(70));
-        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(1), Dificultat.valorFinalObjecteBo(8));
+        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(10), Dificultat.valorFinalObjecteBo(70));
+        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(0), Dificultat.valorFinalObjecteBo(7) + 1); // + 1 per evitar que els aleatòris en dicfícil puguin tenir 0 força encara que és una mica graciós // TODO revisar, potser deixar la possibilitat de 0
 
         this.equipament = new Tresor[forsa];
     }
@@ -135,7 +135,7 @@ public class Personatge {
         switch(direccio) {
             case 'N', 'n':
 
-                this.posicio[0] ++;
+                this.posicio[0] --;
                 break;
             case 'E', 'e':
 
@@ -143,7 +143,7 @@ public class Personatge {
                 break;
             case 'S', 's':
 
-                this.posicio[0] --;
+                this.posicio[0] ++;
                 break;
             case 'O', 'o':
 
@@ -244,4 +244,14 @@ public class Personatge {
     public void setEquipament(Tresor[] equipament) {
         this.equipament = equipament;
     }
+
+    public int getPosicioX() {
+        return posicio[1];
+    }
+
+    public int getPosicioY() {
+        return posicio[0];
+    }
+
+
 }
