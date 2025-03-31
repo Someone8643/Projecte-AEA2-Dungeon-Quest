@@ -54,6 +54,10 @@ public class Masmorra {
         // Crear la matriu de masmorra de mida aleatòria (min 5 x 5)
         Sala[][] matriuMasmorra = new Sala[Aleatori.generarIntAleatoriRang(5, 10)][Aleatori.generarIntAleatoriRang(5, 10)];
 
+        // Omplir la masmorra
+        Sala.omplirMatriuSales(matriuMasmorra);
+
+        /* Codi antic
         // Omplir la matriu amb sales (for de matriu i crear sala per cada pos)
         for (int fil = 0; fil < matriuMasmorra.length; fil++) {
             for (int col = 0; col < matriuMasmorra[fil].length; col++) {
@@ -63,7 +67,7 @@ public class Masmorra {
                 matriuMasmorra[fil][col] = new Sala();
             }
         }
-
+        */
 
         // // // Creació del personatge
 
@@ -192,6 +196,7 @@ public class Masmorra {
 
         // Donar la benvinguda a la masmorra
         System.out.println("Benvingut a la masmorra!");
+        System.out.println();
 
         while (!gameOver) {
 
@@ -203,12 +208,23 @@ public class Masmorra {
 
 
             // Dir la sala en que es troba (inclòs si és l'inici)
-            System.out.println("Et trobes a la sala " + (jugador.getPosicioX() + 1) + " del nivell " + (jugador.getPosicioY() + 1) + ".");
-
-
+            System.out.println("Et trobes a la sala " + (jugador.getPosicioX() + 1) + " del nivell " + (jugador.getPosicioY() + 1) + ". La sala té aquesta forma (on & ets tu i les fleches una porta):");
 
             mostrarSalaGraficament(salaActual);
             System.out.println();
+
+            /*
+            // TEST
+            System.out.println("aaa");
+            for (int fil = 0; fil < matriuMasmorra.length; fil++) {
+                for (int col = 0; col < matriuMasmorra[fil].length; col++) {
+                    mostrarSalaGraficament(matriuMasmorra[fil][col]);
+                    System.out.print(" --- ");
+                }
+                System.out.println("+++++++++++++++++");
+            }
+            */
+
 
             // TODO
             // Mostrar menú d'opcions (moure, explorar...). Mirar abans si hi ha gameOver.
@@ -256,17 +272,79 @@ public class Masmorra {
                     // OP 2
                     // MOVIMENT
                     // Preguntar a quina direcció vol moure i utilitzar mètode de Personatge
+
+                    // SOLUCIÓ TEMPORAL
+
                     System.out.println("Direcció (N, E, S, O):");
+                    char respostaDireccio = scanner.nextLine().charAt(0);
+
+                    int direccioNum = 0;
+
+                    switch(respostaDireccio) {
+                        case 'N', 'n':
+
+                            direccioNum = 0;
+                            break;
+                        case 'E', 'e':
+
+                            direccioNum = 1;
+                            break;
+                        case 'S', 's':
+
+                            direccioNum = 2;
+                            break;
+                        case 'O', 'o':
+
+                            direccioNum = 3;
+                            break;
+                        default:
+                    }
 
 
-                    jugador.moureDireccio(scanner.nextLine().charAt(0));
+                    // Mentres no hi hagi porta, seguir preguntant
+                    while (!salaActual.isPortaDireccio(direccioNum)) {
 
-                    // testos
-                    //int pos[] = jugador.getPosicio();
-                    //System.out.println(pos[0]);
-                    //System.out.println(pos[1]);
+                        System.out.println("Incorrecte");
+                        System.out.println("Direcció (N, E, S, O):");
+                        respostaDireccio = scanner.nextLine().charAt(0);
+
+                        direccioNum = 0;
+
+                        switch(respostaDireccio) {
+                            case 'N', 'n':
+
+                                direccioNum = 0;
+                                break;
+                            case 'E', 'e':
+
+                                direccioNum = 1;
+                                break;
+                            case 'S', 's':
+
+                                direccioNum = 2;
+                                break;
+                            case 'O', 'o':
+
+                                direccioNum = 3;
+                                break;
+                            default:
+                        }
+
+
+                    }
+
+                    jugador.moureDireccio(respostaDireccio);
 
                     // Revisar moviment (si hi ha porta i si es fora matriu, gameOver)
+                    // TODO acabar
+
+
+
+                    if (!dintreMatriu(matriuMasmorra, jugador.getPosicioY(), jugador.getPosicioX())) {
+
+                        gameOver = true;
+                    }
+
 
                     // Passar direcció al metode de moure
 
@@ -326,17 +404,25 @@ public class Masmorra {
         }
 
         // El joc ha acabat
-        System.out.println("----GAME OVER----");
+        System.out.println();
+        System.out.println("-------------------");
+        System.out.println("-----GAME OVER-----");
+        System.out.println("-------------------");
+        System.out.println();
 
         // TODO Estadístiques
         // Si ha mort, dir la causa
         if (jugador.getVida() <= 0) {
 
             System.out.println("Has mort per culpa de: " + causaMort + ".");
+            System.out.println();
 
         } else {
 
             System.out.println("Has sobreviscut la masmorra!");
+            System.out.println();
+            System.out.println("Felicitats!");
+            System.out.println();
         }
     }
 
@@ -455,7 +541,7 @@ public class Masmorra {
 
 
     /**
-     * Funció que mostra gràficament una sala.
+     * Funció que mostra gràficament una sala. TODO Considerar moure aquesta funció a la classe Sala
      * @param salaAMostrar La sala a mostrar.
      */
     public static void mostrarSalaGraficament(Sala salaAMostrar) {
@@ -463,9 +549,9 @@ public class Masmorra {
         // Mostrar direccions de la sala
         // Les portes (↑, →, ↓, ←) se mostren quan existeixen (true en el array de portes de Sala).
         System.out.println(" ┌───────────┐ ");
-        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(0) ? "↑" : " ") + "    │ "); // Norte
-        System.out.println(" │ " + (salaAMostrar.isPortaDireccio(3) ? "←" : " ") + "  &  " + (salaAMostrar.isPortaDireccio(1) ? "→" : " ") + " │ "); // Oeste & Este
-        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(2) ? "↓" : " ") + "    │ "); // Sur
+        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(0) ? "↑" : " ") + "    \t │ "); // Norte
+        System.out.println(" │ " + (salaAMostrar.isPortaDireccio(3) ? "←" : " ") + "  &  " + (salaAMostrar.isPortaDireccio(1) ? "→" : " ") + " \t │ "); // Oeste & Este
+        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(2) ? "↓" : " ") + "    \t │ "); // Sur
         System.out.println(" └───────────┘ ");
     }
 

@@ -53,6 +53,12 @@ public class Sala {
 
 
         // Assignem les portes:
+
+        // Sempre es generarà porta cap a l'est i oest però no cap amunt o cap avall.
+        this.portes[1] = true;
+        this.portes[3] = true;
+
+        /* codi antic
         // Primer, assegurem que mínim hi ha una porta (en qualsevol de les direccions)
         portes[Aleatori.generarIntAleatoriRang(0,3)] = true;
 
@@ -65,26 +71,69 @@ public class Sala {
             }
         }
 
+         */
     }
+
 
     // // Mètodes
 
     /**
-     * Funció que retorna cert o fals segons si en una direcció hi ha porta o no.
-     * @return Cert o fals segons si hi ha porta.
+     * Mètode per omplir una matriu amb sales, per crear una masmorra.
+     * @param matriu
      */
-    public boolean isPortaDireccio(int direccio) {
+    public static void omplirMatriuSales(Sala[][] matriu) {
 
-        return this.portes[direccio];
-    }
+        // Recorrer la matriu i omplir i amb condicions modificar les portes per assegurar que hi ha sortida i que sol hi ha sortida a l'última filera.
+
+        // Primer, omplirem la matriu amb sales aleatòries del constructor
+        for (int fil = 0; fil < matriu.length; fil++) {
+            for (int col = 0; col < matriu[fil].length; col++) {
+                matriu[fil][col] = new Sala();
+            }
+        }
 
 
-    /**
-     * Funció que assigna a una de les direccions si hi ha porta o no.
-     */
-    public void setPortaDireccio(int direccio, boolean hiHaPorta) {
+        // Ara, revisarem els costats (esquerra i dreta) per eliminar sortides a l'exterior.
 
-        this.portes[direccio] = hiHaPorta;
+        // Eliminar portes d'oest
+        for (int fil = 0; fil < matriu.length; fil++) {
+
+            matriu[fil][0].setPortaDireccio(3, false);
+        }
+        // Eliminar portes de l'est
+        for (int fil = 0; fil < matriu.length; fil++) {
+
+            matriu[fil][(matriu[0].length - 1)].setPortaDireccio(1, false);
+        }
+
+
+        // Per últim, afegirem portes per anar cap avall i afegirem una única sortida en l'última filera.
+
+        // En totes les fileres *menys l'última*, hi poden haver fins a un màxim de 2 portes cap avall amb un mínim d'una entre qualsevol de les sales de la filera.
+        for (int fil = 0; fil < (matriu.length - 1); fil++) {
+
+            // Seleccionar una sala aleatòria i afegir una porta cap a a baix i també afegir porta cap amunt en la següent filera.
+            int index = Aleatori.generarIntAleatoriRang(0, (matriu[fil].length - 1));
+            matriu[fil][index].setPortaDireccio(2, true);
+
+            // afegir porta cap amunt en la següent filera.
+            matriu[(fil + 1)][index].setPortaDireccio(0, true);
+
+            // Seleccionar una sala aleatòria i afegir AMB PROBABILITAT una porta
+            index = Aleatori.generarIntAleatoriRang(0, (matriu[fil].length - 1));
+
+            if (Aleatori.tirarMoneda()) {
+
+                matriu[fil][index].setPortaDireccio(0, true);
+
+                // afegir porta cap amunt en la següent filera.
+                matriu[(fil + 1)][index].setPortaDireccio(0, true);
+            }
+        }
+
+        // En l'última, afegirem una única porta cap a fora, que serà la sortida de la masmorra.
+        // Elegir una sala i afegir una porta cap a fora
+        matriu[(matriu.length - 1)][Aleatori.generarIntAleatoriRang(0, (matriu[(matriu.length - 1)].length - 1))].setPortaDireccio(2, true);
     }
 
 
@@ -138,7 +187,23 @@ public class Sala {
     }
 
     // // Getters i Setters
-    // TODO Revisar més endavant per les portes
+
+    /**
+     * Mètode que retorna cert o fals segons si en una direcció hi ha porta o no.
+     * @return Cert o fals segons si hi ha porta.
+     */
+    public boolean isPortaDireccio(int direccio) {
+
+        return this.portes[direccio];
+    }
+
+    /**
+     * Mètode que assigna a una de les direccions si hi ha porta o no.
+     */
+    public void setPortaDireccio(int direccio, boolean hiHaPorta) {
+
+        this.portes[direccio] = hiHaPorta;
+    }
 
     public String getTipus() {
         return tipus;
