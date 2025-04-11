@@ -141,49 +141,12 @@ public class Sala {
     @Override
     public String toString() {
 
-        String stringFinal;
-
-        if (this.tresor != null) {
-
-            if (this.monstre != null) { // La sala té tot
-
-                stringFinal =   "Sala: \n" +
-                        "\tTipus: " + tipus + "\n"+
-                        "\t" + tresor +
-                        "\t" + monstre +
-                        "\tPortes: " + portes + "\n"+
-                        "\tExplorada: " + explorada + ".\n";
-
-            } else { // Té tresor però no monstre
-
-                stringFinal =   "Sala: \n" +
-                        "\tTipus: " + tipus + "\n"+
-                        "\t" + tresor +
-                        "\tMonstre: No hi ha monstre\n" +
-                        "\tPortes: " + portes + "\n"+
-                        "\tExplorada: " + explorada + ".\n";
-            }
-
-        } else if (this.monstre != null) { // No té tresor però sí monstre
-
-            stringFinal =   "Sala: \n" +
+        return  "Sala: \n" +
                     "\tTipus: " + tipus + "\n"+
-                    "\tTresor: No hi ha tresor\n" +
-                    "\t" + monstre +
+                    "\t" + (tresor != null ? tresor : "Tresor: No hi ha tresor") +
+                    "\t" + (monstre != null ? monstre : "Monstre: No hi ha monstre") +
                     "\tPortes: " + portes + "\n"+
-                    "\tExplorada: " + explorada + ".\n";
-
-        } else { // No té ni tresor ni monstre
-
-            stringFinal =   "Sala: \n" +
-                    "\tTipus: " + tipus + "\n"+
-                    "\tTresor: No hi ha tresor\n" +
-                    "\tMonstre: No hi ha monstre\n" +
-                    "\tPortes: " + portes + "\n"+
-                    "\tExplorada: " + explorada + ".\n";
-        }
-
-        return stringFinal;
+                    "\tExplorada: " + (explorada ? "S'ha explorat" : "No s'ha explorat") + ".\n";
     }
 
     // // Getters i Setters
