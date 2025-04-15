@@ -36,8 +36,8 @@ public class Monstre {
         // Es genera un nivell d'atac. Min 5, max 70
         this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteDolent(5), Dificultat.valorFinalObjecteDolent(70));
 
-        // Es genera una penalització per fugir de forma aleatòria. Min 1, max 3
-        this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 3);
+        // Es genera una penalització per fugir de forma aleatòria. Min 1, max 20
+        this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 20);
     }
 
 

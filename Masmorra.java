@@ -180,11 +180,7 @@ public class Masmorra {
         }
 
 
-
-
         // tenim al jugador i a la masmorra amb sales, tresors i monstres.
-        // TODO revisar generació de sales
-
 
 
         // Entrar en el bucle principal del programa
@@ -213,20 +209,7 @@ public class Masmorra {
             mostrarSalaGraficament(salaActual);
             System.out.println();
 
-            /*
-            // TEST
-            System.out.println("aaa");
-            for (int fil = 0; fil < matriuMasmorra.length; fil++) {
-                for (int col = 0; col < matriuMasmorra[fil].length; col++) {
-                    mostrarSalaGraficament(matriuMasmorra[fil][col]);
-                    System.out.print(" --- ");
-                }
-                System.out.println("+++++++++++++++++");
-            }
-            */
 
-
-            // TODO
             // Mostrar menú d'opcions (moure, explorar...). Mirar abans si hi ha gameOver.
             // Dintre de cada opció, començar una cosa i acabar-la.
 
@@ -259,11 +242,15 @@ public class Masmorra {
                     // Cridar mètode d'explorar de Personatge. No mostrar l'opció si la sala ja està explorada.
                     int posiX=jugador.getPosicio()[0];
                     int posiY=jugador.getPosicio()[1];
+
+                    // Si està explorada, no deixar tornar a explorar
                     if (!matriuMasmorra[posiX][posiY].isExplorada()){
-                        System.out.println("explorant sala");
+
+                        System.out.println("Explorant sala...");
                         System.out.println(jugador.explorar(matriuMasmorra[posiX][posiY]));
-                    }else {
-                        System.out.println("sala ja esta explorada");
+
+                    } else {
+                        System.out.println("Aquesta sala ja està explorada!");
                     }
 
                     break;
@@ -273,10 +260,11 @@ public class Masmorra {
                     // MOVIMENT
                     // Preguntar a quina direcció vol moure i utilitzar mètode de Personatge
 
-                    // SOLUCIÓ TEMPORAL
+                    // TODO revisar
 
-                    System.out.println("Direcció (N, E, S, O):");
+                    System.out.print("Introdueix una direcció (N, E, S, O): ");
                     char respostaDireccio = scanner.nextLine().charAt(0);
+                    System.out.println();
 
                     int direccioNum = 0;
 
@@ -300,13 +288,13 @@ public class Masmorra {
                         default:
                     }
 
-
                     // Mentres no hi hagi porta, seguir preguntant
                     while (!salaActual.isPortaDireccio(direccioNum)) {
 
                         System.out.println("Incorrecte");
-                        System.out.println("Direcció (N, E, S, O):");
+                        System.out.print("Introdueix una direcció (N, E, S, O): ");
                         respostaDireccio = scanner.nextLine().charAt(0);
+                        System.out.println();
 
                         direccioNum = 0;
 
@@ -329,24 +317,28 @@ public class Masmorra {
                                 break;
                             default:
                         }
-
-
                     }
 
+                    // Si la sala no és del tipus normal, s'haurà de fer o una tirada de força o d'agilitat.
+                    if (!salaActual.getTipus().equals("Normal")) {
+
+                        if (salaActual.getTipus().equals("Teranyina")) {
+
+
+
+                        } else {
+                            System.out.println();
+                        }
+                    }
+
+                    // Passar direcció al mètode de moure
                     jugador.moureDireccio(respostaDireccio);
 
-                    // Revisar moviment (si hi ha porta i si es fora matriu, gameOver)
-                    // TODO acabar
-
-
-
+                    // Si està fora de la matriu, és que ha sortit per una porta cap a fora i ha guanyat.
                     if (!dintreMatriu(matriuMasmorra, jugador.getPosicioY(), jugador.getPosicioX())) {
 
                         gameOver = true;
                     }
-
-
-                    // Passar direcció al metode de moure
 
                     break;
                 case 3:
@@ -355,9 +347,7 @@ public class Masmorra {
                     // COMBAT
 
                     // Entrar en combat amb un monstre si a la sala n'hi ha
-                    pos = jugador.getPosicio();
-
-                    if (matriuMasmorra[pos[0]][pos[1]].getMonstre() != null) {
+                    if (matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()].getMonstre() != null) {
 
                         combatPersonatgeMonstre(jugador, matriuMasmorra[pos[0]][pos[1]].getMonstre());
 
@@ -367,9 +357,9 @@ public class Masmorra {
                             causaMort = "matat per monstre";
                         }
 
-                        if (matriuMasmorra[pos[0]][pos[1]].getMonstre().getVida() <= 0) {
+                        if (matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()].getMonstre().getVida() <= 0) {
 
-                            matriuMasmorra[pos[0]][pos[1]].setMonstre(null);
+                            matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()].setMonstre(null);
                         }
 
                     } else {
@@ -394,13 +384,6 @@ public class Masmorra {
                     break;
                 default:
             }
-
-
-
-
-
-            //System.out.println("TEST");
-            //gameOver = true;
         }
 
         // El joc ha acabat
@@ -417,17 +400,58 @@ public class Masmorra {
             System.out.println("Has mort per culpa de: " + causaMort + ".");
             System.out.println();
 
+            // Estadístiques
+            System.out.println("Havies aconseguit " + jugador.getExperiencia() + " experiència.");
+            System.out.println("Havies explorat el " + percentatgeExplorat(matriuMasmorra) + "% de sales de la masmorra.");
+            System.out.println();
+
+            System.out.println("Gràcies per jugar!");
+
         } else {
 
             System.out.println("Has sobreviscut la masmorra!");
             System.out.println();
+
             System.out.println("Felicitats!");
             System.out.println();
+
+            System.out.println("T'ha quedat una nivell de vida de " + jugador.getVida() + " punts.");
+            System.out.println("Has sortit amb " + jugador.totalTresors() + " tresors!");
+            System.out.println("Amb els tresors que has aconseguit, tens el total equivalent en monedes de " + jugador.totalMonedes() + ".");
+            System.out.println("Has explorat el " + percentatgeExplorat(matriuMasmorra) + "% de la masmorra.");
+            System.out.println();
+
+            System.out.println("Gràcies per jugar!");
         }
     }
 
 
     // // Funcions
+
+    /**
+     * Funció per calcular el percentatge total de sales explorades.
+     * @param matriuMasmorra La matriu masmorra amb sales.
+     * @return El percentatge de sales explorades.
+     */
+    public static double percentatgeExplorat(Sala[][] matriuMasmorra) {
+        int totalSales = 0;
+        int totalExplorat = 0;
+
+        for (int fil = 0; fil < matriuMasmorra.length; fil++) {
+            for (int col = 0; col < matriuMasmorra[fil].length; col++) {
+
+                totalSales++;
+
+                if (matriuMasmorra[fil][col].isExplorada()) {
+
+                    totalExplorat++;
+                }
+            }
+        }
+
+        return (totalExplorat / (double)totalSales) * 100;
+    }
+
 
     /**
      * Funció per fer un combat entre un Personatge i un Monstre, es mostrarà per pantalla missatges i s'acabarà quan un dels dos perdi o el personatge fugi.
@@ -437,6 +461,9 @@ public class Masmorra {
     public static void combatPersonatgeMonstre(Personatge personatge, Monstre monstre) {
 
         Scanner scanner = new Scanner(System.in);
+
+        // Guardem la vida inicial del monstre en aquest mateix moment
+        int vidaInicialMonstre = monstre.getVida();
 
         boolean continuar = true;
 
@@ -466,6 +493,15 @@ public class Masmorra {
 
                 // Ha perdut el monstre
                 System.out.println("El monstre " + monstre.getNom() + " ha perdut!");
+                System.out.println();
+
+                // Incrementem l'experiència
+                personatge.setExperiencia(personatge.getExperiencia() + vidaInicialMonstre * 2);
+                System.out.println("Has guanyat " + (personatge.getExperiencia() + vidaInicialMonstre * 2) + " punts d'experiència!");
+
+                // Regenerar una mica la vida (+ segons la dificultat, una mica més o menys del 20% que queda)
+                personatge.curar(Dificultat.valorFinalObjecteBo((int)(personatge.getVida() * 0.20)));
+                System.out.println("Et cures una mica abans de continuar.");
                 System.out.println();
 
                 // Esperar a que usuari vulgui continuar
@@ -556,8 +592,9 @@ public class Masmorra {
     }
 
 
+
     /**
-     * Funció que comprova si una posició està dintre d'una matriu. TODO POTSER NO VA AQUÍ PERÒ ÉS ÚTIL.
+     * Funció que comprova si una posició està dintre d'una matriu.
      * @param matriu Matriu a comprovar.
      * @param fil Filera.
      * @param col Columna.

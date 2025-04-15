@@ -24,20 +24,20 @@ public class Dificultat {
     // // Mètodes Estàtics
 
     /**
-     * Mètode per calcular el valor final per a una cosa bona segons la dificultat (+ o - 20%)
+     * Mètode per calcular el valor final per a una cosa bona segons la dificultat (+ o - 20%) (mai negatiu)
      * @param valorEnNormal El valor que hi ha en dificultat normal.
      * @return El valor introduït més o menys 20% d'aquest segons la dificultat
      */
     public static int valorFinalObjecteBo(int valorEnNormal) {
-        int valorFinal;
+
 
         if (Dificultat.nivellDeDificultat == 'D') {
 
-            return valorFinal = valorEnNormal - (int)(Math.ceil(valorEnNormal * 0.2));
+            return Math.max(0, valorEnNormal - (int)(Math.ceil(valorEnNormal * 0.2)));
 
         } else if (Dificultat.nivellDeDificultat == 'F') {
 
-            return valorFinal = valorEnNormal + (int)(Math.ceil(valorEnNormal * 0.2));
+            return Math.max(0, valorEnNormal + (int)(Math.ceil(valorEnNormal * 0.2)));
 
         } else {
 
@@ -46,7 +46,7 @@ public class Dificultat {
     }
 
     /**
-     * Mètode per calcular el valor final per a una cosa dolenta segons la dificultat (+ o - 20%)
+     * Mètode per calcular el valor final per a una cosa dolenta segons la dificultat (+ o - 20%) (mai negatiu)
      * @param valorEnNormal El valor que hi ha en dificultat normal.
      * @return El valor introduït més o menys 20% d'aquest segons la dificultat
      */
@@ -55,18 +55,17 @@ public class Dificultat {
 
         if (Dificultat.nivellDeDificultat == 'D') {
 
-            return valorFinal = valorEnNormal + (int)(Math.ceil(valorEnNormal * 0.2));
+            return Math.max(0, valorEnNormal + (int)(Math.ceil(valorEnNormal * 0.2)));
 
         } else if (Dificultat.nivellDeDificultat == 'F') {
 
-            return valorFinal = valorEnNormal - (int)(Math.ceil(valorEnNormal * 0.2));
+            return Math.max(0, valorEnNormal - (int)(Math.ceil(valorEnNormal * 0.2)));
 
         }  else {
 
             return valorEnNormal;
         }
     }
-
 
     // // Getters i Setters
     public static char getNivellDeDificultat() {

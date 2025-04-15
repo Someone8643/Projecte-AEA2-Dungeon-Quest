@@ -13,6 +13,7 @@ public class Personatge {
     private int forsa;
     private int[] posicio = new int[2]; // Recordar que es x (fil) i y (col)
     private Tresor[] equipament;
+    private int vidaInicial;
 
     // Llista de noms per agafar de forma aleatòria
     private String[] arrayNomsDePersonatges = {"Steve", "Alex"};
@@ -30,6 +31,7 @@ public class Personatge {
         this.forsa = forsa;
         this.posicio = posicio;
         this.equipament = equipament;
+        this.vidaInicial = vida;
     }
 
     // Constructor aleatòri, per donar l'opció a l'usuari
@@ -40,10 +42,11 @@ public class Personatge {
         this.vida = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(30), Dificultat.valorFinalObjecteBo(120));
         this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(20), Dificultat.valorFinalObjecteBo(120));
 
-        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(10), Dificultat.valorFinalObjecteBo(70));
-        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(0), Dificultat.valorFinalObjecteBo(7) + 1); // + 1 per evitar que els aleatòris en dicfícil puguin tenir 0 força encara que és una mica graciós // TODO revisar, potser deixar la possibilitat de 0
+        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(1) + 1, 12); // Com amb la força
+        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(1) + 1, 12); // + 1 per evitar que els aleatòris en difícil puguin tenir 0 força encara que és una mica graciós // TODO revisar, potser deixar la possibilitat de 0
 
         this.equipament = new Tresor[forsa];
+        this.vidaInicial = vida;
     }
 
     // Constructor per fer servir amb dades de l'usuari i certes variables amb números concrets TODO
@@ -61,12 +64,56 @@ public class Personatge {
         this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(4), Dificultat.valorFinalObjecteBo(6));
 
         this.equipament = new Tresor[forsa];
+        this.vidaInicial = vida;
 
         // RECORDAR QUE NO CAL INICIAR INTS
     }
 
 
     // // Mètodes
+
+    /**
+     * Mètode per curar al personatge, sense sobrepassar el nivell inicial.
+     * @param puntsVida Punts de vida que s'afegeixen.
+     */
+    public void curar(int puntsVida) {
+
+        vida += puntsVida;
+
+        if (vida > vidaInicial) {
+            vida = vidaInicial;
+        }
+    }
+
+    /**
+     * Mètode que calcula l'equivalent en monedes total dels tresors.
+     * @return El total en monedes.
+     */
+    public int totalMonedes() {
+
+        int total = 0;
+
+        for (Tresor tresor : equipament) {
+            total += tresor.getValor();
+        }
+
+        return total;
+    }
+
+    /**
+     * Mètode que calcula el total de tresors dintre de l'equipament.
+     * @return El total de tresors.
+     */
+    public int totalTresors() {
+
+        int total = 0;
+
+        for (Tresor tresor : equipament) {
+            total++;
+        }
+
+        return total;
+    }
 
     /**
      * Mètode perquè aquest Personatge ataqui a un Monstre.
@@ -98,38 +145,49 @@ public class Personatge {
         return dany;  // Retornem el dany causat per mostrar per pantalla
     }
 
-    // Mètode per explorar la sala // TODO revisar
+    // Mètode per explorar la sala
     public String explorar(Sala sala) {
-        if (sala.isExplorada()) {
-            return "Ja havies explorat aquesta sala abans.";
-        }
 
         sala.setExplorada(true); // Marquem la sala com explorada
 
         if (sala.getTresor() != null) {
+
             Tresor tresor = sala.getTresor();
-            if (equipament.length < forsa) {
-                for (int i = 0; i < equipament.length; i++) {
-                    if (equipament[i] == null) {
-                        equipament[i] = tresor;
-                        return "Has trobat un tresor i l'has afegit al teu equipament!";
-                    }
+
+            for (int i = 0; i < equipament.length; i++) {
+                if (equipament[i] == null) {
+
+                    // Agafem el tresor de la sala i s'elimina d'allí
+                    equipament[i] = sala.getTresor();
+                    sala.setTresor(null);
+
+                    return "Has trobat un tresor i l'has afegit al teu equipament!";
                 }
-            } else {
-                return "El teu inventari està ple!";
             }
+
+            // Hem acabat de mirar l'equipament i no hi ha cap lloc buit
+            return "El teu inventari està ple!";
         }
-        return "La sala està buida, no has trobat res.";
+
+        return "La sala està buida, no has trobat res...";
     }
 
 
-    // Mètode per moure el personatge a una nova posició absoluta
+    /**
+     * Mètode per moure el personatge a una nova posició absoluta
+     * @param x Coord x (columna de la matriu)
+     * @param y Coord y (fila de la matriu)
+     */
     public void moure(int x, int y) {
         this.posicio[0] = x;
         this.posicio[1] = y;
     }
 
-    // Mètode per moure el personatge cap a una direcció
+
+    /**
+     * Mètode per moure el personatge cap a una direcció
+     * @param direccio
+     */
     public void moureDireccio(char direccio) {
 
         switch(direccio) {
@@ -174,7 +232,6 @@ public class Personatge {
                 "\tForça: " + forsa +"\n"+
                 "\tPosició: sala " + (posicio[1] + 1) + " del nivell " + (posicio[1] + 1) + "\n"+
                 "\t" + stringMostrarEquipament;
-
     }
 
 
