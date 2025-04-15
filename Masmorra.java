@@ -51,23 +51,12 @@ public class Masmorra {
 
         // Crear masmorra, amb totes les dades aleatories segons els constructors de cada classe
 
-        // Crear la matriu de masmorra de mida aleatòria (min 5 x 5)
-        Sala[][] matriuMasmorra = new Sala[Aleatori.generarIntAleatoriRang(5, 10)][Aleatori.generarIntAleatoriRang(5, 10)];
+        // Crear la matriu de masmorra de mida aleatòria (min 3 x 3)
+        Sala[][] matriuMasmorra = new Sala[Aleatori.generarIntAleatoriRang(3, Dificultat.valorFinalObjecteDolent(6))][Aleatori.generarIntAleatoriRang(3, Dificultat.valorFinalObjecteDolent(6))];
 
         // Omplir la masmorra
         Sala.omplirMatriuSales(matriuMasmorra);
 
-        /* Codi antic
-        // Omplir la matriu amb sales (for de matriu i crear sala per cada pos)
-        for (int fil = 0; fil < matriuMasmorra.length; fil++) {
-            for (int col = 0; col < matriuMasmorra[fil].length; col++) {
-
-                // Crear una sala per aquesta posició i posar dintre de la matriu.
-                // Recorda que dintre de la sala ja es crea un tresor i monstre aleatòri.
-                matriuMasmorra[fil][col] = new Sala();
-            }
-        }
-        */
 
         // // // Creació del personatge
 
@@ -218,6 +207,7 @@ public class Masmorra {
             System.out.println("2. Moure cap a una altra sala.");
             System.out.println("3. Entrar en combat amb un monstre de la sala (si n'hi ha).");
             System.out.println("4. Mostrar estadístiques.");
+            System.out.println("5. Mostrar mapa de la masmorra.");
             System.out.println();
 
             System.out.print("Introdueix una opció: ");
@@ -226,9 +216,9 @@ public class Masmorra {
             System.out.println();
 
             // Mentres incorrecte, preguntar
-            while (respostaMenu < 1 || respostaMenu > 4) {
+            while (respostaMenu < 1 || respostaMenu > 5) {
 
-                System.out.print("Opció incorrecta, introdueix 1, 2, 3 o 4: ");
+                System.out.print("Opció incorrecta, introdueix 1, 2, 3, 4 o 5: ");
                 System.out.println("Introdueix una opció: ");
                 respostaMenu = scanner.nextInt();
                 scanner.nextLine(); // Pel nextInt
@@ -248,9 +238,11 @@ public class Masmorra {
 
                         System.out.println("Explorant sala...");
                         System.out.println(jugador.explorar(matriuMasmorra[posiX][posiY]));
+                        System.out.println();
 
                     } else {
                         System.out.println("Aquesta sala ja està explorada!");
+                        System.out.println();
                     }
 
                     break;
@@ -379,6 +371,21 @@ public class Masmorra {
                     System.out.println();
 
                     System.out.println(jugador);
+                    System.out.println();
+
+                    break;
+                case 5:
+
+                    // OP 5
+                    // MOSTRAR MASMORRA
+
+                    System.out.println("Mapa de la masmorra:");
+                    System.out.println();
+
+                    System.out.println("El '&' ets tu, '+' és una sala explorada i '-' és una sala no explorada");
+                    System.out.println();
+
+                    mostrarMasmorra(matriuMasmorra, jugador.getPosicioX(), jugador.getPosicioY());
                     System.out.println();
 
                     break;
@@ -592,6 +599,33 @@ public class Masmorra {
     }
 
 
+    public static void mostrarMasmorra(Sala[][] matriuMasmorra, int posXJugador, int posYJugador) {
+
+        for (int fil = 0; fil < matriuMasmorra.length; fil++) {
+            for (int col = 0; col < matriuMasmorra[fil].length; col++) {
+
+                // Dibuixar una sala
+                System.out.print("|");
+
+                if (fil == posYJugador && col == posXJugador) {
+                    System.out.print("&");
+                } else {
+
+                    if (matriuMasmorra[fil][col].isExplorada()) {
+
+                        System.out.print("+");
+
+                    } else {
+
+                        System.out.print("-");
+                    }
+                }
+
+                System.out.print("|\t");
+            }
+            System.out.println();
+        }
+    }
 
     /**
      * Funció que comprova si una posició està dintre d'una matriu.

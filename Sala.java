@@ -124,7 +124,7 @@ public class Sala {
 
             if (Aleatori.tirarMoneda()) {
 
-                matriu[fil][index].setPortaDireccio(0, true);
+                matriu[fil][index].setPortaDireccio(2, true);
 
                 // afegir porta cap amunt en la següent filera.
                 matriu[(fil + 1)][index].setPortaDireccio(0, true);

@@ -94,7 +94,10 @@ public class Personatge {
         int total = 0;
 
         for (Tresor tresor : equipament) {
-            total += tresor.getValor();
+
+            if (tresor != null) {
+                total += tresor.getValor();
+            }
         }
 
         return total;
@@ -109,7 +112,10 @@ public class Personatge {
         int total = 0;
 
         for (Tresor tresor : equipament) {
-            total++;
+
+            if (tresor != null) {
+                total++;
+            }
         }
 
         return total;
