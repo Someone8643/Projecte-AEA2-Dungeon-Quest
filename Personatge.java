@@ -51,7 +51,7 @@ public class Personatge {
         this.vidaInicial = vida;
     }
 
-    // Constructor per fer servir amb dades de l'usuari i certes variables amb números concrets TODO
+    // Constructor per fer servir amb dades de l'usuari i certes variables amb números concrets
     public Personatge(String nom) {
 
         // L'usuari pot establir
@@ -153,10 +153,6 @@ public class Personatge {
 
         // El dany base és igual a l'atac del personatge
         int dany = this.atac;
-
-        // NO POSAR? MASSA ALEATORI? TODO revisar
-        // // Es modifica el dany que farà segons la dificultat (més dificultat, menys dany)
-        // dany = Dificultat.valorFinalObjecteBo(dany);
 
         // Reduïm la vida del monstre de forma aleatòria
         // El màxim de dany serà el calculat i el mínim és zero menys si la dificultat és fàcil on sempre es farà un mínim del 20% del dany.
