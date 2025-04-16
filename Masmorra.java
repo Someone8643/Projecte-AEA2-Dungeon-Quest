@@ -514,10 +514,12 @@ public class Masmorra {
                     if (jugador.utiltzarPocio()) {
 
                         System.out.println("Utilitzes una poció.");
+                        System.out.println();
 
                     } else {
 
                         System.out.println("No tens pocions...");
+                        System.out.println();
                     }
 
                     break;
