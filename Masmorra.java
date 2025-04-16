@@ -188,6 +188,8 @@ public class Masmorra {
             // Obtenim la sala actual per a futurs usos
             Sala salaActual = matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()];
 
+            System.out.println("----Sala----");
+
             // Dir la sala en que es troba (inclòs si és l'inici)
             System.out.println("Et trobes a la sala " + (jugador.getPosicioX() + 1) + " del nivell " + (jugador.getPosicioY() + 1) + ". La sala té aquesta forma (on & ets tu i les fleches una porta):");
 
