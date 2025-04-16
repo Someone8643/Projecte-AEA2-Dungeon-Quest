@@ -10,6 +10,7 @@ public class Monstre {
     private int vida;
     private int atac;
     private int penalitazcio;
+    private int vidaInicial;
 
     // // Llista de noms que tenim
     private String[] arrayNomsDeMonstres = {"TEMPMONSTRE1", "TEMPMONSTRE2", "TEMPMONSTRE3", "TEMPMONSTRE4"};
@@ -22,6 +23,7 @@ public class Monstre {
         this.vida = vida;
         this.atac = atac;
         this.penalitazcio = penalitazcio;
+        this.vidaInicial = vida;
     }
 
     // Constructor aleatòri
@@ -38,6 +40,8 @@ public class Monstre {
 
         // Es genera una penalització per fugir de forma aleatòria. Min 1, max 20
         this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 20);
+
+        this.vidaInicial = vida;
     }
 
 
@@ -133,6 +137,14 @@ public class Monstre {
 
     public void setAtac(int atac) {
         this.atac = atac;
+    }
+
+    public int getVidaInicial() {
+        return vidaInicial;
+    }
+
+    public void setVidaInicial(int vidaInicial) {
+        this.vidaInicial = vidaInicial;
     }
 }
 

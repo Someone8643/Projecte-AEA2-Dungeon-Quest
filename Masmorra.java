@@ -424,6 +424,7 @@ public class Masmorra {
                     if (salaActual.getMonstre() != null) {
 
                         System.out.println("El monstre de la sala t'ha atacat en fugir i t'ha fet " + salaActual.getMonstre().penalitzarPersonatge(jugador) + " punts de vida!");
+                        System.out.println();
                     }
 
                     if (jugador.getVida() <= 0) {
@@ -597,8 +598,8 @@ public class Masmorra {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Guardem la vida inicial del monstre en aquest mateix moment
-        int vidaInicialMonstre = monstre.getVida();
+        // Variable per mirar si el personatge es pot curar una mica o no
+        boolean personatgeFerit = false;
 
         boolean continuar = true;
 
@@ -631,13 +632,17 @@ public class Masmorra {
                 System.out.println();
 
                 // Incrementem l'experiència
-                personatge.setExperiencia(personatge.getExperiencia() + vidaInicialMonstre * 2);
-                System.out.println("Has guanyat " + (personatge.getExperiencia() + vidaInicialMonstre * 2) + " punts d'experiència!");
-
-                // Regenerar una mica la vida (+ segons la dificultat, una mica més o menys del 20% que queda)
-                personatge.curar(Dificultat.valorFinalObjecteBo((int)(personatge.getVida() * 0.20)));
-                System.out.println("Et cures una mica abans de continuar.");
+                personatge.setExperiencia( personatge.getExperiencia() + (monstre.getVidaInicial() * 2) );
+                System.out.println("Has guanyat " + ((monstre.getVidaInicial() * 2)) + " punts d'experiència!");
                 System.out.println();
+
+                // Regenerar una mica la vida (+ segons la dificultat, una mica més o menys del 20% que queda) menys si la dificultat és difícil. Sol si ha rebut mal en aquest combat.
+                if (Dificultat.getNivellDeDificultat() != 'D' && personatgeFerit) {
+
+                    personatge.curar(Dificultat.valorFinalObjecteBo((int)(personatge.getVida() * 0.20)));
+                    System.out.println("Et cures una mica abans de continuar.");
+                    System.out.println();
+                }
 
                 // Esperar a que usuari vulgui continuar
                 System.out.print("Introdueix Enter per continuar...");
@@ -649,6 +654,8 @@ public class Masmorra {
                 // Torn del monstre
                 System.out.println("El monstre " + monstre.getNom() + " ataca a " + personatge.getNom() + " amb una ferida de " + monstre.atacarPersonatge(personatge) + " punts de vida!");
                 System.out.println();
+
+                personatgeFerit = true;
 
                 // Esperar a que usuari vulgui continuar
                 System.out.print("Introdueix Enter per continuar...");
@@ -699,7 +706,7 @@ public class Masmorra {
                         // si just ha mort, dir-ho
                         if (personatge.getVida() <= 0) {
 
-                            System.out.println("El personatge " + personatge.getNom() + " ha perdut en intentar fugir!");
+                            System.out.println("El personatge " + personatge.getNom() + " ha perdut en intentar fugir del combat!");
                         }
 
                         // S'acaba el combat perquè el personatge ha fugit
