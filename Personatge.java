@@ -14,15 +14,16 @@ public class Personatge {
     private int[] posicio = new int[2]; // Recordar que es x (fil) i y (col)
     private Tresor[] equipament;
     private int vidaInicial;
+    private int pocions;
 
     // Llista de noms per agafar de forma aleatòria
-    private String[] arrayNomsDePersonatges = {"Steve", "Alex"};
+    private final String[] arrayNomsDePersonatges = {"Steve", "Alex"};
 
 
     // // Constructors
 
     // Constructor amb assignació
-    public Personatge(String nom, int vida, int atac, int experiencia, int agilitat, int forsa, int[] posicio, Tresor[] equipament) {
+    public Personatge(String nom, int vida, int atac, int experiencia, int agilitat, int forsa, int[] posicio, Tresor[] equipament, int pocions) {
         this.nom = nom;
         this.vida = vida;
         this.atac = atac;
@@ -32,6 +33,7 @@ public class Personatge {
         this.posicio = posicio;
         this.equipament = equipament;
         this.vidaInicial = vida;
+        this.pocions = pocions;
     }
 
     // Constructor aleatòri, per donar l'opció a l'usuari
@@ -85,6 +87,25 @@ public class Personatge {
         }
     }
 
+
+    /**
+     * Mètode per utilitzar una de les pocions i regenerar vida, segons la dificultat.
+     * @return Cert o fals segons i s'ha pogut fer.
+     */
+    public boolean utiltzarPocio() {
+
+        if (pocions > 0) {
+
+            curar(Dificultat.valorFinalObjecteBo(20));
+            pocions--;
+
+            return true;
+        }
+
+        return false;
+    }
+
+
     /**
      * Mètode que calcula l'equivalent en monedes total dels tresors.
      * @return El total en monedes.
@@ -103,6 +124,7 @@ public class Personatge {
         return total;
     }
 
+
     /**
      * Mètode que calcula el total de tresors dintre de l'equipament.
      * @return El total de tresors.
@@ -120,6 +142,7 @@ public class Personatge {
 
         return total;
     }
+
 
     /**
      * Mètode perquè aquest Personatge ataqui a un Monstre.
@@ -151,31 +174,59 @@ public class Personatge {
         return dany;  // Retornem el dany causat per mostrar per pantalla
     }
 
-    // Mètode per explorar la sala
+
+    /**
+     * Mètode per explorar una sala.
+     * @param sala La sala a explorar (hauria de ser l'actual).
+     * @return Retorna un string amb una explicació del que ha passat, per mostrar per pantalla.
+     */
     public String explorar(Sala sala) {
 
+        String missatge = "";
         sala.setExplorada(true); // Marquem la sala com explorada
 
+        // Mirar si hi ha tresor, si hi ha, intentar posar en inventari
         if (sala.getTresor() != null) {
 
-            Tresor tresor = sala.getTresor();
+            int i = 0;
+            while (i < equipament.length && equipament[i] != null) {
 
-            for (int i = 0; i < equipament.length; i++) {
-                if (equipament[i] == null) {
-
-                    // Agafem el tresor de la sala i s'elimina d'allí
-                    equipament[i] = sala.getTresor();
-                    sala.setTresor(null);
-
-                    return "Has trobat un tresor i l'has afegit al teu equipament!";
-                }
+                i++;
             }
 
-            // Hem acabat de mirar l'equipament i no hi ha cap lloc buit
-            return "El teu inventari està ple!";
+            if (i > equipament.length) { // No hem trobat lloc
+
+                missatge += "Has trobat un tresor, però el teu inventari està ple per a tresors!";
+
+            } else {
+
+                // Agafem el tresor de la sala i s'elimina d'allí
+                equipament[i] = sala.getTresor();
+                sala.setTresor(null);
+
+                missatge += "Has trobat un tresor i l'has afegit al teu equipament!";
+            }
+
+            // Mirar si també hi ha poció
+            if (sala.isTePocio()) {
+
+                sala.setTePocio(false);
+                pocions++;
+                missatge += "\nHas trobat una poció i l'has guardada!";
+            }
+
+        } else if (sala.isTePocio()) { // Mirar si mínim hi ha poció
+
+            sala.setTePocio(false);
+            pocions++;
+            missatge += "Has trobat una poció i l'has guardada!";
+
+        } else {
+
+            return "La sala està buida, no has trobat absolutament res...";
         }
 
-        return "La sala està buida, no has trobat res...";
+        return missatge;
     }
 
 
@@ -316,5 +367,19 @@ public class Personatge {
         return posicio[0];
     }
 
+    public int getVidaInicial() {
+        return vidaInicial;
+    }
 
+    public void setVidaInicial(int vidaInicial) {
+        this.vidaInicial = vidaInicial;
+    }
+
+    public int getPocions() {
+        return pocions;
+    }
+
+    public void setPocions(int pocions) {
+        this.pocions = pocions;
+    }
 }

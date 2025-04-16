@@ -12,14 +12,16 @@ public class Sala {
     // 3 = Oest
     // (es comença del Nord i es va en sentit de les agulles del rellotge)
     private boolean explorada;
+    private boolean tePocio;
 
     // // Constructors
-    public Sala(String tipus, Tresor tresor, Monstre monstre, boolean[] portes, boolean explorada) {
+    public Sala(String tipus, Tresor tresor, Monstre monstre, boolean[] portes, boolean explorada, boolean tePocio) {
         this.tipus = tipus;
         this.tresor = tresor;
         this.monstre = monstre;
         this.portes = portes;
         this.explorada = explorada;
+        this.tePocio = tePocio;
     }
 
     // Constructor de sala que ho genera de forma aleatòria
@@ -45,8 +47,12 @@ public class Sala {
             this.tresor = new Tresor();
         }
 
-        // Probabilitat del 50% en normal de tenir monstre (s'ha de generar un objecte monstre amb 50% de fer-se).
+        // Probabilitat del 50% en normal de tenir poció
+        if (Aleatori.percentatgeProbabilitat(Dificultat.valorFinalObjecteBo(50))) {
+            this.tePocio = true;
+        }
 
+        // Probabilitat del 50% en normal de tenir monstre (s'ha de generar un objecte monstre amb 50% de fer-se).
         if (Aleatori.percentatgeProbabilitat(Dificultat.valorFinalObjecteDolent(50))) {
             this.monstre = new Monstre();
         }
@@ -137,7 +143,7 @@ public class Sala {
     }
 
 
-    // To string una mica complicat (realment no faria falta complicar-se tant)
+    // To string
     @Override
     public String toString() {
 
@@ -148,6 +154,7 @@ public class Sala {
                     "\tPortes: " + portes + "\n"+
                     "\tExplorada: " + (explorada ? "S'ha explorat" : "No s'ha explorat") + ".\n";
     }
+
 
     // // Getters i Setters
 
@@ -206,5 +213,13 @@ public class Sala {
 
     public void setExplorada(boolean explorada) {
         this.explorada = explorada;
+    }
+
+    public boolean isTePocio() {
+        return tePocio;
+    }
+
+    public void setTePocio(boolean tePocio) {
+        this.tePocio = tePocio;
     }
 }
