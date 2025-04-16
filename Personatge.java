@@ -62,8 +62,8 @@ public class Personatge {
         // Diversos valors tenen un rang aleatori establer de forma concreta.
         this.vida = 100;
         this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(40), Dificultat.valorFinalObjecteBo(70));
-        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(40), Dificultat.valorFinalObjecteBo(60));
-        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(4), Dificultat.valorFinalObjecteBo(6));
+        this.agilitat = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(2), Dificultat.valorFinalObjecteBo(12));
+        this.forsa = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteBo(2), Dificultat.valorFinalObjecteBo(12));
 
         this.equipament = new Tresor[forsa];
         this.vidaInicial = vida;

@@ -372,6 +372,7 @@ public class Masmorra {
                             while (!escapar) {
 
                                 int resultat = Aleatori.generarIntAleatoriRang(1, 12);
+                                System.out.println("Has tret un " + resultat + "!");
 
                                 if (resultat <= jugador.getForsa()) {
 
@@ -380,7 +381,7 @@ public class Masmorra {
                                     System.out.println();
                                 } else {
 
-                                    System.out.println("Has tret un " + resultat + " de un mínim de " + jugador.getForsa() + " que necessitaves!");
+                                    System.out.println("Necessites treure un mínim de " + jugador.getForsa() + " per escapar!");
                                     System.out.println();
                                 }
 
@@ -398,6 +399,7 @@ public class Masmorra {
                             while (!escapar) {
 
                                 int resultat = Aleatori.generarIntAleatoriRang(1, 12);
+                                System.out.println("Has tret un " + resultat + "!");
 
                                 if (resultat <= jugador.getAgilitat()) {
 
@@ -406,7 +408,7 @@ public class Masmorra {
                                     System.out.println();
                                 } else {
 
-                                    System.out.println("Has tret un " + resultat + " de un mínim de " + jugador.getAgilitat() + " que necessitaves!");
+                                    System.out.println("Necessites treure un mínim de " + jugador.getAgilitat() + " per escapar!");
                                     System.out.println();
                                 }
 
