@@ -239,7 +239,7 @@ public class Personatge {
 
     /**
      * Mètode per moure el personatge cap a una direcció
-     * @param direccio
+     * @param direccio Un char que representa una direcció
      */
     public void moureDireccio(char direccio) {
 

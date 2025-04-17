@@ -106,10 +106,11 @@ public class Sala {
 
             matriu[fil][0].setPortaDireccio(3, false);
         }
+
         // Eliminar portes de l'est
         for (int fil = 0; fil < matriu.length; fil++) {
 
-            matriu[fil][(matriu[0].length - 1)].setPortaDireccio(1, false);
+            matriu[fil][(matriu[fil].length - 1)].setPortaDireccio(1, false);
         }
 
 

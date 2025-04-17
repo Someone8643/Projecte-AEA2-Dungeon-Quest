@@ -803,6 +803,6 @@ public class Masmorra {
     public static boolean dintreMatriu(Sala[][] matriu, int fil, int col) {
 
         return  (fil >= 0 && col >= 0) &&
-                (fil < matriu.length && col < matriu.length);
+                (fil < matriu.length && col < matriu[fil].length);
     }
 }
