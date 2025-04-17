@@ -11,7 +11,7 @@ public class Tresor {
     private double pes;
 
     // Llista de noms que tenim
-    private String[] arrayNomsDeTresors = {"TEMPTRESOR1", "TEMPTRESOR2", "TEMPTRESOR3", "TEMPTRESOR4"};
+    private String[] arrayNomsDeTresors = {"Corona d'or", "Bossa de monedes", "Anell d'or", "Rubi", "Esmeralda", "Diamant", "Calze d'or", "Vaixella de plata", "Una patata"};
 
     // // Constructors
 

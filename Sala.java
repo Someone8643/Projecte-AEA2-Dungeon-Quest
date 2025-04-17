@@ -175,6 +175,7 @@ public class Sala {
 
     /**
      * Mètode que retorna cert o fals segons si en una direcció hi ha porta o no.
+     * @param direccio La direcció a comprovar, en número.
      * @return Cert o fals segons si hi ha porta.
      */
     public boolean isPortaDireccio(int direccio) {
@@ -183,7 +184,41 @@ public class Sala {
     }
 
     /**
+     * Mètode que retorna cert o fals segons i hi ha una porta cap a una direcció en char.
+     * @param direccio Char d'una direcció (mirar la declaració de la variable portes[])
+     * @return Cert o fals segons si hi ha porta o no. Si no existeix la direcció, fals.
+     */
+    public boolean isPortaDireccioChar(char direccio) {
+
+        int direccioNum;
+        switch(direccio) {
+            case 'N', 'n':
+
+                direccioNum = 0;
+                break;
+            case 'E', 'e':
+
+                direccioNum = 1;
+                break;
+            case 'S', 's':
+
+                direccioNum = 2;
+                break;
+            case 'O', 'o':
+
+                direccioNum = 3;
+                break;
+            default:
+                return false;
+        }
+
+        return isPortaDireccio(direccioNum);
+    }
+
+    /**
      * Mètode que assigna a una de les direccions si hi ha porta o no.
+     * @param direccio La direcció en número.
+     * @param hiHaPorta Assignar si hi ha porta o no.
      */
     public void setPortaDireccio(int direccio, boolean hiHaPorta) {
 

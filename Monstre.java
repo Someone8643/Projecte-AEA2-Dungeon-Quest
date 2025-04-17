@@ -13,7 +13,7 @@ public class Monstre {
     private int vidaInicial;
 
     // // Llista de noms que tenim
-    private String[] arrayNomsDeMonstres = {"TEMPMONSTRE1", "TEMPMONSTRE2", "TEMPMONSTRE3", "TEMPMONSTRE4"};
+    private String[] arrayNomsDeMonstres = {"Chungus", "Stukenmalsen", "Batus", "Torkamaru", "Wirwa", "Parukam", "Dimoni comú", "Esquelet"};
 
     // // Constructors
 
