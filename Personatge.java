@@ -185,12 +185,12 @@ public class Personatge {
         if (sala.getTresor() != null) {
 
             int i = 0;
-            while (i < equipament.length && equipament[i] != null) {
+            while ((i < equipament.length) && (equipament[i] != null)) {
 
                 i++;
             }
 
-            if (i > equipament.length) { // No hem trobat lloc
+            if (i >= equipament.length) { // No hem trobat lloc
 
                 missatge += "Has trobat un tresor, però el teu inventari està ple per a tresors!";
 
@@ -307,9 +307,12 @@ public class Personatge {
     public void setVida(int vida) {
 
         // Si amb aquest setter la vida supera la inicial, s'actualitza la vida inicial
-        if (this.vida + vida > vidaInicial) {
-            this.vida = vida;
+        if ((this.vida + vida) > vidaInicial) {
+
+            this.vidaInicial = this.vida + vida;
         }
+
+        this.vida = vida;
     }
 
     public int getAtac() {
