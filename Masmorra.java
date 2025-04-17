@@ -494,12 +494,12 @@ public class Masmorra {
                         // Dir que no hi ha monstre
                         System.out.println("No hi ha monstre en aquesta sala...");
                         System.out.println();
-                    }
 
-                    // Esperar a que usuari vulgui continuar
-                    System.out.print("Introdueix Enter per continuar...");
-                    scanner.nextLine();
-                    System.out.println();
+                        // Esperar a que usuari vulgui continuar
+                        System.out.print("Introdueix Enter per continuar...");
+                        scanner.nextLine();
+                        System.out.println();
+                    }
 
                     break;
                 case 4:
@@ -753,6 +753,11 @@ public class Masmorra {
 
                         // S'acaba el combat perquè el personatge ha fugit
                         continuar = false;
+
+                        // Esperar a que usuari vulgui continuar
+                        System.out.print("Introdueix Enter per continuar...");
+                        scanner.nextLine();
+                        System.out.println();
                     }
                 }
             }
