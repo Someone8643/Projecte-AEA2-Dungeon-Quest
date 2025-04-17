@@ -326,8 +326,8 @@ public class Masmorra {
                     String respostaDireccio = scanner.nextLine();
                     System.out.println();
 
-                    // Mentres no sigui una de llargada 1 (per tant no pot ser 0), o no escrigui Q per sortir, o no hi hagi porta, continuar preguntant.
-                    while ( (respostaDireccio.length() != 1) || respostaDireccio.equalsIgnoreCase("Q") || !salaActual.isPortaDireccioChar(respostaDireccio.charAt(0))) {
+                    // Mentres no escrigui Q per sortir i no hi hagi porta, continuar preguntant.
+                    while ( !respostaDireccio.equalsIgnoreCase("Q") && !salaActual.isPortaDireccioChar(respostaDireccio.charAt(0))) {
 
                         System.out.println("Incorrecte, no hi ha porta cap aquesta direcció.");
                         System.out.print("Introdueix una direcció (N, E, S, O) (Q per desistir): ");
@@ -336,7 +336,7 @@ public class Masmorra {
                     }
 
                     // Si no ha dit que no vol moure (Q), podem continuar
-                    if (!respostaDificultat.equalsIgnoreCase("Q")) {
+                    if (!respostaDireccio.equalsIgnoreCase("Q")) {
 
                         // La resposta s'utilitza després de les comprovacions
 
