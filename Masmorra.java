@@ -147,7 +147,11 @@ public class Masmorra {
                 System.out.println();
 
                 System.out.print("Introdueix la teva elecció (introdueix el número): ");
-                int respostaPunts = scanner.nextInt();
+                // Sol agafarem el que escrigui si és un int.
+                int respostaPunts = -1;
+                if (scanner.hasNextInt()) {
+                    respostaPunts = scanner.nextInt();
+                }
                 System.out.println();
 
                 // Segons l'opció, es dedica punts a una estadística o una altra
@@ -155,6 +159,7 @@ public class Masmorra {
                 switch(respostaPunts) {
                     case 1:
 
+                        jugador.setVidaInicial(jugador.getVidaInicial() + 10);
                         jugador.setVida(jugador.getVida() + 10);
 
                         puntsPersonatge--;
@@ -248,7 +253,11 @@ public class Masmorra {
             System.out.println();
 
             System.out.print("Introdueix una opció: ");
-            int respostaMenu = scanner.nextInt();
+            // Sol agafarem el que escrigui si és un int.
+            int respostaMenu = -1;
+            if (scanner.hasNextInt()) {
+                respostaMenu = scanner.nextInt();
+            }
             scanner.nextLine(); // Pel nextInt
             System.out.println();
 
@@ -257,8 +266,13 @@ public class Masmorra {
 
                 System.out.print("Opció incorrecta, introdueix 1, 2, 3, 4, 5 o 6: ");
                 System.out.println("Introdueix una opció: ");
-                respostaMenu = scanner.nextInt();
+
+                // Sol agafarem el que escrigui si és un int.
+                if (scanner.hasNextInt()) {
+                    respostaMenu = scanner.nextInt();
+                }
                 scanner.nextLine(); // Pel nextInt
+                System.out.println();
             }
 
             switch(respostaMenu) {
