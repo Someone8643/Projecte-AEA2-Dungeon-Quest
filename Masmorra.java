@@ -409,7 +409,7 @@ public class Masmorra {
 
                                         // Generar aleatòriament el dany que pot fer el pont segons dificultat però amb mínim sempre de 1.
                                         int danyPont = Aleatori.generarIntAleatoriRang(1, Dificultat.valorFinalObjecteDolent(8));
-                                        jugador.setVida(jugador.getVida() - 1);
+                                        jugador.setVida(jugador.getVida() - danyPont);
                                         System.out.println("Has rebut " + danyPont + " punts de dany!");
                                         System.out.println();
 
