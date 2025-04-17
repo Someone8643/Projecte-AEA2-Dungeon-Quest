@@ -2,20 +2,44 @@ import java.util.Scanner;
 
 public class Masmorra {
 
-    // TODO eliminar enunciat en acabar i posar breu descripció del joc en general
-    // Finalment, hi haurà una classe masmorra (estàtica) per controlar el joc:
-    // Contenir els arrays de tots els tresors i monstres que hi haurà al joc.
-    // Crear la masmorra (MxN) i omplir-la de sales aleatòriament.
-    // Impressió de la masmorra amb les sales explorades (*), sales sense explorar (-) i posició actual del personatge (&).
-    // Mostrar opcions (moure, explorar i/o atacar).
-    // Comprovar si el joc ha finalitzat o no i mostrar resultats.
+    // Breu descripció general:
+    // El joc comença a la sala 1 1.
+    // Has d'anar movent-te fins a trobar la sortida.
+    // La sortida sempre estarà a l'última fila.
+    // Les sales poden tenir monstres, tresors i pocions.
+    // Els monstres són agressius i t'intentaran matar.
+    // Per evitar-ho, et pots curar amb pocions en un temps tranquil.
+
+    /*
+    Modificacions en general:
+    - Tots els tresors i monstres es generen de forma aleatòria.
+    - Nivells de dificultat.
+    - Pocions per curar el personatge.
+    - Combat canviat.
+    - Generació de masmorra i sales completament diferent. Sempre hi haurà mínim un camí cap a la sortida.
+    - Sortides sol en l'últim nivell.
+    - Modificacions en molts valors.
+    - Modificacions en altres detalls més petits.
+
+    En general, el joc final és molt diferent del que s'havia proposat amb aquestes ampliacions.
+     */
 
     public static void main(String[] args) {
+
+        System.out.println();
+        System.out.println("--------------------");
+        System.out.println("----DungeonQuest----");
+        System.out.println("--------------------");
+        System.out.println("----Java Edition----");
+        System.out.println("--------------------");
+        System.out.println();
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Benvingut a DungeonQuest!");
         System.out.print("Estàs preparat per jugar? (s/n): ");
         String respostaJugar = scanner.nextLine();
+        System.out.println();
 
         while (!respostaJugar.equalsIgnoreCase("s")) {
 
@@ -23,30 +47,26 @@ public class Masmorra {
             respostaJugar = scanner.nextLine();
         }
 
-        System.out.println();
-        System.out.println("-------------------");
-        System.out.println("----DungeonQuest---");
-        System.out.println("-------------------");
-        System.out.println();
-
         // Seleccionar una dificultat
-
         System.out.println("Selecciona una dificultat:");
         System.out.println("D = Difícil");
         System.out.println("N = Normal");
         System.out.println("F = Fàcil");
 
         System.out.print("La teva elecció: ");
-        char respostaDificultat = scanner.nextLine().charAt(0);
+        String respostaDificultat = scanner.nextLine();
 
         // Mentres no sigui correcta la resposta, seguir preguntant
-        while (respostaDificultat != 'D' && respostaDificultat != 'N' && respostaDificultat != 'F') {
+        while (!respostaDificultat.equalsIgnoreCase("D") && !respostaDificultat.equalsIgnoreCase("N") && !respostaDificultat.equalsIgnoreCase("F")) {
 
-            System.out.print("Resposta incorrecta! (introdueix D, N o F en majúscules): ");
-            respostaDificultat = scanner.nextLine().charAt(0);
+            System.out.print("Resposta incorrecta! (introdueix D, N o F): ");
+            respostaDificultat = scanner.nextLine();
         }
 
-        Dificultat.setNivellDeDificultat(respostaDificultat);
+        // Preparem per ser guardat com a char
+        respostaDificultat = respostaDificultat.toUpperCase();
+
+        Dificultat.setNivellDeDificultat(respostaDificultat.charAt(0));
 
 
         // Crear masmorra, amb totes les dades aleatories segons els constructors de cada classe
@@ -169,10 +189,10 @@ public class Masmorra {
         }
 
 
-        // tenim al jugador i a la masmorra amb sales, tresors i monstres.
+        // Tenim al jugador i a la masmorra amb sales, tresors i monstres.
 
 
-        // Entrar en el bucle principal del programa
+        // ---------Entrar en el bucle principal del programa
         // Sol sortirem si hi ha gameOver
         boolean gameOver = false;
 
@@ -197,6 +217,7 @@ public class Masmorra {
             System.out.println();
 
             if (salaActual.getMonstre() != null) {
+
                 System.out.println("Perill! Hi ha un monstre a la sala! Si intentes explorar-la o fugir, entraràs en combat!");
                 System.out.println();
             }
@@ -244,9 +265,7 @@ public class Masmorra {
 
                     // OP 1
                     // EXPLORAR
-                    // Cridar mètode d'explorar de Personatge. No mostrar l'opció si la sala ja està explorada.
-                    int posiX=jugador.getPosicio()[0];
-                    int posiY=jugador.getPosicio()[1];
+                    // Cridar mètode d'explorar de Personatge.
 
                     // Si hi ha un monstre, no deixar explorar i entrar en combat
                     if (salaActual.getMonstre() != null) {
@@ -255,11 +274,15 @@ public class Masmorra {
                         System.out.println();
 
                         // S'entra en combat
-                        combatPersonatgeMonstre(jugador, matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()].getMonstre());
+                        combatPersonatgeMonstre(jugador, salaActual.getMonstre());
 
                         // Combat acabat, hem de fer gameOver si jugador mort i si monstre mort, treure de la sala
                         // Si el jugador no ha mort, després pot tornar a decidir explorar la sala.
                         if (jugador.getVida() <= 0) {
+
+                            System.out.println("Has mort en intentar explorar una sala amb un monstre!");
+                            System.out.println();
+
                             gameOver = true;
                             causaMort = "matat per monstre";
 
@@ -269,19 +292,19 @@ public class Masmorra {
                             System.out.println();
                         }
 
-                        if (matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()].getMonstre().getVida() <= 0) {
+                        if (salaActual.getMonstre().getVida() <= 0) {
 
-                            matriuMasmorra[jugador.getPosicioY()][jugador.getPosicioX()].setMonstre(null);
+                            salaActual.setMonstre(null);
                         }
 
                     } else {
 
-                        if (!matriuMasmorra[posiX][posiY].isExplorada()) {
+                        if (!salaActual.isExplorada()) {
 
                             System.out.println("Explorant sala...");
                             System.out.println();
 
-                            System.out.println(jugador.explorar(matriuMasmorra[posiX][posiY]));
+                            System.out.println(jugador.explorar(salaActual));
                             System.out.println();
 
                         } else { // Si està explorada, no deixar tornar a explorar
@@ -299,171 +322,137 @@ public class Masmorra {
                     // MOVIMENT
                     // Preguntar a quina direcció vol moure i utilitzar mètode de Personatge
 
-                    // TODO revisar el com agafar direcció
-
-                    System.out.print("Introdueix una direcció (N, E, S, O): ");
-                    char respostaDireccio = scanner.nextLine().charAt(0);
+                    System.out.print("Introdueix una direcció (N, E, S, O) (Q per desistir): ");
+                    String respostaDireccio = scanner.nextLine();
                     System.out.println();
 
-                    int direccioNum = 0;
+                    // Mentres no sigui una de llargada 1 (per tant no pot ser 0), o no escrigui Q per sortir, o no hi hagi porta, continuar preguntant.
+                    while ( (respostaDireccio.length() != 1) || respostaDireccio.equalsIgnoreCase("Q") || !salaActual.isPortaDireccioChar(respostaDireccio.charAt(0))) {
 
-                    switch(respostaDireccio) {
-                        case 'N', 'n':
-
-                            direccioNum = 0;
-                            break;
-                        case 'E', 'e':
-
-                            direccioNum = 1;
-                            break;
-                        case 'S', 's':
-
-                            direccioNum = 2;
-                            break;
-                        case 'O', 'o':
-
-                            direccioNum = 3;
-                            break;
-                        default:
-                    }
-
-                    // Mentres no hi hagi porta, seguir preguntant
-                    while (!salaActual.isPortaDireccio(direccioNum)) {
-
-                        System.out.println("Incorrecte");
-                        System.out.print("Introdueix una direcció (N, E, S, O): ");
-                        respostaDireccio = scanner.nextLine().charAt(0);
+                        System.out.println("Incorrecte, no hi ha porta cap aquesta direcció.");
+                        System.out.print("Introdueix una direcció (N, E, S, O) (Q per desistir): ");
+                        respostaDireccio = scanner.nextLine();
                         System.out.println();
-
-                        direccioNum = 0;
-
-                        switch(respostaDireccio) {
-                            case 'N', 'n':
-
-                                direccioNum = 0;
-                                break;
-                            case 'E', 'e':
-
-                                direccioNum = 1;
-                                break;
-                            case 'S', 's':
-
-                                direccioNum = 2;
-                                break;
-                            case 'O', 'o':
-
-                                direccioNum = 3;
-                                break;
-                            default:
-                        }
                     }
 
+                    // Si no ha dit que no vol moure (Q), podem continuar
+                    if (!respostaDificultat.equalsIgnoreCase("Q")) {
 
-                    // Comprovacions
+                        // La resposta s'utilitza després de les comprovacions
 
-                    // Si la sala no és del tipus normal, s'haurà de fer o una tirada de força o d'agilitat.
-                    if (!salaActual.getTipus().equals("Normal")) {
+                        // Comprovacions
 
-                        if (salaActual.getTipus().equals("Teranyina")) {
+                        // Si més endavant no vol continuar intentant travessar una teranyina o pont, acabar.
+                        String respostaContinuar = "S";
 
-                            System.out.println("La sala és de tipus teranyina, hauràs de fer una tirada de força per poder continuar!");
+                        // Si la sala no és del tipus normal, s'haurà de fer o una tirada de força o d'agilitat.
+                        if (!salaActual.getTipus().equals("Normal")) {
 
-                            boolean escapar = false;
-                            while (!escapar) {
+                            if (salaActual.getTipus().equals("Teranyina")) {
 
-                                int resultat = Aleatori.generarIntAleatoriRang(1, 12);
-                                System.out.println("Has tret un " + resultat + "!");
+                                System.out.println("La sala és de tipus teranyina, hauràs de fer una tirada de força per poder continuar!");
 
-                                if (resultat <= jugador.getForsa()) {
+                                boolean escapar = false;
 
-                                    escapar = true;
-                                    System.out.println("Has aconseguit escapar!");
-                                    System.out.println();
-                                } else {
+                                // Mentres vol continuar intentant-ho i no escapa, continuar intentant.
+                                while (respostaContinuar.equalsIgnoreCase("S") && !escapar) {
 
-                                    System.out.println("Necessites treure un " + jugador.getForsa() + " o menys per escapar!");
-                                    System.out.println();
+                                    int resultat = Aleatori.generarIntAleatoriRang(1, 12);
+                                    System.out.println("Has tret un " + resultat + "!");
+
+                                    if (resultat <= jugador.getForsa()) {
+
+                                        escapar = true;
+                                        System.out.println("Has aconseguit escapar!");
+                                        System.out.println();
+                                    } else {
+
+                                        System.out.println("Necessites treure un " + jugador.getForsa() + " o menys per escapar!");
+                                        System.out.println();
+
+                                        // Preguntar si vol continuar intentant-ho.
+                                        System.out.println("Vols continuar intentant-ho?");
+                                        System.out.println("Introdueix s per continuar.");
+                                        respostaContinuar = scanner.nextLine();
+                                    }
                                 }
 
-                                // Esperar a que usuari vulgui continuar
-                                System.out.print("Introdueix Enter per continuar...");
-                                scanner.nextLine();
+                            } else { // És de pont
+
+                                System.out.println("La sala és de tipus pont, hauràs de fer una tirada de d'agilitat per poder continuar!");
+                                System.out.println("Vigila! Cada intent fallit et farà mal!");
+                                System.out.println();
+
+                                boolean escapar = false;
+
+                                // Si vol continuar i no escapa i segueixi tenint vida, seguir intentant.
+                                while (respostaContinuar.equalsIgnoreCase("S") && !escapar && (jugador.getVida() > 0)) {
+
+                                    int resultat = Aleatori.generarIntAleatoriRang(1, 12);
+                                    System.out.println("Has tret un " + resultat + "!");
+
+                                    if (resultat <= jugador.getAgilitat()) {
+
+                                        escapar = true;
+                                        System.out.println("Has aconseguit escapar!");
+                                        System.out.println();
+
+                                    } else {
+
+                                        System.out.println("Necessites treure un " + jugador.getAgilitat() + " o menys per escapar!");
+                                        System.out.println();
+
+                                        // Generar aleatòriament el dany que pot fer el pont segons dificultat però amb mínim sempre de 1.
+                                        int danyPont = Aleatori.generarIntAleatoriRang(1, Dificultat.valorFinalObjecteDolent(8));
+                                        jugador.setVida(jugador.getVida() - 1);
+                                        System.out.println("Has rebut " + danyPont + " punts de dany!");
+                                        System.out.println();
+
+                                        // Preguntar si vol continuar intentant (pot servir per si el jugador està a vida baixa i vol sortir per curar amb poció).
+                                        System.out.println("Vols continuar intentant-ho? El teu nivell de vida és " + jugador.getVida() + " punts.");
+                                        System.out.println("Introdueix s per continuar.");
+                                        respostaContinuar = scanner.nextLine();
+                                    }
+                                } // o ha parat o ha escapat o ha mort.
+
+                                // Si ha mort, gameOver (morir per culpa d'un pont és bastant trist)
+                                if ((jugador.getVida() <= 0)) {
+
+                                    System.out.println("Has mort per culpa de caure del pont!");
+                                    causaMort = "caure repetidament d'un pont";
+                                    gameOver = true;
+                                }
+                            }
+                        }
+
+                        // Si no ha mort pel pont i no ha deixat d'intentar el pont o teranyina i doncs ho ha superat, podem continuar.
+                        if (!gameOver && respostaContinuar.equalsIgnoreCase("S")) {
+
+                            // Si hi havia monstre, aplicar penalització abans de sortir i revisar per un gameOver.
+                            if (salaActual.getMonstre() != null) {
+
+                                System.out.println("El monstre de la sala t'ha atacat en fugir i t'ha fet " + salaActual.getMonstre().penalitzarPersonatge(jugador) + " punts de vida!");
                                 System.out.println();
                             }
 
-                        } else { // És de pont
+                            if (jugador.getVida() <= 0) {
 
-                            System.out.println("La sala és de tipus pont, hauràs de fer una tirada de d'agilitat per poder continuar!");
-                            System.out.println("Vigila! Cada intent fallit et farà mal!");
-                            System.out.println();
-
-                            boolean escapar = false;
-                            while (!escapar && (jugador.getVida() > 0)) { // Mentres no escapa o segueixi tenint vida
-
-                                int resultat = Aleatori.generarIntAleatoriRang(1, 12);
-                                System.out.println("Has tret un " + resultat + "!");
-
-                                if (resultat <= jugador.getAgilitat()) {
-
-                                    escapar = true;
-                                    System.out.println("Has aconseguit escapar!");
-                                    System.out.println();
-
-                                } else {
-
-                                    System.out.println("Necessites treure un " + jugador.getAgilitat() + " o menys per escapar!");
-                                    System.out.println();
-
-                                    // Generar aleatòriament el dany que pot fer el pont segons dificultat però amb mínim sempre de 1.
-                                    int danyPont = Aleatori.generarIntAleatoriRang(1, Dificultat.valorFinalObjecteDolent(8));
-                                    jugador.setVida(jugador.getVida() - 1);
-                                    System.out.println("Has rebut " + danyPont + " punts de dany!");
-                                    System.out.println();
-                                }
-
-                                // Esperar a que usuari vulgui continuar
-                                System.out.print("Introdueix Enter per continuar...");
-                                scanner.nextLine();
+                                System.out.println("El monstre t'ha matat en intentar fugir!");
                                 System.out.println();
-                            }
-
-                            // Si ha mort, gameOver (morir per culpa d'un pont és bastant trist)
-                            if ((jugador.getVida() <= 0)) {
-
-                                System.out.println("Has mort per culpa de caure del pont!");
-                                causaMort = "caure repetidament d'un pont";
-                                gameOver = true;
-                            }
-                        }
-                    }
-
-                    // Si no ha mort pel pont, podem continuar
-                    if (!gameOver) {
-
-                        // Si hi havia monstre, aplicar penalització abans de sortir i revisar per un gameover
-                        if (salaActual.getMonstre() != null) {
-
-                            System.out.println("El monstre de la sala t'ha atacat en fugir i t'ha fet " + salaActual.getMonstre().penalitzarPersonatge(jugador) + " punts de vida!");
-                            System.out.println();
-                        }
-
-                        if (jugador.getVida() <= 0) {
-
-                            System.out.println("El monstre t'ha matat en intentar fugir!");
-                            System.out.println();
-
-                            gameOver = true;
-                            causaMort = "matat per monstre en intentar fugir d'una sala";
-
-                        } else { // Es pot moure
-
-                            // Finalment, passar direcció al mètode de moure
-                            jugador.moureDireccio(respostaDireccio);
-
-                            // Si està fora de la matriu, és que ha sortit per una porta cap a fora i ha guanyat.
-                            if (!dintreMatriu(matriuMasmorra, jugador.getPosicioY(), jugador.getPosicioX())) {
 
                                 gameOver = true;
+                                causaMort = "matat per monstre en intentar fugir d'una sala";
+
+                            } else { // Es pot moure
+
+                                // Finalment, passar direcció de la pregunta inicial al mètode de moure
+                                jugador.moureDireccio(respostaDireccio.charAt(0));
+
+                                // Si està fora de la matriu, és que ha sortit per una porta cap a fora i ha guanyat.
+                                if (!dintreMatriu(matriuMasmorra, jugador.getPosicioY(), jugador.getPosicioX())) {
+
+                                    gameOver = true;
+                                }
                             }
                         }
                     }
@@ -707,19 +696,19 @@ public class Masmorra {
 
                     // Preguntar si vol continuar el combat (l'altra opció és fugir)
                     System.out.print("Vols continuar el combat? (introdueix s/n on n és fugir): ");
-                    char respostaContinuar = scanner.nextLine().charAt(0);
+                    String respostaContinuar = scanner.nextLine();
                     System.out.println();
 
                     // Mentres no sigui correcta la resposta, seguir preguntant
-                    while (respostaContinuar != 'S' && respostaContinuar != 's' && respostaContinuar != 'N' && respostaContinuar != 'n') {
+                    while (!respostaContinuar.equalsIgnoreCase("S") && !respostaContinuar.equalsIgnoreCase("N")) {
 
-                        System.out.print("Resposta incorrecta! (introdueix s o n): ");
-                        respostaContinuar = scanner.nextLine().charAt(0);
+                        System.out.print("Resposta incorrecta! (introdueix s/n): ");
+                        respostaContinuar = scanner.nextLine();
                         System.out.println();
                     }
 
                     // Si és que no, s'aplica la penalització i s'acaba el combat.
-                    if (respostaContinuar == 'N' || respostaContinuar == 'n') {
+                    if (respostaContinuar.equalsIgnoreCase("N")) {
 
                         // Fer que el Personatge rebi penalització
 
