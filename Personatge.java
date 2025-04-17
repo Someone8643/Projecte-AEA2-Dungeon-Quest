@@ -304,7 +304,11 @@ public class Personatge {
     }
 
     public void setVida(int vida) {
-        this.vida = vida;
+
+        // Si amb aquest setter la vida supera la inicial, s'actualitza la vida inicial
+        if (this.vida + vida > vidaInicial) {
+            this.vida = vida;
+        }
     }
 
     public int getAtac() {

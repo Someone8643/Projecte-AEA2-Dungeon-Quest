@@ -14,6 +14,7 @@ public class Masmorra {
     Modificacions en general:
     - Tots els tresors i monstres es generen de forma aleatòria.
     - Nivells de dificultat.
+    - Sistema de millorar habilitats abans de començar.
     - Pocions per curar el personatge.
     - Combat canviat.
     - Generació de masmorra i sales completament diferent. Sempre hi haurà mínim un camí cap a la sortida.
