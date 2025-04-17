@@ -544,16 +544,26 @@ public class Masmorra {
                     // OP 6
                     // UTILITZAR POCIÓ
 
-                    if (jugador.utiltzarPocio()) {
+                    // Si la vida està al màxim, no deixar utilitzar poció
+                    if (jugador.getVida() == jugador.getVidaInicial()) {
 
-                        System.out.println("Utilitzes una poció.");
+                        System.out.println("Ja estàs al màxim de vida!");
                         System.out.println();
 
                     } else {
 
-                        System.out.println("No tens pocions...");
-                        System.out.println();
+                        if (jugador.utiltzarPocio()) {
+
+                            System.out.println("Utilitzes una poció.");
+                            System.out.println();
+
+                        } else {
+
+                            System.out.println("No tens pocions...");
+                            System.out.println();
+                        }
                     }
+
 
                     // Esperar a que usuari vulgui continuar
                     System.out.print("Introdueix Enter per continuar...");

@@ -278,6 +278,7 @@ public class Personatge {
 
         return "Personatge: \n" +
                 "\tNom: " + nom + "\n" +
+                "\tVida inicial: " + vidaInicial +"\n"+
                 "\tVida: " + vida +"\n"+
                 "\tAtac: " + atac +"\n"+
                 "\tExperiència: " + experiencia +"\n"+
