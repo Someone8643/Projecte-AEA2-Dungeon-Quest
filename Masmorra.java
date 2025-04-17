@@ -643,8 +643,8 @@ public class Masmorra {
                 System.out.println("El monstre " + monstre.getNom() + " ha perdut!");
                 System.out.println();
 
-                // Incrementem l'experiència
-                personatge.setExperiencia( personatge.getExperiencia() + (monstre.getVidaInicial() * 2) );
+                // Incrementem l'experiència sempre
+                personatge.setExperiencia( personatge.getExperiencia() + (int)( (monstre.getVidaInicial() * 0.5) + (monstre.getAtac() * 1.5) ) );
                 System.out.println("Has guanyat " + ((monstre.getVidaInicial() * 2)) + " punts d'experiència!");
                 System.out.println();
 
