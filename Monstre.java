@@ -36,10 +36,10 @@ public class Monstre {
         this.vida = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteDolent(10), Dificultat.valorFinalObjecteDolent(100));
 
         // Es genera un nivell d'atac. Min 5, max 70
-        this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteDolent(5), Dificultat.valorFinalObjecteDolent(70));
+        this.atac = Aleatori.generarIntAleatoriRang(Dificultat.valorFinalObjecteDolent(5), Dificultat.valorFinalObjecteDolent(60));
 
-        // Es genera una penalització per fugir de forma aleatòria. Min 1, max 20
-        this.penalitazcio = Aleatori.generarIntAleatoriRang(1, 20);
+        // Es genera una penalització per fugir de forma aleatòria. Min 5, max 30
+        this.penalitazcio = Aleatori.generarIntAleatoriRang(5, 30);
 
         this.vidaInicial = vida;
     }
@@ -59,7 +59,7 @@ public class Monstre {
         return this.penalitazcio;
     }
 
-    // TODO revisar
+
     /**
      * Mètode perquè aquest Monstre ataqui a un Personatge.
      * @param personatge El Personatge a atacar.

@@ -284,11 +284,11 @@ public class Personatge {
                 "\tAgilitat: " + agilitat +"\n"+
                 "\tForça: " + forsa +"\n"+
                 "\tPosició: sala " + (posicio[1] + 1) + " del nivell " + (posicio[1] + 1) + "\n"+
-                "\t" + stringMostrarEquipament;
+                "\t" + stringMostrarEquipament + "\n" +
+                "\tPocions: " + pocions;
     }
 
 
-    // TODO Revisar getters i setters
     // // Getters i Setters
 
     public String getNom() {

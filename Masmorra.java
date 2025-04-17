@@ -193,7 +193,7 @@ public class Masmorra {
             // Dir la sala en que es troba (inclòs si és l'inici)
             System.out.println("Et trobes a la sala " + (jugador.getPosicioX() + 1) + " del nivell " + (jugador.getPosicioY() + 1) + ". La sala té aquesta forma (on & ets tu i les fleches una porta):");
 
-            mostrarSalaGraficament(salaActual);
+            salaActual.mostrarSalaGraficament();
             System.out.println();
 
             if (salaActual.getMonstre() != null) {
@@ -381,7 +381,7 @@ public class Masmorra {
                                     System.out.println();
                                 } else {
 
-                                    System.out.println("Necessites treure un mínim de " + jugador.getForsa() + " per escapar!");
+                                    System.out.println("Necessites treure un " + jugador.getForsa() + " o menys per escapar!");
                                     System.out.println();
                                 }
 
@@ -394,9 +394,11 @@ public class Masmorra {
                         } else { // És de pont
 
                             System.out.println("La sala és de tipus pont, hauràs de fer una tirada de d'agilitat per poder continuar!");
+                            System.out.println("Vigila! Cada intent fallit et farà mal!");
+                            System.out.println();
 
                             boolean escapar = false;
-                            while (!escapar) {
+                            while (!escapar && (jugador.getVida() > 0)) { // Mentres no escapa o segueixi tenint vida
 
                                 int resultat = Aleatori.generarIntAleatoriRang(1, 12);
                                 System.out.println("Has tret un " + resultat + "!");
@@ -406,9 +408,16 @@ public class Masmorra {
                                     escapar = true;
                                     System.out.println("Has aconseguit escapar!");
                                     System.out.println();
+
                                 } else {
 
-                                    System.out.println("Necessites treure un mínim de " + jugador.getAgilitat() + " per escapar!");
+                                    System.out.println("Necessites treure un " + jugador.getAgilitat() + " o menys per escapar!");
+                                    System.out.println();
+
+                                    // Generar aleatòriament el dany que pot fer el pont segons dificultat però amb mínim sempre de 1.
+                                    int danyPont = Aleatori.generarIntAleatoriRang(1, Dificultat.valorFinalObjecteDolent(8));
+                                    jugador.setVida(jugador.getVida() - 1);
+                                    System.out.println("Has rebut " + danyPont + " punts de dany!");
                                     System.out.println();
                                 }
 
@@ -418,34 +427,44 @@ public class Masmorra {
                                 System.out.println();
                             }
 
+                            // Si ha mort, gameOver (morir per culpa d'un pont és bastant trist)
+                            if ((jugador.getVida() <= 0)) {
 
+                                System.out.println("Has mort per culpa de caure del pont!");
+                                causaMort = "caure repetidament d'un pont";
+                                gameOver = true;
+                            }
                         }
                     }
 
-                    // Si hi havia monstre, aplicar penalització abans de sortir i revisar per un gameover
-                    if (salaActual.getMonstre() != null) {
+                    // Si no ha mort pel pont, podem continuar
+                    if (!gameOver) {
 
-                        System.out.println("El monstre de la sala t'ha atacat en fugir i t'ha fet " + salaActual.getMonstre().penalitzarPersonatge(jugador) + " punts de vida!");
-                        System.out.println();
-                    }
+                        // Si hi havia monstre, aplicar penalització abans de sortir i revisar per un gameover
+                        if (salaActual.getMonstre() != null) {
 
-                    if (jugador.getVida() <= 0) {
+                            System.out.println("El monstre de la sala t'ha atacat en fugir i t'ha fet " + salaActual.getMonstre().penalitzarPersonatge(jugador) + " punts de vida!");
+                            System.out.println();
+                        }
 
-                        System.out.println("El monstre t'ha matat en intentar fugir!");
-                        System.out.println();
+                        if (jugador.getVida() <= 0) {
 
-                        gameOver = true;
-                        causaMort = "matat per monstre en intentar fugir d'una sala";
-
-                    } else { // Es pot moure
-
-                        // Finalment, passar direcció al mètode de moure
-                        jugador.moureDireccio(respostaDireccio);
-
-                        // Si està fora de la matriu, és que ha sortit per una porta cap a fora i ha guanyat.
-                        if (!dintreMatriu(matriuMasmorra, jugador.getPosicioY(), jugador.getPosicioX())) {
+                            System.out.println("El monstre t'ha matat en intentar fugir!");
+                            System.out.println();
 
                             gameOver = true;
+                            causaMort = "matat per monstre en intentar fugir d'una sala";
+
+                        } else { // Es pot moure
+
+                            // Finalment, passar direcció al mètode de moure
+                            jugador.moureDireccio(respostaDireccio);
+
+                            // Si està fora de la matriu, és que ha sortit per una porta cap a fora i ha guanyat.
+                            if (!dintreMatriu(matriuMasmorra, jugador.getPosicioY(), jugador.getPosicioX())) {
+
+                                gameOver = true;
+                            }
                         }
                     }
 
@@ -719,22 +738,6 @@ public class Masmorra {
                 }
             }
         }
-    }
-
-
-    /**
-     * Funció que mostra gràficament una sala. TODO Considerar moure aquesta funció a la classe Sala
-     * @param salaAMostrar La sala a mostrar.
-     */
-    public static void mostrarSalaGraficament(Sala salaAMostrar) {
-
-        // Mostrar direccions de la sala
-        // Les portes (↑, →, ↓, ←) se mostren quan existeixen (true en el array de portes de Sala).
-        System.out.println(" ┌───────────┐ ");
-        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(0) ? "↑" : " ") + "    \t │ "); // Norte
-        System.out.println(" │ " + (salaAMostrar.isPortaDireccio(3) ? "←" : " ") + "  &  " + (salaAMostrar.isPortaDireccio(1) ? "→" : " ") + " \t │ "); // Oeste & Este
-        System.out.println(" │    " + (salaAMostrar.isPortaDireccio(2) ? "↓" : " ") + "    \t │ "); // Sur
-        System.out.println(" └───────────┘ ");
     }
 
 

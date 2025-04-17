@@ -143,6 +143,21 @@ public class Sala {
     }
 
 
+    /**
+     * Funció que mostra gràficament la sala.
+     */
+    public void mostrarSalaGraficament() {
+
+        // Mostrar direccions de la sala
+        // Les portes (↑, →, ↓, ←) es mostren quan existeixen (true en el array de portes de Sala).
+        System.out.println(" ┌───────────┐ ");
+        System.out.println(" │    " + (isPortaDireccio(0) ? "↑" : " ") + "    \t │ "); // Nord
+        System.out.println(" │ " + (isPortaDireccio(3) ? "←" : " ") + "  &  " + (isPortaDireccio(1) ? "→" : " ") + " \t │ "); // Oest i Est
+        System.out.println(" │    " + (isPortaDireccio(2) ? "↓" : " ") + "    \t │ "); // Sud
+        System.out.println(" └───────────┘ ");
+    }
+
+
     // To string
     @Override
     public String toString() {
