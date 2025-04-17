@@ -315,6 +315,10 @@ public class Masmorra {
                         }
                     }
 
+                    // Esperar a que usuari vulgui continuar
+                    System.out.print("Introdueix Enter per continuar...");
+                    scanner.nextLine();
+                    System.out.println();
 
                     break;
                 case 2:
@@ -458,6 +462,11 @@ public class Masmorra {
                         }
                     }
 
+                    // Esperar a que usuari vulgui continuar
+                    System.out.print("Introdueix Enter per continuar...");
+                    scanner.nextLine();
+                    System.out.println();
+
                     break;
                 case 3:
 
@@ -487,6 +496,11 @@ public class Masmorra {
                         System.out.println();
                     }
 
+                    // Esperar a que usuari vulgui continuar
+                    System.out.print("Introdueix Enter per continuar...");
+                    scanner.nextLine();
+                    System.out.println();
+
                     break;
                 case 4:
 
@@ -497,6 +511,11 @@ public class Masmorra {
                     System.out.println();
 
                     System.out.println(jugador);
+                    System.out.println();
+
+                    // Esperar a que usuari vulgui continuar
+                    System.out.print("Introdueix Enter per continuar...");
+                    scanner.nextLine();
                     System.out.println();
 
                     break;
@@ -512,6 +531,11 @@ public class Masmorra {
                     System.out.println();
 
                     mostrarMasmorra(matriuMasmorra, jugador.getPosicioX(), jugador.getPosicioY());
+                    System.out.println();
+
+                    // Esperar a que usuari vulgui continuar
+                    System.out.print("Introdueix Enter per continuar...");
+                    scanner.nextLine();
                     System.out.println();
 
                     break;
@@ -530,6 +554,11 @@ public class Masmorra {
                         System.out.println("No tens pocions...");
                         System.out.println();
                     }
+
+                    // Esperar a que usuari vulgui continuar
+                    System.out.print("Introdueix Enter per continuar...");
+                    scanner.nextLine();
+                    System.out.println();
 
                     break;
                 default:
