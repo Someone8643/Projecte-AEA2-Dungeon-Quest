@@ -46,7 +46,17 @@ public class Masmorra {
 
             System.out.println("Quan estiguis preparat, introdueix s.");
             respostaJugar = scanner.nextLine();
+            System.out.println();
         }
+
+        // Donar informació del joc
+        System.out.println("----Informació----");
+        System.out.println("L'objectiu és escapar de la masmorra. Dintre d'aquesta hi ha monstres que intentaran posar-t'ho difícil!");
+        System.out.println("La masmorra està composta de nivells amb sales. Hauràs de buscar sales amb portes cap avall per anar a l'últim nivell, on trobaràs la sortida.");
+        System.out.println("Aconseguiràs escapar? O moriràs en intentar aconseguir un tresor?");
+        System.out.println();
+
+        esperarEnter();
 
         // Seleccionar una dificultat
         System.out.println("Selecciona una dificultat:");
@@ -147,11 +157,21 @@ public class Masmorra {
                 System.out.println();
 
                 System.out.print("Introdueix la teva elecció (introdueix el número): ");
-                // Sol agafarem el que escrigui si és un int.
-                int respostaPunts = -1;
-                if (scanner.hasNextInt()) {
-                    respostaPunts = scanner.nextInt();
+                // Sol continuarem si el que escriu és un int.
+                // hasNextInt utilitza hasNext i aquest si li dones enters es queda dintre d'un bucle que té un while (true).
+                while (!scanner.hasNextInt()) {
+
+                    System.out.println();
+                    System.out.println("Has d'introduir un número!");
+                    System.out.println();
+
+                    // Important, agafar l'input o si no bucle infinit
+                    scanner.nextLine();
+                    System.out.print("Introdueix un número: ");
                 }
+
+                // Ens ha donat un int
+                int respostaPunts = scanner.nextInt(); // L'enter s'agafa més avall
                 System.out.println();
 
                 // Segons l'opció, es dedica punts a una estadística o una altra
@@ -186,7 +206,7 @@ public class Masmorra {
                         System.out.println("Aquesta opció no existeix!");
                 }
 
-                // Pel nextInt
+                // Pel nextInt d'abans
                 scanner.nextLine();
             }
 
@@ -198,7 +218,7 @@ public class Masmorra {
         // Tenim al jugador i a la masmorra amb sales, tresors i monstres.
 
 
-        // ---------Entrar en el bucle principal del programa
+        // // // Entrar en el bucle principal del programa
         // Sol sortirem si hi ha gameOver
         boolean gameOver = false;
 
@@ -253,24 +273,45 @@ public class Masmorra {
             System.out.println();
 
             System.out.print("Introdueix una opció: ");
-            // Sol agafarem el que escrigui si és un int.
-            int respostaMenu = -1;
-            if (scanner.hasNextInt()) {
-                respostaMenu = scanner.nextInt();
+
+            // Sol continuarem si el que escriu és un int.
+            // hasNextInt utilitza hasNext i aquest si li dones enters es queda dintre d'un bucle que té un while (true).
+
+            while (!scanner.hasNextInt()) {
+
+                System.out.println();
+                System.out.println("Has d'introduir un número!");
+                System.out.println();
+
+                // Important, agafar l'input o si no bucle infinit
+                scanner.nextLine();
             }
+
+            int respostaMenu = scanner.nextInt();
             scanner.nextLine(); // Pel nextInt
+
             System.out.println();
 
             // Mentres incorrecte, preguntar
             while (respostaMenu < 1 || respostaMenu > 6) {
 
-                System.out.print("Opció incorrecta, introdueix 1, 2, 3, 4, 5 o 6: ");
-                System.out.println("Introdueix una opció: ");
+                System.out.println("Opció incorrecta, introdueix 1, 2, 3, 4, 5 o 6: ");
+                System.out.print("Introdueix una opció: ");
 
                 // Sol agafarem el que escrigui si és un int.
-                if (scanner.hasNextInt()) {
-                    respostaMenu = scanner.nextInt();
+                while (!scanner.hasNextInt()) {
+
+                    System.out.println();
+                    System.out.println("Has d'introduir un número!");
+                    System.out.println();
+
+                    // Important, agafar l'input o si no bucle infinit
+                    scanner.nextLine();
+                    System.out.print("Introdueix un número: ");
                 }
+
+                // Ha de ser un int sí o sí
+                respostaMenu = scanner.nextInt();
                 scanner.nextLine(); // Pel nextInt
                 System.out.println();
             }
@@ -329,10 +370,7 @@ public class Masmorra {
                         }
                     }
 
-                    // Esperar a que usuari vulgui continuar
-                    System.out.print("Introdueix Enter per continuar...");
-                    scanner.nextLine();
-                    System.out.println();
+                    esperarEnter();
 
                     break;
                 case 2:
@@ -476,10 +514,7 @@ public class Masmorra {
                         }
                     }
 
-                    // Esperar a que usuari vulgui continuar
-                    System.out.print("Introdueix Enter per continuar...");
-                    scanner.nextLine();
-                    System.out.println();
+                    esperarEnter();
 
                     break;
                 case 3:
@@ -509,10 +544,7 @@ public class Masmorra {
                         System.out.println("No hi ha monstre en aquesta sala...");
                         System.out.println();
 
-                        // Esperar a que usuari vulgui continuar
-                        System.out.print("Introdueix Enter per continuar...");
-                        scanner.nextLine();
-                        System.out.println();
+                        esperarEnter();
                     }
 
                     break;
@@ -527,10 +559,7 @@ public class Masmorra {
                     System.out.println(jugador);
                     System.out.println();
 
-                    // Esperar a que usuari vulgui continuar
-                    System.out.print("Introdueix Enter per continuar...");
-                    scanner.nextLine();
-                    System.out.println();
+                    esperarEnter();
 
                     break;
                 case 5:
@@ -547,10 +576,7 @@ public class Masmorra {
                     mostrarMasmorra(matriuMasmorra, jugador.getPosicioX(), jugador.getPosicioY());
                     System.out.println();
 
-                    // Esperar a que usuari vulgui continuar
-                    System.out.print("Introdueix Enter per continuar...");
-                    scanner.nextLine();
-                    System.out.println();
+                    esperarEnter();
 
                     break;
                 case 6:
@@ -579,10 +605,7 @@ public class Masmorra {
                     }
 
 
-                    // Esperar a que usuari vulgui continuar
-                    System.out.print("Introdueix Enter per continuar...");
-                    scanner.nextLine();
-                    System.out.println();
+                    esperarEnter();
 
                     break;
                 default:
@@ -676,10 +699,7 @@ public class Masmorra {
         System.out.println("Sort!");
         System.out.println();
 
-        // Esperar a que usuari vulgui continuar
-        System.out.print("Introdueix Enter per continuar...");
-        scanner.nextLine();
-        System.out.println();
+        esperarEnter();
 
         while (continuar) {
 
@@ -710,10 +730,7 @@ public class Masmorra {
                     System.out.println();
                 }
 
-                // Esperar a que usuari vulgui continuar
-                System.out.print("Introdueix Enter per continuar...");
-                scanner.nextLine();
-                System.out.println();
+                esperarEnter();
 
             } else {
 
@@ -723,10 +740,7 @@ public class Masmorra {
 
                 personatgeFerit = true;
 
-                // Esperar a que usuari vulgui continuar
-                System.out.print("Introdueix Enter per continuar...");
-                scanner.nextLine();
-                System.out.println();
+                esperarEnter();
 
                 continuar = personatge.getVida() > 0;
 
@@ -735,10 +749,7 @@ public class Masmorra {
                     // Ha perdut el personatge
                     System.out.println("El personatge " + personatge.getNom() + " ha perdut!");
 
-                    // Esperar a que usuari vulgui continuar
-                    System.out.print("Introdueix Enter per continuar...");
-                    scanner.nextLine();
-                    System.out.println();
+                    esperarEnter();
 
                 } else { // Es continua si el monstre o el personatge no ha perdut
 
@@ -778,10 +789,7 @@ public class Masmorra {
                         // S'acaba el combat perquè el personatge ha fugit
                         continuar = false;
 
-                        // Esperar a que usuari vulgui continuar
-                        System.out.print("Introdueix Enter per continuar...");
-                        scanner.nextLine();
-                        System.out.println();
+                        esperarEnter();
                     }
                 }
             }
@@ -828,5 +836,17 @@ public class Masmorra {
 
         return  (fil >= 0 && col >= 0) &&
                 (fil < matriu.length && col < matriu[fil].length);
+    }
+
+    /**
+     * Funció que espera que l'usuari introdueixi Enter
+     */
+    public static void esperarEnter() {
+        Scanner scanner = new Scanner(System.in);
+
+        // Esperar a que usuari vulgui continuar
+        System.out.print("Introdueix Enter per continuar...");
+        scanner.nextLine();
+        System.out.println();
     }
 }
