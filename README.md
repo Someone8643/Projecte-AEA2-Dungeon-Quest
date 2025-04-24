@@ -1,14 +1,27 @@
-# Projecte-AEA2-Dungeon-Quest
-# Projecte AEA2: DungeonQuest
+# Projecte Programació AEA2: DungeonQuest
 
-Una empresa de jocs online ens ha encomanat la tasca de digitalitzar un conegut Joc de taula: [DungeonQuest](https://garesys.com/media/rules/dq-edici%C3%B3n-revisada-reglas.pdf).
+Joc de consola fet amb java inspirat en DungeonQuest
 
-En principi solament volen una versió simplificada del Joc on s’implementaran només algunes parts de les regles.
+Breu descripció general:
 
-Bàsicament el Joc està format per una Masmorra (matriu) formada per sales (elements de la matriu), a banda, les sales podran contenir tresors i/o monstres. I finalment tindrem al nostre personatge.
+El joc comença a la sala 1 1.
+Has d'anar movent-te fins a trobar la sortida.
+La sortida sempre estarà a l'última fila.
+Les sales poden tenir monstres, tresors i pocions.
+Els monstres són agressius i t'intentaran matar.
+Per evitar-ho, et pots curar amb pocions en un temps tranquil.
+    
+Modificacions en general:
+- Tots els tresors i monstres es generen de forma aleatòria.
+- Nivells de dificultat.
+- Sistema de millorar habilitats abans de començar.
+- Pocions per curar el personatge.
+- Combat canviat.
+- Generació de masmorra i sales completament diferent. Sempre hi haurà mínim un camí cap a la sortida.
+- Sortides sol en l'últim nivell.
+- Modificacions en molts valors.
+- Modificacions en altres detalls més petits.
 
-## Classes
+En general, el joc final és molt diferent del que s'havia proposat amb aquestes ampliacions.
+     
 
-### 🕋 Sala
-
-Cada **Sala** tindrà les següents característiques:
